@@ -1,7 +1,7 @@
 title:
   website: 'Citizens of Dalaran'
   homepage: 'Strona główna'
-  about: 'O nas'
+  group: 'Nasza grupa'
   news: 'Aktualności'
   about_larp: 'O larpach'
   what_is_larp: 'Czym jest larp?'
@@ -10,3 +10,4 @@ title:
   larp_history: 'Historia larpów'
   larps_in_poland: 'Larpy w Polsce'
   login: 'Zaloguj'
+  contact: 'Kontakt'

@@ -1,7 +1,7 @@
 title:
   website: 'Citizens of Dalaran'
   homepage: 'Home'
-  about: 'About us'
+  group: 'Our group'
   news: 'News'
   about_larp: 'About larp'
   what_is_larp: 'What is larp?'
@@ -10,3 +10,4 @@ title:
   larp_history: 'Larping history'
   larps_in_poland: 'Larps in Poland'
   login: 'Sign in'
+  contact: 'Contact'
