@@ -15,7 +15,9 @@ class NewsController extends Controller
     public function indexAction(Request $request)
     {
         return $this->render('news/index.html.twig', [
-            'controller_name' => 'NewsController',
+            'carousel_hide' => FALSE,
+            'sidebar' => Null,
+            'active_element' => 'news'
         ]);
     }
 }

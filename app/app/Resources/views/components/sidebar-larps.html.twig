@@ -1,0 +1,17 @@
+<div class="side-menu d-none d-md-block rounded navbar bg-light navbar-light">
+    <a class="navbar-brand" href="#">{{ 'title.about_larp'|trans }}</a>
+    <ul class="navbar-nav nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link{% if active_element == 'what_is_larp' %} active{% endif %}" href="#">{{ 'title.what_is_larp'|trans }}</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link{% if active_element == 'larp_types' %} active{% endif %}" href="#">{{ 'title.larp_types'|trans }}</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link{% if active_element == 'larp_terms' %} active{% endif %}" href="#">{{ 'title.larp_terms'|trans }}</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link{% if active_element == 'larp_history' %} active{% endif %}" href="#">{{ 'title.larp_history'|trans }}</a>
+        </li>
+    </ul>
+</div>

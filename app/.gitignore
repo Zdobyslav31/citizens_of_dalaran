@@ -17,3 +17,7 @@
 /web/bundles/
 .idea
 ../composer.phar
+/web/assetic
+/web/css
+/web/js
+/web/images

@@ -14,7 +14,10 @@ class StaticController extends Controller
     public function about()
     {
         return $this->render('static/about.html.twig', [
-            'controller_name' => 'StaticController',
+            'carousel_hide' => TRUE,
+            'sidebar' => 'group',
+            'active_element' => 'about',
+            'active_subelement' => 'about'
         ]);
     }
     /**
@@ -22,8 +25,11 @@ class StaticController extends Controller
      */
     public function larps()
     {
-        return $this->render('static/larps.html.twig', [
-            'controller_name' => 'StaticController',
+        return $this->render('static/larps/what_is_larp.html.twig', [
+            'carousel_hide' => TRUE,
+            'sidebar' => 'larps',
+            'active_element' => 'larps',
+            'active_subelement' => 'what_is_larp'
         ]);
     }
     /**
@@ -31,26 +37,35 @@ class StaticController extends Controller
      */
     public function larps_types()
     {
-        return $this->render('static/larps_types.html.twig', [
-            'controller_name' => 'StaticController',
+        return $this->render('static/larps/types.html.twig', [
+            'carousel_hide' => TRUE,
+            'sidebar' => 'larps',
+            'active_element' => 'larps',
+            'active_subelement' => 'larp_types'
         ]);
     }
     /**
-     * @Route("/larps/terms", name="larps_terms")
+     * @Route("/larps/terms", name="larp_terms")
      */
     public function larps_terms()
     {
-        return $this->render('static/larps_terms.html.twig', [
-            'controller_name' => 'StaticController',
+        return $this->render('static/larps/terms.html.twig', [
+            'carousel_hide' => TRUE,
+            'sidebar' => 'larps',
+            'active_element' => 'larps',
+            'active_subelement' => 'larp_terms'
         ]);
     }
     /**
-     * @Route("/larps/history", name="larps_history")
+     * @Route("/larps/history", name="larp_history")
      */
     public function larps_history()
     {
-        return $this->render('static/larps_history.html.twig', [
-            'controller_name' => 'StaticController',
+        return $this->render('static/larps/history.html.twig', [
+            'carousel_hide' => TRUE,
+            'sidebar' => 'larps',
+            'active_element' => 'larps',
+            'active_subelement' => 'larp_history'
         ]);
     }
 }

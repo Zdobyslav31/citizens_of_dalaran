@@ -9,31 +9,37 @@
     </button>
     <div class="collapse navbar-collapse justify-content-between" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
+            <li class="nav-item{% if active_element == 'news' %} active{% endif %}">
                 <a class="nav-link" href="{{ url('homepage') }}">{{ 'title.news'|trans }}<span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url('about') }}">{{ 'title.group'|trans }}</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="{{ url('larps') }}" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ 'title.about_larp'|trans }}</a>
+            <li class="nav-item dropdown{% if active_element == 'about' %} active{% endif %}">
+                <a class="nav-link dropdown-toggle" href="{{ url('about') }}" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ 'title.group'|trans }}</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown01">
-                    <a class="dropdown-item" href="{{ url('larps') }}">{{ 'title.what_is_larp'|trans }}</a>
-                    <a class="dropdown-item" href="#">{{ 'title.larp_types'|trans }}</a>
-                    <a class="dropdown-item" href="#">{{ 'title.terms'|trans }}</a>
-                    <a class="dropdown-item" href="#">{{ 'title.larp_history'|trans }}</a>
+                    <a class="dropdown-item{% if active_element == 'about' %} active{% endif %}" href="{{ url('about') }}">{{ 'title.about'|trans }}</a>
+                    <a class="dropdown-item{% if active_element == 'archive' %} active{% endif %}" href="#">{{ 'title.archive'|trans }}</a>
+                    <a class="dropdown-item{% if active_element == 'gallery' %} active{% endif %}" href="#">{{ 'title.gallery'|trans }}</a>
+                    <a class="dropdown-item{% if active_element == 'contact' %} active{% endif %}" href="#">{{ 'title.contact'|trans }}</a>
                 </div>
             </li>
-            <li class="nav-item">
+            <li class="nav-item dropdown{% if active_element == 'larps' %} active{% endif %}">
+                <a class="nav-link dropdown-toggle" href="{{ url('larps') }}" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ 'title.about_larp'|trans }}</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown01">
+                    <a class="dropdown-item{% if active_element == 'what_is_larp' %} active{% endif %}" href="{{ url('larps') }}">{{ 'title.what_is_larp'|trans }}</a>
+                    <a class="dropdown-item{% if active_element == 'larp_types' %} active{% endif %}" href="#">{{ 'title.larp_types'|trans }}</a>
+                    <a class="dropdown-item{% if active_element == 'larp_terms' %} active{% endif %}" href="#">{{ 'title.larp_terms'|trans }}</a>
+                    <a class="dropdown-item{% if active_element == 'larp_history' %} active{% endif %}" href="#">{{ 'title.larp_history'|trans }}</a>
+                </div>
+            </li>
+            <li class="nav-item{% if active_element == 'larps_in_poland' %} active{% endif %}">
                 <a class="nav-link" href="#">{{ 'title.larps_in_poland'|trans }}</a>
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" href="#">{{ 'title.contact'|trans }}</a>
+                <a class="nav-link" href="#"><i title="{{ 'title.contact'|trans }}" class="fa fa-envelope"></i><span class="d-md-none d-lg-inline"> {{ 'title.contact'|trans }}</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">{{ 'title.login'|trans }}</a>
+                <a class="nav-link" href="#"><i title="{{ 'title.login'|trans }}" class="fas fa-sign-in-alt"></i><span class="d-md-none d-lg-inline"> {{ 'title.login'|trans }}</span></a>
             </li>
         </ul>
     </div>

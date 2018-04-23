@@ -9,16 +9,34 @@
         <link rel="shortcut icon" href="{{ asset_url }}" >
     {% endimage %}
     {% block stylesheets %}
-        {% stylesheets '@bootstrap_css' '../app/Resources/public/css/*' %}
+        {% stylesheets
+            '@bootstrap_css'
+            '../app/Resources/public/css/*' %}
             <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}"/>
         {% endstylesheets %}
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
     {% endblock %}
 
 </head>
 <body>
 {% include 'components/navbar.html.twig' %}
 
-{% block body %}{% endblock %}
+{% block body %}
+    {% include 'components/carousel.html.twig' with {sm_hide: carousel_hide}%}
+    <div class="container">
+        <div class="row">
+            <div id="left-column" class="sticky-side">
+                {% if sidebar %}
+                    {% include 'components/sidebar-' ~ sidebar ~ '.html.twig' %}
+                {% endif %}
+                {% include 'components/social.html.twig' %}</div>
+            <div id="main" class="col">
+                {% block content %}{% endblock %}
+            </div>
+            <div id="right-column" class="sticky-side">{% include 'components/calendar.html.twig' %}</div>
+        </div>
+    </div>
+{% endblock %}
 
 <footer class="page-footer bg-light">
     <div class="container-fluid text-center">Footer content</div>
