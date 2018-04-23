@@ -13,13 +13,50 @@ class StaticController extends Controller
      */
     public function about()
     {
-        return $this->render('static/about.html.twig', [
+        return $this->render('static/group/about.html.twig', [
             'carousel_hide' => TRUE,
             'sidebar' => 'group',
             'active_element' => 'about',
             'active_subelement' => 'about'
         ]);
     }
+    /**
+     * @Route("/about/archive", name="archive")
+     */
+    public function archive()
+    {
+        return $this->render('static/group/archive.html.twig', [
+            'carousel_hide' => TRUE,
+            'sidebar' => 'group',
+            'active_element' => 'about',
+            'active_subelement' => 'archive'
+        ]);
+    }
+    /**
+     * @Route("/about/gallery", name="gallery")
+     */
+    public function gallery()
+    {
+        return $this->render('static/group/gallery.html.twig', [
+            'carousel_hide' => TRUE,
+            'sidebar' => 'group',
+            'active_element' => 'about',
+            'active_subelement' => 'gallery'
+        ]);
+    }
+    /**
+     * @Route("/about/contact", name="contact")
+     */
+    public function contact()
+    {
+        return $this->render('static/group/contact.html.twig', [
+            'carousel_hide' => TRUE,
+            'sidebar' => 'group',
+            'active_element' => 'about',
+            'active_subelement' => 'contact'
+        ]);
+    }
+
     /**
      * @Route("/larps", name="larps")
      */

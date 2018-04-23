@@ -2,16 +2,16 @@
     <a class="navbar-brand" href="#">{{ 'title.group'|trans }}</a>
     <ul class="navbar-nav nav flex-column">
         <li class="nav-item">
-            <a class="nav-link{% if active_element == 'about' %} active{% endif %}" href="#">{{ 'title.about'|trans }}</a>
+            <a class="nav-link{% if active_subelement == 'about' %} active{% endif %}" href="{{ url('about') }}">{{ 'title.about'|trans }}</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link{% if active_element == 'archive' %} active{% endif %}" href="#">{{ 'title.archive'|trans }}</a>
+            <a class="nav-link{% if active_subelement == 'archive' %} active{% endif %}" href="{{ url('archive') }}">{{ 'title.archive'|trans }}</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link{% if active_element == 'gallery' %} active{% endif %}" href="#">{{ 'title.gallery'|trans }}</a>
+            <a class="nav-link{% if active_subelement == 'gallery' %} active{% endif %}" href="{{ url('gallery') }}">{{ 'title.gallery'|trans }}</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link{% if active_element == 'contact' %} active{% endif %}" href="#">{{ 'title.contact'|trans }}</a>
+            <a class="nav-link{% if active_subelement == 'contact' %} active{% endif %}" href="{{ url('contact') }}">{{ 'title.contact'|trans }}</a>
         </li>
     </ul>
 </div>
