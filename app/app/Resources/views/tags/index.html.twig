@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'title.tags'|trans }}{% endblock %}
+{% block content_title %}{{ 'title.tags'|trans }}{% endblock %}
+
+
+{% block content %}
+    {% if tags is defined and tags|length %}
+        <span class="d-block">{{ 'info.tags'|trans }}</span>
+        {% for tag in tags %}
+            <h3 class="d-inline">
+                <a href="{{ path('tag_view', {'id': tag.id}) }}" class="badge badge-secondary">{{ tag.name }}</a>
+            </h3>
+        {% endfor %}
+    {% else %}
+        {{ 'message.empty_list'|trans }}
+    {% endif %}
+{% endblock %}

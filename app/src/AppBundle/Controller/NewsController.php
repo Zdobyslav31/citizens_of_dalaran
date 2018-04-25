@@ -11,6 +11,23 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 class NewsController extends Controller
 {
     /**
+     * News repository.
+     *
+     * @var \AppBundle\Repository\NewsRepository|null News repository
+     */
+    protected $newsRepository = null;
+
+    /**
+     * NewsController constructor.
+     *
+     * @param \AppBundle\Repository\NewsRepository $newsRepository New repository
+     */
+    public function __construct(NewsRepository $newsRepository)
+    {
+        $this->newsRepository = $newsRepository;
+    }
+    
+    /**
      * Index action.
      *
      * @Route("/", name="homepage")
@@ -22,8 +39,7 @@ class NewsController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $newsRepository = new NewsRepository();
-        $news = $newsRepository->findAll();
+        $news = $this->newsRepository->findAll();
 
         return $this->render('news/index.html.twig', [
             'carousel_hide' => FALSE,
@@ -43,8 +59,7 @@ class NewsController extends Controller
      */
     public function viewAction(Request $request, $id)
     {
-        $newsRepository = new NewsRepository();
-        $post = $newsRepository->findOneById($id);
+        $post = $this->newsRepository->findOneById($id);
         return $this->render('news/view.html.twig', [
             'carousel_hide' => FALSE,
             'sidebar' => Null,

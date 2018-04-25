@@ -1,22 +1,27 @@
-title.website: Citizens of Dalaran
-title.homepage: Strona główna
-title.group: Nasza grupa
+title.website: 'Citizens of Dalaran'
+title.homepage: 'Strona główna'
+title.group: 'Nasza grupa'
 title.news: Aktualności
-title.about_larp: O larpach
-title.what_is_larp: Czym jest larp?
-title.larp_types: Rodzaje larpów
+title.about_larp: 'O larpach'
+title.what_is_larp: 'Czym jest larp?'
+title.larp_types: 'Rodzaje larpów'
 title.larp_terms: Pojęcia
-title.larp_history: Historia larpów
-title.larps_in_poland: Larpy w Polsce
+title.larp_history: 'Historia larpów'
+title.larps_in_poland: 'Larpy w Polsce'
 title.login: Zaloguj
 title.contact: Kontakt
 title.events: Wydarzenia
 title.gallery: Galeria
-title.about: Kim jesteśmy
-title.upcoming_events: Nadchodzące wydarzenia
-message.more_events: Więcej wydarzeń
-title.social: Znajdź nas w sieci
-description.created: Utworzony %date% przez %author%
-message.back_to_news: Wróć do aktualności
-message.read_more: Czytaj dalej
-description.modified: Zmodyfikowany %date% przez %author%
+title.about: 'Kim jesteśmy'
+title.upcoming_events: 'Nadchodzące wydarzenia'
+message.more_events: 'Więcej wydarzeń'
+title.social: 'Znajdź nas w sieci'
+description.created: 'Utworzony %date% przez %author%'
+message.back_to_news: 'Wróć do aktualności'
+message.read_more: 'Czytaj dalej'
+description.modified: 'Zmodyfikowany %date% przez %author%'
+message.tags: 'Tagi:'
+message.empty_list: 'Nie ma nic do pokazania'
+title.tag: 'Tag'
+title.tags: Tagi
+info.tags: Kliknij w tag aby wyświetlić powiązane wpisy.

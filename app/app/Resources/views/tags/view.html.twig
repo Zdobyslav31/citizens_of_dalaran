@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'title.tag'|trans }} {{ tag.name }}{% endblock %}
+{% block content_title %}{{ tag.name }}{% endblock %}
+
+
+{% block content %}
+    {% if tag is defined and tag|length %}
+
+    {% else %}
+        {{ 'message.empty_list'|trans }}
+    {% endif %}
+{% endblock %}

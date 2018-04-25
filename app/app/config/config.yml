@@ -91,10 +91,6 @@ assetic:
                 - '%kernel.root_dir%/../vendor/twitter/bootstrap/dist/css/bootstrap-reboot.css'
             filters: [cssrewrite]
 
-        font_awesome:
-            inputs:
-                - '%kernel.root_dir%/../vendor/components/font-awesome/css/fontawesome-all.css'
-
 
         jquery:
             inputs:
