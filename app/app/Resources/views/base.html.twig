@@ -24,16 +24,36 @@
 {% block body %}
     {% include 'components/carousel.html.twig' with {sm_hide: carousel_hide}%}
     <div class="container">
-        <div class="row">
-            <div id="left-column" class="sticky-side">
+        <div class="row main-row">
                 {% if sidebar %}
-                    {% include 'components/sidebar-' ~ sidebar ~ '.html.twig' %}
+                    <div id="left-column" class="sticky-side sidebar-present">
+                        {% include 'components/sidebar-' ~ sidebar ~ '.html.twig' %}
+                        {% include 'components/social.html.twig' %}
+                    </div>
                 {% endif %}
-                {% include 'components/social.html.twig' %}</div>
-            <div id="main" class="col">
-                {% block content %}{% endblock %}
+            <div id="main" class="col{% if sidebar %} sidebar-present{% endif %}{% if right_hide is defined %} right-hide{% endif %}">
+                {% block main %}
+                <div class="card">
+                    <div class="card-header">
+                        <h1 class="text-center d-block">
+                            {% block content_title %}{% endblock %}
+                        </h1>
+                        <span class="text-left">{% block content_description %}{% endblock %}</span>
+                    </div>
+                    <div class="card-body">
+                        {% block content %}{% endblock %}
+                    </div>
+                </div>
+                {% endblock %}
             </div>
-            <div id="right-column" class="sticky-side">{% include 'components/calendar.html.twig' %}</div>
+            {% if right_hide is not defined %}
+                <div id="right-column" class="sticky-side">
+                    {% if not sidebar %}
+                        {% include 'components/social.html.twig' %}
+                    {% endif %}
+                    {% include 'components/calendar.html.twig' %}
+                </div>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

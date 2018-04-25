@@ -1,13 +1,22 @@
-title:
-  website: 'Citizens of Dalaran'
-  homepage: 'Home'
-  group: 'Our group'
-  news: 'News'
-  about_larp: 'About larp'
-  what_is_larp: 'What is larp?'
-  larp_types: 'Typess of larp'
-  larp_terms: 'Terms'
-  larp_history: 'Larping history'
-  larps_in_poland: 'Larps in Poland'
-  login: 'Sign in'
-  contact: 'Contact'
+title.website: Citizens of Dalaran
+title.homepage: Home
+title.group: Our group
+title.news: News
+title.about_larp: About larp
+title.what_is_larp: What is larp?
+title.larp_types: Typess of larp
+title.larp_terms: Terms
+title.larp_history: Larping history
+title.larps_in_poland: Larps in Poland
+title.login: Sign in
+title.contact: Contact
+title.about: Who we are
+title.events: Our events
+title.gallery: Gallery
+title.upcoming_events: Upcoming events
+message.more_events: More_events
+title.social: Find us in web
+description.created: Created %date% by %author%
+message.back_to_news: Back to news
+message.read_more: Read more
+description.modified: Modified %date% by %author%

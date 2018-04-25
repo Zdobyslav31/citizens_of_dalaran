@@ -21,15 +21,15 @@ class StaticController extends Controller
         ]);
     }
     /**
-     * @Route("/about/archive", name="archive")
+     * @Route("/about/events", name="events")
      */
-    public function archive()
+    public function events()
     {
-        return $this->render('static/group/archive.html.twig', [
+        return $this->render('static/group/events.html.twig', [
             'carousel_hide' => TRUE,
             'sidebar' => 'group',
             'active_element' => 'about',
-            'active_subelement' => 'archive'
+            'active_subelement' => 'events'
         ]);
     }
     /**

@@ -2,7 +2,7 @@
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">
-                <i class="far fa-calendar-alt"></i> Nadchodzące wydarzenia
+                <i class="far fa-calendar-alt"></i> {{ 'title.upcoming_events'|trans }}
             </h3>
         </div>
         <div class="card-body">
@@ -59,7 +59,7 @@
                 </li>
 
             </ul>
-            <a href="#" class="btn btn-secondary btn-block">More Events »</a>
+            <a href="{{ url('events') }}" class="btn btn-secondary btn-block">{{ 'message.more_events'|trans }}</a>
         </div>
     </div>
 </aside>
