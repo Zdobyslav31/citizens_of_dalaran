@@ -136,6 +136,11 @@ body {
     #right-column.right-hide {
         display: none;
     }
+
+    .news-image {
+        width: 60%;
+        float: left;
+    }
 }
 
 @media (min-width:1400px) {

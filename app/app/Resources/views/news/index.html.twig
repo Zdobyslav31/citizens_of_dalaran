@@ -5,34 +5,36 @@
 
 
 {% block content %}
-    {% for i in 0..10 %}
-        <div class="card news">
-            <div class="card-header">
-                <h2 class="float-left">
-                    Tytuł wpisu
-                </h2>
-                <span class="float-right">
-                    {{ 'description.created'|trans({'%date%': '19-01-2018', '%author%': 'Daquelia'}) }}
-                    <br>
-                    {{ 'description.modified'|trans({'%date%': '26-03-2018', '%author%': 'Komzurak'}) }}
-                </span>
-            </div>
-            <div class="card-body text-center">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-12 col-xl-5">
-                            <img class="mb-3 news-image" src="http://www.pixedelic.com/themes/geode/demo/wp-content/uploads/sites/4/2014/04/placeholder4.png" alt="Generic placeholder image">
-                        </div>
-                        <div class="w-100 d-xl-none"></div>
-                        <div class="col-12 col-xl-7">
-                            <p class="text-left">
-                                Vestibulum porta ligula vitae aliquam pharetra. Nam in est ut eros mollis aliquam. Fusce sit amet sapien pulvinar, dapibus turpis nec, imperdiet nibh. Ut et lacus sed velit condimentum tincidunt. Vivamus in turpis suscipit, euismod quam quis, porta sem. Integer lectus elit, sodales id sagittis ut, consequat a nisl. Nullam ut orci id lacus vestibulum cursus. Maecenas consequat ac nulla quis euismod. Nullam lacinia, justo sed venenatis scelerisque, nibh magna lobortis tellus, a luctus quam est eget mauris. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            </p>
-                            <a href="#" class="btn btn-secondary">{{ 'message.read_more'|trans }}</a>
-                        </div>
-                    </div>
+    {% if news is defined and news|length %}
+        {% for id, post in news %}
+            <div class="card post mb-3">
+                <div class="card-header">
+                    <a href="{{ url('news_view',{'id': id}) }}" class="link-unstyled">
+                    <h2 class="float-left">
+                        {{ post.title }}
+                    </h2>
+                    </a>
+                    <span class="float-right">
+                        {{ 'description.created'|trans({'%date%': post.created_date, '%author%': post.created_author}) }}
+                        {% if post.modified_date %}
+                            <br>
+                            {{ 'description.modified'|trans({'%date%': post.modified_date, '%author%': post.modified_author}) }}
+                        {% endif %}
+                    </span>
+                </div>
+                <div class="card-body">
+                    <a href="{{ url('news_view',{'id': id}) }}">
+                        <img class="mb-3 news-image mr-lg-3" src="{{ post.img }}" alt="{{ post.title }} - image">
+                    </a>
+                    {{ post.summary|raw }}
+                    <span class="d-block text-center">
+                        <a href="{{ url('news_view',{'id': id}) }}" class="btn btn-secondary">{{ 'message.read_more'|trans }}</a>
+                    </span>
+
                 </div>
             </div>
-        </div>
-    {% endfor %}
+        {% endfor %}
+    {% else %}
+        {{ 'message.empty_list'|trans }}
+    {% endif %}
 {% endblock %}

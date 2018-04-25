@@ -23,7 +23,7 @@
 
 {% block body %}
     {% include 'components/carousel.html.twig' with {sm_hide: carousel_hide}%}
-    <div class="container">
+    <div id="main-container" class="container">
         <div class="row main-row">
                 {% if sidebar %}
                     <div id="left-column" class="sticky-side sidebar-present">
