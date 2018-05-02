@@ -1,18 +1,31 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ 'title.tags'|trans }}{% endblock %}
-{% block content_title %}{{ 'title.tags'|trans }}{% endblock %}
+{% block content_title %}<i title="{{ 'title.tags'|trans }}" class="fas fa-tags"></i> {{ 'title.tags'|trans }}{% endblock %}
 
 
 {% block content %}
     {% if tags is defined and tags|length %}
         <span class="d-block">{{ 'info.tags'|trans }}</span>
-        {% for tag in tags %}
+        <div class="d-block m-2 m-lg-4">
+            {% for tag in tags %}
             <h3 class="d-inline">
-                <a href="{{ path('tag_view', {'id': tag.id}) }}" class="badge badge-secondary">{{ tag.name }}</a>
+                <a href="{{ path('tag_view', {'id': tag.id}) }}" class="badge badge-secondary tag m-1">{{ tag.name }}</a>
             </h3>
-        {% endfor %}
+            {% endfor %}
+        </div>
+        <div class="d-flex justify-content-center">
+            {% if tags.haveToPaginate %}
+
+                <div class="navigation text-center">
+                    <nav aria-label="Page navigation">
+                        {{ pagerfanta(tags, 'twitter_bootstrap4_translated', {routeName: 'tags_index_paginated'}) }}
+                    </nav>
+                </div>
+            {% endif %}
+        </div>
     {% else %}
         {{ 'message.empty_list'|trans }}
     {% endif %}
+    <a class="btn btn-success" href="{{ path('tags_add') }}"><i class="fas fa-plus"></i> {{ 'message.add_new'|trans }}</a>
 {% endblock %}

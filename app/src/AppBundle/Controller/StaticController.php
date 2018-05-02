@@ -14,7 +14,6 @@ class StaticController extends Controller
     public function about()
     {
         return $this->render('static/group/about.html.twig', [
-            'carousel_hide' => TRUE,
             'sidebar' => 'group',
             'active_element' => 'about',
             'active_subelement' => 'about'
@@ -26,8 +25,8 @@ class StaticController extends Controller
     public function events()
     {
         return $this->render('static/group/events.html.twig', [
-            'carousel_hide' => TRUE,
             'sidebar' => 'group',
+            'right_hide' => True,
             'active_element' => 'about',
             'active_subelement' => 'events'
         ]);
@@ -38,7 +37,6 @@ class StaticController extends Controller
     public function gallery()
     {
         return $this->render('static/group/gallery.html.twig', [
-            'carousel_hide' => TRUE,
             'sidebar' => 'group',
             'active_element' => 'about',
             'active_subelement' => 'gallery'
@@ -50,7 +48,6 @@ class StaticController extends Controller
     public function contact()
     {
         return $this->render('static/group/contact.html.twig', [
-            'carousel_hide' => TRUE,
             'sidebar' => 'group',
             'active_element' => 'about',
             'active_subelement' => 'contact'
@@ -63,7 +60,6 @@ class StaticController extends Controller
     public function larps()
     {
         return $this->render('static/larps/what_is_larp.html.twig', [
-            'carousel_hide' => TRUE,
             'sidebar' => 'larps',
             'active_element' => 'larps',
             'active_subelement' => 'what_is_larp'
@@ -75,7 +71,6 @@ class StaticController extends Controller
     public function larps_types()
     {
         return $this->render('static/larps/types.html.twig', [
-            'carousel_hide' => TRUE,
             'sidebar' => 'larps',
             'active_element' => 'larps',
             'active_subelement' => 'larp_types'
@@ -87,7 +82,6 @@ class StaticController extends Controller
     public function larps_terms()
     {
         return $this->render('static/larps/terms.html.twig', [
-            'carousel_hide' => TRUE,
             'sidebar' => 'larps',
             'active_element' => 'larps',
             'active_subelement' => 'larp_terms'
@@ -99,7 +93,6 @@ class StaticController extends Controller
     public function larps_history()
     {
         return $this->render('static/larps/history.html.twig', [
-            'carousel_hide' => TRUE,
             'sidebar' => 'larps',
             'active_element' => 'larps',
             'active_subelement' => 'larp_history'

@@ -1,12 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ 'title.tag'|trans }} {{ tag.name }}{% endblock %}
-{% block content_title %}{{ tag.name }}{% endblock %}
+{% block title %}{{ 'title.tag'|trans }}: {{ tag.name }}{% endblock %}
+{% block content_title %}<i title="{{ 'title.tags'|trans }}" class="fas fa-tag"></i> {{ tag.name }}{% endblock %}
 
 
 {% block content %}
     {% if tag is defined and tag|length %}
-
+        <a class="btn btn-primary" href="{{ path('tags_edit', {'id': tag.id}) }}"><i class="fas fa-edit"></i> {{ 'message.edit'|trans }}</a>
+        <a class="btn btn-danger" href="{{ path('tags_delete', {'id': tag.id}) }}"><i class="fas fa-trash-alt"></i> {{ 'message.delete'|trans }}</a>
     {% else %}
         {{ 'message.empty_list'|trans }}
     {% endif %}

@@ -22,6 +22,16 @@ message.read_more: 'Read more'
 description.modified: 'Modified %date% by %author%'
 message.tags: 'Tags:'
 message.empty_list: 'Nothing to show'
-title.tag: 'Tag'
+title.tag: Tag
 title.tags: Tags
-info.tags: Click a tag to show related posts.
+info.tags: 'Click a tag to show related posts.'
+message.edit: Edit
+message.delete: Delete
+title.tag_delete: 'Delete tag'
+message.form_error: 'Oops... Something went wrong in sending the form. CHeck it out and try again.'
+action.delete: Delete
+title.tag_add: 'Add naw tag'
+action.save: Save
+title.tag_edit: 'Edit tag'
+message.add_new: 'Add new'
+message.delete_confirmation: 'Do you really want to delete? This action cannot be undone.'

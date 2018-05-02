@@ -37,6 +37,6 @@ services:
     AppBundle\Repository\NewsRepository:
         class: AppBundle\Repository\NewsRepository
 
-    AppBundle\Repository\TagsRepository:
+    AppBundle\Repository\TagRepository:
         factory: 'doctrine.orm.entity_manager:getRepository'
         arguments: ['AppBundle\Entity\Tag']

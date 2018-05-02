@@ -5,15 +5,20 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Tag.
  *
  * @ORM\Table(
- *     name="tags"
+ *     name="tag"
  * )
  * @ORM\Entity(
- *     repositoryClass="AppBundle\Repository\TagsRepository"
+ *     repositoryClass="AppBundle\Repository\TagRepository"
+ * )
+ * @UniqueEntity(
+ *     fields={"name"}
  * )
  */
 class Tag
@@ -23,7 +28,7 @@ class Tag
      * of specifying them in app/config/config.yml.
      * See http://symfony.com/doc/current/best_practices/configuration.html#constants-vs-configuration-options
      */
-    const NUM_ITEMS = 10;
+    const NUM_ITEMS = 100;
 
     /**
      * Primary key.
@@ -51,6 +56,12 @@ class Tag
      *     type="string",
      *     length=128,
      *     nullable=false,
+     * )
+     *
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *     min="3",
+     *     max="128",
      * )
      */
     protected $name;

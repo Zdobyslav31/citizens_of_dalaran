@@ -1,3 +1,13 @@
+{% if carousel is not defined %}
+    {% set carousel = 'sm_hide' %}
+{% endif %}
+{% if active_element is not defined %}
+    {% set active_element = null %}
+{% endif %}
+{% if active_subelement is not defined %}
+    {% set active_subelement = null %}
+{% endif %}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,19 +29,26 @@
 
 </head>
 <body>
-{% include 'components/navbar.html.twig' %}
+{% include 'components/_navbar.html.twig' %}
 
 {% block body %}
-    {% include 'components/carousel.html.twig' with {sm_hide: carousel_hide}%}
+    <div id="front-container">
+        {{ include('components/_flash_messages.html.twig') }}
+        {% if carousel is not null %}
+            {% include 'components/_carousel.html.twig' with {carousel: carousel}%}
+        {% endif %}
+    </div>
     <div id="main-container" class="container">
         <div class="row main-row">
-                {% if sidebar %}
+                {% if sidebar is defined %}
                     <div id="left-column" class="sticky-side sidebar-present">
-                        {% include 'components/sidebar-' ~ sidebar ~ '.html.twig' %}
-                        {% include 'components/social.html.twig' %}
+                        {% block left_column %}
+                            {% include 'components/_sidebar-' ~ sidebar ~ '.html.twig' %}
+                            {% include 'components/_social.html.twig' %}
+                        {% endblock %}
                     </div>
                 {% endif %}
-            <div id="main" class="col{% if sidebar %} sidebar-present{% endif %}{% if right_hide is defined %} right-hide{% endif %}">
+            <div id="main" class="col{% if sidebar is defined %} sidebar-present{% endif %}{% if right_hide is defined %} right-hide{% endif %}">
                 {% block main %}
                 <div class="card">
                     <div class="card-header">
@@ -48,10 +65,12 @@
             </div>
             {% if right_hide is not defined %}
                 <div id="right-column" class="sticky-side">
-                    {% if not sidebar %}
-                        {% include 'components/social.html.twig' %}
-                    {% endif %}
-                    {% include 'components/calendar.html.twig' %}
+                    {% block right_column %}
+                        {% if sidebar is not defined %}
+                            {% include 'components/_social.html.twig' %}
+                        {% endif %}
+                        {% include 'components/_calendar.html.twig' %}
+                    {% endblock %}
                 </div>
             {% endif %}
         </div>
@@ -59,10 +78,12 @@
 {% endblock %}
 
 <footer class="page-footer bg-light">
-    <div class="container-fluid text-center">Footer content</div>
-    <div class="footer-copyright text-center bg-secondary">
-        © 2018 Copyright: Jędrzej Kubala
-    </div>
+    {% block footer %}
+        <div class="container-fluid text-center">Footer content</div>
+        <div class="footer-copyright text-center bg-secondary">
+            © 2018 Copyright: Jędrzej Kubala
+        </div>
+    {% endblock %}
 </footer>
 {% block javascripts %}
     {% javascripts '@jquery' '@bootstrap_js' '../app/Resources/public/js/*' %}

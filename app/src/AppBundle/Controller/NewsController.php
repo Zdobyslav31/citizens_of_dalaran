@@ -42,10 +42,8 @@ class NewsController extends Controller
         $news = $this->newsRepository->findAll();
 
         return $this->render('news/index.html.twig', [
-            'carousel_hide' => FALSE,
-            'sidebar' => Null,
+            'carousel' => 'always',
             'active_element' => 'news',
-            'active_subelement' => Null,
             'news' => $news
         ]);
     }
@@ -61,10 +59,7 @@ class NewsController extends Controller
     {
         $post = $this->newsRepository->findOneById($id);
         return $this->render('news/view.html.twig', [
-            'carousel_hide' => FALSE,
-            'sidebar' => Null,
             'active_element' => 'news',
-            'active_subelement' => Null,
             'post' => $post
         ]);
     }

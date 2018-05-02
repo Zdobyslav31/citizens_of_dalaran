@@ -22,6 +22,16 @@ message.read_more: 'Czytaj dalej'
 description.modified: 'Zmodyfikowany %date% przez %author%'
 message.tags: 'Tagi:'
 message.empty_list: 'Nie ma nic do pokazania'
-title.tag: 'Tag'
+title.tag: Tag
 title.tags: Tagi
-info.tags: Kliknij w tag aby wyświetlić powiązane wpisy.
+info.tags: 'Kliknij w tag aby wyświetlić powiązane wpisy.'
+message.edit: Edytuj
+message.delete: Usuń
+title.tag_delete: 'Usuń tag'
+message.form_error: 'Ups... Coś poszło nie tak przy wysyłaniu formularza. Przyjrzyj się i spróbuj jeszcze raz'
+action.delete: Usuń
+title.tag_add: 'Dodaj nowy tag'
+action.save: Zapisz
+title.tag_edit: 'Edytuj tag'
+message.add_new: 'Dodaj nowy'
+message.delete_confirmation: 'Czy na pewno chcesz usunąć? Tej akcji nie będzie można cofnąć.'
