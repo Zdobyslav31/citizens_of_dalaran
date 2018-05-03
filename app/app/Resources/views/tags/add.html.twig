@@ -21,6 +21,9 @@
     {{ form_widget(form) }}
     <div>
         <input type="submit" value="{{ 'action.save'|trans }}" class="btn btn-primary" />
+        <a class="btn btn-secondary float-right" href="{{ path('tags_index') }}">
+            <i class="fas fa-long-arrow-alt-left"></i> {{ 'message.back_to_tags'|trans }}
+        </a>
     </div>
     {{ form_end(form) }}
 

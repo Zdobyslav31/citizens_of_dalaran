@@ -35,3 +35,11 @@ action.save: Save
 title.tag_edit: 'Edit tag'
 message.add_new: 'Add new'
 message.delete_confirmation: 'Do you really want to delete? This action cannot be undone.'
+message.back_to_tags: 'Back to tags'
+title.associated_posts: 'Associated posts'
+message.no_associated_posts: 'There are no posts associated with this tag'
+message.back: Back
+label.name: Name
+message.edited_successfully: 'Edited successfully'
+message.created_successfully: 'Created successfully'
+message.deleted_successfully: 'Deleted successfully'

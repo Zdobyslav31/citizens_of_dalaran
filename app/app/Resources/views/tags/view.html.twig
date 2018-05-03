@@ -6,8 +6,59 @@
 
 {% block content %}
     {% if tag is defined and tag|length %}
-        <a class="btn btn-primary" href="{{ path('tags_edit', {'id': tag.id}) }}"><i class="fas fa-edit"></i> {{ 'message.edit'|trans }}</a>
-        <a class="btn btn-danger" href="{{ path('tags_delete', {'id': tag.id}) }}"><i class="fas fa-trash-alt"></i> {{ 'message.delete'|trans }}</a>
+        <div class="clearfix">
+            <a class="btn btn-primary float-left m-1" href="{{ path('tags_edit', {'id': tag.id}) }}">
+                <i class="fas fa-edit"></i> {{ 'message.edit'|trans }}
+            </a>
+            <a class="btn btn-danger float-left m-1" href="{{ path('tags_delete', {'id': tag.id}) }}">
+                <i class="fas fa-trash-alt"></i> {{ 'message.delete'|trans }}
+            </a>
+            <a class="btn btn-secondary float-right m-1" href="{{ path('tags_index') }}">
+                <i class="fas fa-long-arrow-alt-left"></i> {{ 'message.back_to_tags'|trans }}
+            </a>
+        </div>
+        {% if tag.news.values|length %}
+            <h2 class="text-center">{{ 'title.associated_posts'|trans }}</h2>
+            {% for post in tag.news.values %}
+                <div class="card post mb-3">
+                    <div class="card-header">
+                        <a href="{{ url('news_view',{'id': post.id}) }}" class="link-unstyled">
+                            <h3 class="float-left">
+                                {{ post.title }}
+                            </h3>
+                        </a>
+                        <span class="float-right">
+                        <span class="d-none d-md-block">
+                            {{ 'description.created'|trans({'%date%': post.createdDate|localizeddate('long', 'none'), '%author%': post.creator.login}) }}
+                        </span>
+                        <span class="d-block d-md-none">
+                            {{ 'description.created'|trans({'%date%': post.createdDate|localizeddate('short', 'none'), '%author%': post.creator.login}) }}
+                        </span>
+                            {% if post.modifiedDate %}
+                                <span class="d-none d-md-block">
+                                {{ 'description.modified'|trans({'%date%': post.modifiedDate|localizeddate('long', 'none'), '%author%': post.modifier.login}) }}
+                            </span>
+                                <span class="d-block d-md-none">
+                                {{ 'description.modified'|trans({'%date%': post.modifiedDate|localizeddate('short', 'none'), '%author%': post.modifier.login}) }}
+                            </span>
+                            {% endif %}
+                    </span>
+                    </div>
+                    <div class="card-body">
+                        <a href="{{ url('news_view',{'id': post.id}) }}">
+                            <img class="mb-3 news-image mr-lg-3" src="{{ post.img }}" alt="{{ post.title }} - image">
+                        </a>
+                        {{ post.summary|raw }}
+                        <span class="d-block text-center">
+                        <a href="{{ url('news_view',{'id': post.id}) }}" class="btn btn-secondary">{{ 'message.read_more'|trans }}</a>
+                    </span>
+
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            {{ 'message.no_associated_posts'|trans }}
+        {% endif %}
     {% else %}
         {{ 'message.empty_list'|trans }}
     {% endif %}

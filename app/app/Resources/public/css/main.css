@@ -90,6 +90,26 @@ body {
     white-space: normal;
 }
 
+.tag-0 {
+    font-size: 1.5em;
+}
+
+.tag-1, .tag-2 {
+    font-size: 2em;
+}
+
+.tag-3, .tag-4, .tag-5 {
+    font-size: 2.5em;
+}
+
+.tag-6, .tag-7, .tag-8, .tag-9 {
+    font-size: 3em;
+}
+
+.tag-10 {
+    font-size: 3.5em;
+}
+
 @media (min-width:768px) {
     footer {
         z-index: 1030;

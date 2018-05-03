@@ -89,6 +89,11 @@
     {% javascripts '@jquery' '@bootstrap_js' '../app/Resources/public/js/*' %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
+    {% if scroll_to_content is defined %}
+    <script>
+        scroll_to_content();
+    </script>
+    {% endif %}
 {% endblock %}
 </body>
 </html>

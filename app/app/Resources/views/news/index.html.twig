@@ -9,26 +9,35 @@
         {% for id, post in news %}
             <div class="card post mb-3">
                 <div class="card-header">
-                    <a href="{{ url('news_view',{'id': id}) }}" class="link-unstyled">
+                    <a href="{{ url('news_view',{'id': post.id}) }}" class="link-unstyled">
                     <h2 class="float-left">
                         {{ post.title }}
                     </h2>
                     </a>
                     <span class="float-right">
-                        {{ 'description.created'|trans({'%date%': post.created_date, '%author%': post.created_author}) }}
-                        {% if post.modified_date %}
-                            <br>
-                            {{ 'description.modified'|trans({'%date%': post.modified_date, '%author%': post.modified_author}) }}
+                        <span class="d-none d-md-block">
+                            {{ 'description.created'|trans({'%date%': post.createdDate|localizeddate('long', 'none'), '%author%': post.creator.login}) }}
+                        </span>
+                        <span class="d-block d-md-none">
+                            {{ 'description.created'|trans({'%date%': post.createdDate|localizeddate('short', 'none'), '%author%': post.creator.login}) }}
+                        </span>
+                        {% if post.modifiedDate %}
+                            <span class="d-none d-md-block">
+                                {{ 'description.modified'|trans({'%date%': post.modifiedDate|localizeddate('long', 'none'), '%author%': post.modifier.login}) }}
+                            </span>
+                            <span class="d-block d-md-none">
+                                {{ 'description.modified'|trans({'%date%': post.modifiedDate|localizeddate('short', 'none'), '%author%': post.modifier.login}) }}
+                            </span>
                         {% endif %}
                     </span>
                 </div>
                 <div class="card-body">
-                    <a href="{{ url('news_view',{'id': id}) }}">
+                    <a href="{{ url('news_view',{'id': post.id}) }}">
                         <img class="mb-3 news-image mr-lg-3" src="{{ post.img }}" alt="{{ post.title }} - image">
                     </a>
                     {{ post.summary|raw }}
                     <span class="d-block text-center">
-                        <a href="{{ url('news_view',{'id': id}) }}" class="btn btn-secondary">{{ 'message.read_more'|trans }}</a>
+                        <a href="{{ url('news_view',{'id': post.id}) }}" class="btn btn-secondary">{{ 'message.read_more'|trans }}</a>
                     </span>
 
                 </div>

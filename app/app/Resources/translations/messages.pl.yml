@@ -35,3 +35,11 @@ action.save: Zapisz
 title.tag_edit: 'Edytuj tag'
 message.add_new: 'Dodaj nowy'
 message.delete_confirmation: 'Czy na pewno chcesz usunąć? Tej akcji nie będzie można cofnąć.'
+message.back_to_tags: 'Wróć do tagów'
+title.associated_posts: 'Powiązane wpisy'
+message.no_associated_posts: 'Brak wpisów powiązanych z tym tagiem'
+message.back: 'Wróć'
+label.name: Nazwa
+message.edited_successfully: 'Edytowano poprawnie'
+message.created_successfully: 'Utworzono poprawnie'
+message.deleted_successfully: 'Usunięto poprawnie'

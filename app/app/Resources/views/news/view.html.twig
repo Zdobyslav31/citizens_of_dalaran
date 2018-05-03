@@ -8,29 +8,29 @@
     {{ post.title }}
 {% endblock %}
 {%  block content_description %}
-    {{ 'description.created'|trans({'%date%': post.created_date, '%author%': post.created_author}) }}
-    {% if post.modified_date %}
+    {{ 'description.created'|trans({'%date%': post.createdDate|localizeddate('long', 'none'), '%author%': post.creator.login}) }}
+    {% if post.modifiedDate %}
         <br>
-        {{ 'description.modified'|trans({'%date%': post.modified_date, '%author%': post.modified_author}) }}
+        {{ 'description.modified'|trans({'%date%': post.modifiedDate|localizeddate('long', 'none'), '%author%': post.modifier.login}) }}
     {% endif %}
 {% endblock %}
 {% block content %}
     <h4>
-        {{ 'message.tags'|trans }}
-        {% for tag in post.tags %}
-            <a href="#" class="badge badge-secondary">{{ tag }}</a>
-        {% endfor %}
+        {% if post.tags.values|length %}
+            <span class="float-left mb-3">
+                <i title="{{ 'title.tags'|trans }}" class="fas fa-tags"></i> {{ 'message.tags'|trans }}
+                {% for tag in post.tags.values %}
+                    <a href="{{ path('tag_view', {'id': tag.id}) }}" class="badge badge-dark">{{ tag.name }}</a>
+                {% endfor %}
+            </span>
+            <a class="btn btn-secondary float-right mb-3" href="{{ path('homepage') }}">
+                <i class="fas fa-long-arrow-alt-left"></i> {{ 'message.back_to_news'|trans }}
+            </a>
+        {% endif %}
     </h4>
     <img class="mb-3 w-100" src="{{ post.img }}" alt="{{ post.title }} - image">
     {{ post.content|raw }}
     <span class="text-center d-block">
         <a href="{{ url('homepage') }}" class="btn btn-secondary">{{ 'message.back_to_news'|trans }}</a>
     </span>
-{% endblock %}
-
-{% block javascripts %}
-    {{ parent() }}
-    <script>
-        scroll_to_content();
-    </script>
 {% endblock %}

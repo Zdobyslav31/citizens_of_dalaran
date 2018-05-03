@@ -19,9 +19,12 @@
         </div>
     {% endif %}
     {{ form_widget(form) }}
-    {{ 'message.delete_confirmation'|trans }}
+    <span class="clearfix m-1">{{ 'message.delete_confirmation'|trans }}</span>
     <div>
         <input type="submit" value="{{ 'action.delete'|trans }}" class="btn btn-primary" />
+        <a class="btn btn-secondary float-right" href="{{ path('tag_view', {'id': tag.id}) }}">
+            <i class="fas fa-long-arrow-alt-left"></i> {{ 'message.back'|trans }}
+        </a>
     </div>
     {{ form_end(form) }}
 

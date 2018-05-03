@@ -66,6 +66,18 @@ class Tag
      */
     protected $name;
 
+
+    /**
+     * Many Tags have Many News.
+     * @var \Doctrine\Common\Collections\ArrayCollection $news
+     * @ORM\ManyToMany(
+     *     targetEntity="News",
+     *     inversedBy="tags")
+     * @ORM\JoinTable(name="news_has_tags")
+     *
+     */
+    private $news;
+
     /**
      * Get id
      *
@@ -98,5 +110,46 @@ class Tag
     public function getName()
     {
         return $this->name;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->news = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add news
+     *
+     * @param \AppBundle\Entity\News $news
+     *
+     * @return Tag
+     */
+    public function addNews(\AppBundle\Entity\News $news)
+    {
+        $this->news[] = $news;
+
+        return $this;
+    }
+
+    /**
+     * Remove news
+     *
+     * @param \AppBundle\Entity\News $news
+     */
+    public function removeNews(\AppBundle\Entity\News $news)
+    {
+        $this->news->removeElement($news);
+    }
+
+    /**
+     * Get news
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getNews()
+    {
+        return $this->news;
     }
 }
