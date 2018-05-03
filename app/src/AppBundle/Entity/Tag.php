@@ -72,9 +72,9 @@ class Tag
      * @var \Doctrine\Common\Collections\ArrayCollection $news
      * @ORM\ManyToMany(
      *     targetEntity="News",
-     *     inversedBy="tags")
+     *     mappedBy="tags")
      * @ORM\JoinTable(name="news_has_tags")
-     *
+     * @ORM\JoinColumn(name="news_id", referencedColumnName="id", nullable=false, onDelete="cascade")
      */
     private $news;
 

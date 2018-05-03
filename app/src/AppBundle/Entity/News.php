@@ -6,6 +6,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * News
@@ -29,20 +31,31 @@ class News
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255, nullable=false)
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *     min="3",
+     *     max="255",
+     * )
      */
     private $title;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="modified_date", type="date", nullable=true)
+     * @ORM\Column(name="modified_date", type="datetime", nullable=true)
+     * @Gedmo\Timestampable(
+     *     on="update",
+     * )
      */
     private $modifiedDate;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="created_date", type="date", nullable=false)
+     * @ORM\Column(name="created_date", type="datetime", nullable=false)
+     * @Gedmo\Timestampable(
+     *     on="create",
+     * )
      */
     private $createdDate;
 
@@ -50,6 +63,11 @@ class News
      * @var string
      *
      * @ORM\Column(name="summary", type="string", length=1000, nullable=false)
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *     min="3",
+     *     max="1000",
+     * )
      */
     private $summary;
 
@@ -57,6 +75,11 @@ class News
      * @var string
      *
      * @ORM\Column(name="content", type="text", length=16777215, nullable=false)
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *     min="3",
+     *     max="16777215",
+     * )
      */
     private $content;
 
@@ -64,6 +87,10 @@ class News
      * @var string
      *
      * @ORM\Column(name="img", type="string", length=200, nullable=true)
+     * @Assert\Length(
+     *     min="3",
+     *     max="200",
+     * )
      */
     private $img;
 
@@ -88,6 +115,7 @@ class News
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="creator_id", referencedColumnName="id")
      * })
+     * @Assert\NotBlank
      */
     private $creator;
 
@@ -106,9 +134,13 @@ class News
      * @var \Doctrine\Common\Collections\ArrayCollection $tags
      * @ORM\ManyToMany(
      *     targetEntity="Tag",
-     *     mappedBy="news")
+     *     inversedBy="news")
+     * @ORM\JoinTable(name="news_has_tags")
+     * @ORM\JoinColumn(name="tag_id", referencedColumnName="id", nullable=false, onDelete="cascade")
+     *
      */
     private $tags;
+
     /**
      * Constructor
      */

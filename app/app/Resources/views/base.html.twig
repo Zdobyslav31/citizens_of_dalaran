@@ -89,6 +89,14 @@
     {% javascripts '@jquery' '@bootstrap_js' '../app/Resources/public/js/*' %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
+    {{ tinymce_init({
+        selector: '.mceEditor',
+        entity_encoding : "raw",
+        menubar: false,
+        plugins: ['hr, link, lists',],
+        toolbar: 'undo redo | bold italic underline strikethrough | removeformat | alignleft aligncenter alignright alignjustify | hr link | cut copy paste',
+        })
+    }}
     {% if scroll_to_content is defined %}
     <script>
         scroll_to_content();

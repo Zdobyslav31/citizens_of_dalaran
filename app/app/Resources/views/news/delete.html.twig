@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title.news_delete'|trans }}: {{  news.title }}
+{% endblock %}
+{% block content_title %}
+    <i title="{{ 'title.news'|trans }}" class="far fa-newspaper"></i> {{ 'title.news_delete'|trans }}: {{  news.title }}
+{% endblock %}
+
+
+{% block content %}
+    {{ form_start(form, { method: 'post', action: path('news_delete', {'id': news.id}) }) }}
+    {% if false == form.vars.valid %}
+        <div class="alert alert-danger" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            {{ 'message.form_error'|trans }}
+        </div>
+    {% endif %}
+    {{ form_widget(form) }}
+    <span class="clearfix m-1">{{ 'message.delete_confirmation'|trans }}</span>
+    <div>
+        <input type="submit" value="{{ 'action.delete'|trans }}" class="btn btn-primary" />
+        <a class="btn btn-secondary float-right" href="{{ path('news_view', {'id': news.id}) }}">
+            <i class="fas fa-long-arrow-alt-left"></i> {{ 'message.back'|trans }}
+        </a>
+    </div>
+    {{ form_end(form) }}
+
+{% endblock %}

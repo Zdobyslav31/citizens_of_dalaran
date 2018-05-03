@@ -6,9 +6,15 @@ namespace AppBundle\Form;
 
 use AppBundle\Entity\News;
 use AppBundle\Entity\Tag;
+use AppBundle\Entity\User;
+use AppBundle\Repository\TagRepository;
+use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -17,6 +23,15 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class NewsType extends AbstractType
 {
+    /**
+     * NewsType constructor.
+     *
+     * @param TagRepository $tagsRepository Tag repository
+     */
+    public function __construct(TagRepository $tagRepository)
+    {
+        $this->tagRepository = $tagRepository;
+    }
 
     /**
      * {@inheritdoc}
@@ -27,13 +42,13 @@ class NewsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add(
-            'name',
+            'title',
             TextType::class,
             [
-                'label' => 'label.name',
+                'label' => 'label.title',
                 'required' => true,
                 'attr' => [
-                    'max_length' => 128,
+                    'max_length' => 255,
                 ],
             ]
         );
@@ -42,13 +57,62 @@ class NewsType extends AbstractType
             EntityType::class,
             [
                 'class' => Tag::class,
-                'choice_label' => function ($tag) {
+                'choice_label' => function (Tag $tag) {
                     return $tag->getName();
                 },
-                'label' => 'label.tag',
+                'label' => 'label.tags',
                 'required' => false,
                 'expanded' => true,
                 'multiple' => true,
+            ]
+        );
+        $builder->add(
+            'creator',
+            EntityType::class,
+            [
+                'class' => User::class,
+                'choice_label' => function (User $user) {
+                    return $user->getLogin();
+                },
+                'label' => 'label.creator',
+                'required' => true,
+                'expanded' => true,
+                'multiple' => false,
+            ]
+        );
+        $builder->add(
+            'summary',
+            TextareaType::class,
+            [
+                'label' => 'label.summary',
+                'required' => true,
+                'attr' => [
+                    'max_length' => 1000,
+                ],
+            ]
+        );
+        $builder->add(
+            'content',
+            TextareaType::class,
+            [
+                'label' => 'label.content',
+                'required' => true,
+                'attr' => [
+                    'max_length' => 16777215,
+                    'class' => 'tinymce',
+                    'rows' => 6,
+                ],
+            ]
+        );
+        $builder->add(
+            'img',
+            TextType::class,
+            [
+                'label' => 'label.image',
+                'required' => false,
+                'attr' => [
+                    'max_length' => 200,
+                ],
             ]
         );
     }

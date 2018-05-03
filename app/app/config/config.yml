@@ -91,8 +91,22 @@ assetic:
                 - '%kernel.root_dir%/../vendor/twitter/bootstrap/dist/css/bootstrap-grid.css'
                 - '%kernel.root_dir%/../vendor/twitter/bootstrap/dist/css/bootstrap-reboot.css'
             filters: [cssrewrite]
-
-
         jquery:
             inputs:
                 - '%kernel.root_dir%/../vendor/components/jquery/jquery.js'
+
+# Doctrine Extensions Configuration
+stof_doctrine_extensions:
+    default_locale: en_US
+    orm:
+        default:
+            timestampable: true
+
+stfalcon_tinymce:
+        include_jquery: true
+        tinymce_jquery: true
+        selector: ".tinymce"
+        language: '%locale%'
+        theme:
+            simple:
+                theme: "modern"

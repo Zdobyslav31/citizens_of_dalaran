@@ -123,6 +123,7 @@ class TagController extends Controller
             'tags/add.html.twig',
             [
                 'tag' => $tag,
+                'scroll_to_content' => True,
                 'form' => $form->createView(),
             ]
         );
@@ -164,6 +165,7 @@ class TagController extends Controller
             'tags/edit.html.twig',
             [
                 'tag' => $tag,
+                'scroll_to_content' => True,
                 'form' => $form->createView(),
             ]
         );
@@ -207,6 +209,7 @@ class TagController extends Controller
             'tags/delete.html.twig',
             [
                 'tag' => $tag,
+                'scroll_to_content' => True,
                 'form' => $form->createView(),
             ]
         );

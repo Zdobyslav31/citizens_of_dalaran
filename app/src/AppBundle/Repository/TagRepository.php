@@ -32,6 +32,7 @@ class TagRepository extends EntityRepository
         return $paginator;
     }
 
+
     /**
      * Query all entities.
      *

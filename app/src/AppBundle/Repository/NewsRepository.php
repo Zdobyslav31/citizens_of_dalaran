@@ -39,7 +39,7 @@ class NewsRepository extends EntityRepository
      */
     protected function queryAll()
     {
-        return $this->createQueryBuilder('news');
+        return $this->createQueryBuilder('news')->orderBy('news.createdDate', 'DESC');
     }
 
     /**

@@ -19,6 +19,8 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new AppBundle\AppBundle(),
             new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
+            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+            new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

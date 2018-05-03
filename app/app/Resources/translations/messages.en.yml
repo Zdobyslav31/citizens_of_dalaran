@@ -43,3 +43,10 @@ label.name: Name
 message.edited_successfully: 'Edited successfully'
 message.created_successfully: 'Created successfully'
 message.deleted_successfully: 'Deleted successfully'
+title.news_add: Add news
+label.title: Title
+label.tags: Tags
+label.creator: Creator
+label.summary:  'Summary (text visible on the main page)'
+label.content: Content
+label.image: Image

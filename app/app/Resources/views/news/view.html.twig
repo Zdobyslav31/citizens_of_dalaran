@@ -9,7 +9,7 @@
 {% endblock %}
 {%  block content_description %}
     {{ 'description.created'|trans({'%date%': post.createdDate|localizeddate('long', 'none'), '%author%': post.creator.login}) }}
-    {% if post.modifiedDate %}
+    {% if post.modifier %}
         <br>
         {{ 'description.modified'|trans({'%date%': post.modifiedDate|localizeddate('long', 'none'), '%author%': post.modifier.login}) }}
     {% endif %}
@@ -23,12 +23,24 @@
                     <a href="{{ path('tag_view', {'id': tag.id}) }}" class="badge badge-dark">{{ tag.name }}</a>
                 {% endfor %}
             </span>
-            <a class="btn btn-secondary float-right mb-3" href="{{ path('homepage') }}">
-                <i class="fas fa-long-arrow-alt-left"></i> {{ 'message.back_to_news'|trans }}
-            </a>
         {% endif %}
+        <a class="btn btn-secondary float-right m-1 mb-3" href="{{ path('homepage') }}">
+            <i title="{{ 'title.news'|trans }}" class="far fa-newspaper"></i> {{ 'message.back_to_news'|trans }}
+        </a>
+        <a class="btn btn-primary float-right m-1 mb-3" href="{{ path('news_edit', {'id': post.id}) }}">
+            <i class="fas fa-edit"></i> {{ 'message.edit'|trans }}
+        </a>
+        <a class="btn btn-danger float-right m-1 mb-3" href="{{ path('news_delete', {'id': post.id}) }}">
+            <i class="fas fa-trash-alt"></i> {{ 'message.delete'|trans }}
+        </a>
     </h4>
-    <img class="mb-3 w-100" src="{{ post.img }}" alt="{{ post.title }} - image">
+    {% if post.img %}
+        <img class="mb-3 w-100" src="{{ post.img }}" alt="{{ post.title }} - image">
+    {% else %}
+        {% image '../app/Resources/public/images/placeholder.png' %}
+            <img class="mb-3 w-100" src="{{ asset_url }}" alt="{{ post.title }} - image">
+        {%  endimage %}
+    {% endif %}
     {{ post.content|raw }}
     <span class="text-center d-block">
         <a href="{{ url('homepage') }}" class="btn btn-secondary">{{ 'message.back_to_news'|trans }}</a>
