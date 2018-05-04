@@ -50,5 +50,7 @@ label.creator: Twórca
 label.summary: 'Streszczenie (tekst widoczny na stronie głównej)'
 label.content: Treść
 label.image: Obrazek
-title.news_delete: Usuń wpis
-title.news_edit: Edytuj wpis
+title.news_delete: 'Usuń wpis'
+title.news_edit: 'Edytuj wpis'
+message.add_more_tags: Dodaj więcej tagów
+message.add_more_tags_info: Dodaj tagi w nowej karcie, którą otworzy przycisk. Następnie wróć do tej karty i odśwież ją. Nowe tagi pojawią się na liście.

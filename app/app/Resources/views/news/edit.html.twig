@@ -23,7 +23,17 @@
             {{ 'message.form_error'|trans }}
         </div>
     {% endif %}
-    {{ form_widget(form) }}
+    {{ form_start(form) }}
+    {{ form_row(form.title) }}
+    {{ form_row(form.tags) }}
+    <a class="btn btn-success" href="{{ path('tags_add') }}" target="_blank">
+        <i class="fas fa-plus"></i> {{ 'message.add_more_tags'|trans }}
+    </a><br>
+    {{ 'message.add_more_tags_info'|trans }}
+    {{ form_row(form.creator) }}
+    {{ form_row(form.summary) }}
+    {{ form_row(form.content) }}
+    {{ form_row(form.img) }}
     <div>
         <input type="submit" value="{{ 'action.save'|trans }}" class="btn btn-primary m-1" />
         <a class="btn btn-secondary float-right m-1" href="{{ path('homepage') }}">
