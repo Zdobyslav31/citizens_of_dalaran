@@ -83,6 +83,7 @@ class TagController extends Controller
      */
     public function viewAction(Tag $tag)
     {
+
         return $this->render(
             'tags/view.html.twig',
             [
@@ -113,10 +114,16 @@ class TagController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->tagRepository->save($tag);
-            $this->addFlash('success', 'message.created_successfully');
-
-            return $this->redirectToRoute('tags_index');
+            try {
+                $this->tagRepository->save($tag);
+                $this->addFlash('success', 'message.created_successfully');
+            }
+            catch (\Doctrine\DBAL\DBALException $e) {
+                $this->addFlash('error', 'message.add_failed');
+            }
+            finally {
+                return $this->redirectToRoute('tags_index');
+            }
         }
 
         return $this->render(
@@ -155,10 +162,16 @@ class TagController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->tagRepository->save($tag);
-            $this->addFlash('success', 'message.edited_successfully');
+            try {
+                $this->tagRepository->save($tag);
+                $this->addFlash('success', 'message.edited_successfully');
 
-            return $this->redirectToRoute('tags_index');
+                return $this->redirectToRoute('tags_index');
+            }
+            catch (\Doctrine\DBAL\DBALException $e) {
+                $this->addFlash('error', 'message.edit_failed');
+                return $this->redirectToRoute('tag_view', ['id' => $tag->getId()]);
+            }
         }
 
         return $this->render(
@@ -199,10 +212,16 @@ class TagController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->tagRepository->delete($tag);
-            $this->addFlash('success', 'message.deleted_successfully');
+            try {
+                $this->tagRepository->delete($tag);
+                $this->addFlash('success', 'message.deleted_successfully');
 
-            return $this->redirectToRoute('tags_index');
+                return $this->redirectToRoute('tags_index');
+            }
+            catch (\Doctrine\DBAL\DBALException $e) {
+                $this->addFlash('error', 'message.delete_failed');
+                return $this->redirectToRoute('tag_view', ['id' => $tag->getId()]);
+            }
         }
 
         return $this->render(
@@ -214,4 +233,5 @@ class TagController extends Controller
             ]
         );
     }
+
 }

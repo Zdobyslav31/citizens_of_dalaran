@@ -124,11 +124,17 @@ class NewsController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->newsRepository->save($news);
+            try {
+                $this->newsRepository->save($news);
 
-            $this->addFlash('success', 'message.created_successfully');
-
-            return $this->redirectToRoute('news_view', ['id' => $news->getId()]);
+                $this->addFlash('success', 'message.created_successfully');
+            }
+            catch (\Doctrine\DBAL\DBALException $e) {
+                $this->addFlash('error', 'message.delete_failed');
+            }
+            finally {
+                return $this->redirectToRoute('homepage');
+            }
         }
 
         return $this->render(
@@ -163,10 +169,16 @@ class NewsController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->newsRepository->save($news);
-            $this->addFlash('success', 'message.created_successfully');
+            try {
+                $this->newsRepository->save($news);
+                $this->addFlash('success', 'message.created_successfully');
 
-            return $this->redirectToRoute('news_view', ['id' => $news->getId()]);
+                return $this->redirectToRoute('news_view', ['id' => $news->getId()]);
+            }
+            catch (\Doctrine\DBAL\DBALException $e) {
+                $this->addFlash('error', 'message.edit_failed');
+                return $this->redirectToRoute('tag_view', ['id' => $news->getId()]);
+            }
         }
 
         return $this->render(
@@ -203,10 +215,16 @@ class NewsController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->newsRepository->delete($news);
-            $this->addFlash('success', 'message.deleted_successfully');
+            try {
+                $this->newsRepository->delete($news);
+                $this->addFlash('success', 'message.deleted_successfully');
 
-            return $this->redirectToRoute('homepage');
+                return $this->redirectToRoute('homepage');
+            }
+            catch (\Doctrine\DBAL\DBALException $e) {
+                $this->addFlash('error', 'message.delete_failed');
+                return $this->redirectToRoute('tag_view', ['id' => $news->getId()]);
+            }
         }
 
         return $this->render(

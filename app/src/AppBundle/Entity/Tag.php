@@ -75,6 +75,7 @@ class Tag
      *     mappedBy="tags")
      * @ORM\JoinTable(name="news_has_tags")
      * @ORM\JoinColumn(name="news_id", referencedColumnName="id", nullable=false, onDelete="cascade")
+     * @ORM\OrderBy({"createdDate" = "DESC"})
      */
     private $news;
 
