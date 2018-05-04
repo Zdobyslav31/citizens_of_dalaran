@@ -21,8 +21,8 @@
     {{ form_widget(form) }}
     <span class="clearfix m-1">{{ 'message.delete_confirmation'|trans }}</span>
     <div>
-        <input type="submit" value="{{ 'action.delete'|trans }}" class="btn btn-primary" />
-        <a class="btn btn-secondary float-right" href="{{ path('news_view', {'id': news.id}) }}">
+        <input type="submit" value="{{ 'action.delete'|trans }}" class="btn btn-primary m-1" />
+        <a class="btn btn-secondary float-right m-1" href="{{ path('news_view', {'id': news.id}) }}">
             <i class="fas fa-long-arrow-alt-left"></i> {{ 'message.back'|trans }}
         </a>
     </div>

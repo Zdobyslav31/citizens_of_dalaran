@@ -109,4 +109,11 @@ stfalcon_tinymce:
         language: '%locale%'
         theme:
             simple:
-                theme: "modern"
+                menu:
+                    edit: {title: 'Edit', items: 'undo redo | cut copy paste'}
+                    insert: { title: 'Insert', items: 'hr | pagebreak | charmap' }
+                    view: { title : 'View', items : 'visualaid | preview | code' }
+                    table: { title : 'Table' , items: 'inserttable tableprops deletetable | cell row column' }
+                plugins:
+                    - "hr, link, lists, charmap, nonbreaking, preview, code, table, pagebreak, emoticons, textcolor"
+                toolbar: "undo redo | bold italic underline strikethrough | forecolor backcolor | fontselect fontsizeselect | removeformat | bullist numlist | alignleft aligncenter alignright alignjustify | link emoticons"

@@ -88,6 +88,8 @@ class NewsType extends AbstractType
                 'required' => true,
                 'attr' => [
                     'max_length' => 1000,
+                    'class' => 'tinymce',
+                    'rows' => 3,
                 ],
             ]
         );
@@ -100,7 +102,7 @@ class NewsType extends AbstractType
                 'attr' => [
                     'max_length' => 16777215,
                     'class' => 'tinymce',
-                    'rows' => 6,
+                    'rows' => 8,
                 ],
             ]
         );
