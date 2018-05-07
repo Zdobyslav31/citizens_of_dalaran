@@ -35,14 +35,38 @@
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                <li class="nav-item">
+                    <a class="nav-link">
+                        <i class="fas fa-user"></i>
+                        <span class="d-md-none d-lg-inline"> {{ 'layout.user'|trans }}: {{ app.user.username }}</span>
+                    </a>
+                </li>
+            {% endif %}
             <li class="nav-item">
-                <a class="nav-link" href="{{ url('tags_index') }}"><i title="{{ 'title.tags'|trans }}" class="fas fa-tags"></i><span class="d-md-none d-lg-inline"> {{ 'title.tags'|trans }}</span></a>
+                <a class="nav-link" href="{{ url('tags_index') }}">
+                    <i title="{{ 'title.tags'|trans }}" class="fas fa-tags"></i>
+                    <span class="d-md-none d-lg-inline"> {{ 'title.tags'|trans }}</span>
+                </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ url('contact') }}"><i title="{{ 'title.contact'|trans }}" class="fa fa-envelope"></i><span class="d-md-none d-lg-inline"> {{ 'title.contact'|trans }}</span></a>
+                <a class="nav-link" href="{{ url('contact') }}">
+                    <i title="{{ 'title.contact'|trans }}" class="fa fa-envelope"></i>
+                    <span class="d-md-none d-lg-inline"> {{ 'title.contact'|trans }}</span>
+                </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#"><i title="{{ 'title.login'|trans }}" class="fas fa-sign-in-alt"></i><span class="d-md-none d-lg-inline"> {{ 'title.login'|trans }}</span></a>
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <a class="nav-link" href="{{ path('fos_user_security_logout') }}">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span class="d-md-none d-lg-inline">  {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</span>
+                    </a>
+                {% else %}
+                    <a class="nav-link" href="{{ path('fos_user_security_login') }}">
+                        <i title="{{ 'title.login'|trans }}" class="fas fa-sign-in-alt"></i>
+                        <span class="d-md-none d-lg-inline">  {{ 'layout.login'|trans({}, 'FOSUserBundle') }}</span>
+                    </a>
+                {% endif %}
             </li>
         </ul>
     </div>

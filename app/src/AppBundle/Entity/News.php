@@ -134,7 +134,8 @@ class News
      * @var \Doctrine\Common\Collections\ArrayCollection $tags
      * @ORM\ManyToMany(
      *     targetEntity="Tag",
-     *     inversedBy="news")
+     *     inversedBy="news",
+     *     cascade={"persist"})
      * @ORM\JoinTable(name="news_has_tags")
      * @ORM\JoinColumn(name="tag_id", referencedColumnName="id", nullable=false, onDelete="cascade")
      *

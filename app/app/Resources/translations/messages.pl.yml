@@ -45,12 +45,16 @@ message.created_successfully: 'Utworzono poprawnie'
 message.deleted_successfully: 'Usunięto poprawnie'
 title.news_add: 'Add news'
 label.title: Tytuł
-label.tags: Tagi
+label.tags: 'Tagi - wprowadź tagi, oddzielając je przecinkami'
 label.creator: Twórca
 label.summary: 'Streszczenie (tekst widoczny na stronie głównej)'
 label.content: Treść
 label.image: Obrazek
 title.news_delete: 'Usuń wpis'
 title.news_edit: 'Edytuj wpis'
-message.add_more_tags: Dodaj więcej tagów
-message.add_more_tags_info: Dodaj tagi w nowej karcie, którą otworzy przycisk. Następnie wróć do tej karty i odśwież ją. Nowe tagi pojawią się na liście.
+message.add_more_tags: 'Dodaj więcej tagów'
+message.add_more_tags_info: 'Dodaj tagi w nowej karcie, którą otworzy przycisk. Następnie wróć do tej karty i odśwież ją. Nowe tagi pojawią się na liście.'
+message.delete_failed: 'Błąd bazy danych. Nie udało się usunąć rekordu'
+message.edit_failed: 'Błąd bazy danych. Nie udało się edytować rekordu'
+message.add_failed: 'Błąd bazy danych. Nie udało się dodać rekordu'
+layout.user: Użytkownik

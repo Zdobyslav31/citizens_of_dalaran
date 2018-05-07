@@ -7,10 +7,12 @@ namespace AppBundle\Form;
 use AppBundle\Entity\News;
 use AppBundle\Entity\Tag;
 use AppBundle\Entity\User;
+use AppBundle\Form\Type\TagsInputType;
 use AppBundle\Repository\TagRepository;
 use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -53,18 +55,11 @@ class NewsType extends AbstractType
         );
         $builder->add(
             'tags',
-            EntityType::class,
+            TagsInputType::class,
             [
-                'class' => Tag::class,
-                'choice_label' => function (Tag $tag) {
-                    return $tag->getName();
-                },
                 'label' => 'label.tags',
                 'required' => false,
-                'expanded' => true,
-                'multiple' => true,
-            ]
-        );
+            ]);
         $builder->add(
             'creator',
             EntityType::class,

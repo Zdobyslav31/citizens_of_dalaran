@@ -1,0 +1,16 @@
+{% extends "base.html.twig" %}
+{% block title %}
+    {{ 'title.login'|trans }}
+{% endblock %}
+{% block content_title %}
+    {{ 'title.login'|trans }}
+{% endblock %}
+
+{% block content %}
+
+    {% block fos_user_content %}
+    <p>
+    {{ 'resetting.check_email'|trans({'%tokenLifetime%': tokenLifetime}, 'FOSUserBundle')|nl2br }}
+    </p>
+    {% endblock %}
+{% endblock %}

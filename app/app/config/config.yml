@@ -2,6 +2,7 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: "@UserBundle/Resources/config/services.php" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -38,7 +39,9 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
-    form_themes: ['bootstrap_4_layout.html.twig']
+    form_themes:
+        - 'bootstrap_4_layout.html.twig'
+        - 'form/fields.html.twig'
 
 # Doctrine Configuration
 doctrine:
@@ -103,17 +106,26 @@ stof_doctrine_extensions:
             timestampable: true
 
 stfalcon_tinymce:
-        include_jquery: true
-        tinymce_jquery: true
-        selector: ".tinymce"
-        language: '%locale%'
-        theme:
-            simple:
-                menu:
-                    edit: {title: 'Edit', items: 'undo redo | cut copy paste'}
-                    insert: { title: 'Insert', items: 'hr | pagebreak | charmap' }
-                    view: { title : 'View', items : 'visualaid | preview | code' }
-                    table: { title : 'Table' , items: 'inserttable tableprops deletetable | cell row column' }
-                plugins:
-                    - "hr, link, lists, charmap, nonbreaking, preview, code, table, pagebreak, emoticons, textcolor"
-                toolbar: "undo redo | bold italic underline strikethrough | forecolor backcolor | fontselect fontsizeselect | removeformat | bullist numlist | alignleft aligncenter alignright alignjustify | link emoticons"
+    include_jquery: true
+    tinymce_jquery: true
+    selector: ".tinymce"
+    language: '%locale%'
+    theme:
+        simple:
+            menu:
+                edit: {title: 'Edit', items: 'undo redo | cut copy paste'}
+                insert: { title: 'Insert', items: 'hr | pagebreak | charmap' }
+                view: { title : 'View', items : 'visualaid | preview | code' }
+                table: { title : 'Table' , items: 'inserttable tableprops deletetable | cell row column' }
+            plugins:
+                - "hr, link, lists, charmap, nonbreaking, preview, code, table, pagebreak, emoticons, textcolor"
+            toolbar: "undo redo | bold italic underline strikethrough | forecolor backcolor | fontselect fontsizeselect | removeformat | bullist numlist | alignleft aligncenter alignright alignjustify | link emoticons"
+
+# FOSUserBundle
+fos_user:
+    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    firewall_name: main
+    user_class: UserBundle\Entity\User
+    from_email:
+        address: "noreply@citizens.pl"
+        sender_name: "No Reply"
