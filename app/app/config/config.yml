@@ -97,6 +97,12 @@ assetic:
         jquery:
             inputs:
                 - '%kernel.root_dir%/../vendor/components/jquery/jquery.js'
+        tagsinput_css:
+            inputs:
+                - '%kernel.root_dir%/../app/Resources/public/tagsinput/*.css'
+        tagsinput_js:
+            inputs:
+                - '%kernel.root_dir%/../app/Resources/public/tagsinput/*.js'
 
 # Doctrine Extensions Configuration
 stof_doctrine_extensions:

@@ -15,13 +15,16 @@
     <title>{% block title %}{% endblock %} | {{ 'title.website'|trans }}</title>
     <meta name="description" content="{% block description %}Grupa larpowa Citizens of Dalaran z Krakowa. Larpy w świecie World of Warcraft i nie tylko. Sam przeżyj opowieść, zamiast tylko ją oglądać.{% endblock %}">
     <meta name="author" content="Jędrzej Kubala">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     {% image '../app/Resources/public/images/favicon.ico' %}
         <link rel="shortcut icon" href="{{ asset_url }}" >
     {% endimage %}
     {% block stylesheets %}
         {% stylesheets
             '@bootstrap_css'
-            '../app/Resources/public/css/*' %}
+            '../app/Resources/public/css/*'
+            '@tagsinput_css'
+        %}
             <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}"/>
         {% endstylesheets %}
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
@@ -29,7 +32,7 @@
     <style>
         body {
             {% image '../app/Resources/public/images/bg-4.jpg' %}
-                background-image: url("{{ asset_url }}");
+                background-image: ("{{ asset_url }}");
         {% endimage %}
         }
     </style>
@@ -93,7 +96,11 @@
     {% endblock %}
 </footer>
 {% block javascripts %}
-    {% javascripts '@jquery' '@bootstrap_js' '../app/Resources/public/js/*' %}
+    {% javascripts
+        '@jquery'
+        '@bootstrap_js'
+        '@tagsinput_js'
+        '../app/Resources/public/js/*' %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
     {{ tinymce_init({

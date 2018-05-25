@@ -17,8 +17,44 @@
 {% endblock %}
 
 {% block tags_input_widget %}
-    <div class="input-group">
-        {{ form_widget(form, {'attr': {'data-toggle': 'tagsinput', 'data-tags': tags|json_encode}}) }}
+    <div id="tags" class="input-group">
+        {{ form_widget(form, {'attr': {'data-role': 'tagsinput', 'id': 'tags'}}) }}
+        <script>
+            var substringMatcher = function(strs) {
+                return function findMatches(q, cb) {
+                    var matches, substringRegex;
+
+                    // an array that will be populated with substring matches
+                    matches = [];
+
+                    // regex used to determine if a string contains the substring `q`
+                    substrRegex = new RegExp(q, 'i');
+
+                    // iterate through the pool of strings and for any string that
+                    // contains the substring `q`, add it to the `matches` array
+                    $.each(strs, function(i, str) {
+                        if (substrRegex.test(str)) {
+                            matches.push(str);
+                        }
+                    });
+
+                    cb(matches);
+                };
+            };
+
+            var tags = {{ tags|json_encode }}
+
+
+            $('#tags .bootstrap-tagsinput').typeahead({
+                    hint: true,
+                    highlight: true,
+                    minLength: 1
+                },
+                {
+                    name: 'tags',
+                    source: substringMatcher(tags)
+                });
+        </script>
         {#<span class="input-group-addon">#}
             {#<span class="fa fa-tags" aria-hidden="true"></span>#}
         {#</span>#}

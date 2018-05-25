@@ -39,7 +39,6 @@ class NewsController extends Controller
     /**
      * Index action.
      *
-     * @Route("/", name="homepage")
      * @Route(
      *     "/",
      *     defaults={"page": 1},
