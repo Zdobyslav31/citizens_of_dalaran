@@ -1,16 +1,11 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: jedrzej
- * Date: 05.05.18
- * Time: 12:12
+ * User entity.
  */
-
-namespace _UserBundle\Entity;
+namespace UserBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
-
 
 /**
  * @ORM\Entity

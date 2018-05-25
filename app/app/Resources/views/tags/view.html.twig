@@ -32,17 +32,17 @@
                         </a>
                         <span class="float-right">
                         <span class="d-none d-md-block">
-                            {{ 'description.created'|trans({'%date%': post.createdDate|localizeddate('long', 'none'), '%author%': post.creator.login}) }}
+                            {{ 'description.created'|trans({'%date%': post.createdDate|localizeddate('long', 'none'), '%author%': post.creator.username}) }}
                         </span>
                         <span class="d-block d-md-none">
-                            {{ 'description.created'|trans({'%date%': post.createdDate|localizeddate('short', 'none'), '%author%': post.creator.login}) }}
+                            {{ 'description.created'|trans({'%date%': post.createdDate|localizeddate('short', 'none'), '%author%': post.creator.username}) }}
                         </span>
                             {% if post.modifier %}
                                 <span class="d-none d-md-block">
-                                {{ 'description.modified'|trans({'%date%': post.modifiedDate|localizeddate('long', 'none'), '%author%': post.modifier.login}) }}
+                                {{ 'description.modified'|trans({'%date%': post.modifiedDate|localizeddate('long', 'none'), '%author%': post.modifier.username}) }}
                             </span>
                                 <span class="d-block d-md-none">
-                                {{ 'description.modified'|trans({'%date%': post.modifiedDate|localizeddate('short', 'none'), '%author%': post.modifier.login}) }}
+                                {{ 'description.modified'|trans({'%date%': post.modifiedDate|localizeddate('short', 'none'), '%author%': post.modifier.username}) }}
                             </span>
                             {% endif %}
                     </span>

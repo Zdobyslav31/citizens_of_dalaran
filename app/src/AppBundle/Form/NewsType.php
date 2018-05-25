@@ -58,20 +58,6 @@ class NewsType extends AbstractType
                 'required' => false,
             ]);
         $builder->add(
-            'creator',
-            EntityType::class,
-            [
-                'class' => User::class,
-                'choice_label' => function (User $user) {
-                    return $user->getLogin();
-                },
-                'label' => 'label.creator',
-                'required' => true,
-                'expanded' => true,
-                'multiple' => false,
-            ]
-        );
-        $builder->add(
             'summary',
             TextareaType::class,
             [

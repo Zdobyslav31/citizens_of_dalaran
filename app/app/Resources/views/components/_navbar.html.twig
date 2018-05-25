@@ -10,9 +10,9 @@
     <div class="collapse navbar-collapse justify-content-between" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item{% if active_element == 'news' %} active{% endif %}">
-                <a class="nav-link" href="{{ url('homepage') }}">{{ 'title.news'|trans }}<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="{{ url('homepage') }}">{{ 'title.news'|trans }}{#<span class="sr-only">(current)</span>#}</a>
             </li>
-            <li class="nav-item dropdown{% if active_element == 'about' %} active{% endif %}">
+            <li class="nav-item dropdown{% if active_element == 'group' %} active{% endif %}">
                 <a class="nav-link dropdown-toggle" href="{{ url('about') }}" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ 'title.group'|trans }}</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown01">
                     <a class="dropdown-item{% if active_subelement == 'about' %} active{% endif %}" href="{{ url('about') }}">{{ 'title.about'|trans }}</a>
@@ -28,10 +28,11 @@
                     <a class="dropdown-item{% if active_subelement == 'larp_types' %} active{% endif %}" href="{{ url('larps_types') }}">{{ 'title.larp_types'|trans }}</a>
                     <a class="dropdown-item{% if active_subelement == 'larp_terms' %} active{% endif %}" href="{{ url('larp_terms') }}">{{ 'title.larp_terms'|trans }}</a>
                     <a class="dropdown-item{% if active_subelement == 'larp_history' %} active{% endif %}" href="{{ url('larp_history') }}">{{ 'title.larp_history'|trans }}</a>
+                    <a class="dropdown-item{% if active_element == 'larps_in_poland' %} active{% endif %}" href="#">{{ 'title.larps_in_poland'|trans }}</a>
                 </div>
             </li>
-            <li class="nav-item{% if active_element == 'larps_in_poland' %} active{% endif %}">
-                <a class="nav-link" href="#">{{ 'title.larps_in_poland'|trans }}</a>
+            <li class="nav-item{% if active_element == 'about_website' %} active{% endif %}">
+                <a class="nav-link" href="#">{{ 'title.about_website'|trans }}</a>
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">

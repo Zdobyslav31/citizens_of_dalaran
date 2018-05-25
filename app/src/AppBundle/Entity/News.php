@@ -109,9 +109,9 @@ class News
     private $id;
 
     /**
-     * @var \AppBundle\Entity\User
+     * @var \UserBundle\Entity\User
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="\UserBundle\Entity\User")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="creator_id", referencedColumnName="id")
      * })
@@ -120,9 +120,9 @@ class News
     private $creator;
 
     /**
-     * @var \AppBundle\Entity\User
+     * @var \UserBundle\Entity\User
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="\UserBundle\Entity\User")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="modifier_id", referencedColumnName="id")
      * })
@@ -307,11 +307,11 @@ class News
     /**
      * Set creator
      *
-     * @param \AppBundle\Entity\User $creator
+     * @param \UserBundle\Entity\User $creator
      *
      * @return News
      */
-    public function setCreator(\AppBundle\Entity\User $creator = null)
+    public function setCreator(\UserBundle\Entity\User $creator = null)
     {
         $this->creator = $creator;
 
@@ -321,7 +321,7 @@ class News
     /**
      * Get creator
      *
-     * @return \AppBundle\Entity\User
+     * @return \UserBundle\Entity\User
      */
     public function getCreator()
     {
@@ -331,11 +331,11 @@ class News
     /**
      * Set modifier
      *
-     * @param \AppBundle\Entity\User $modifier
+     * @param \UserBundle\Entity\User $modifier
      *
      * @return News
      */
-    public function setModifier(\AppBundle\Entity\User $modifier = null)
+    public function setModifier(\UserBundle\Entity\User $modifier = null)
     {
         $this->modifier = $modifier;
 
@@ -345,7 +345,7 @@ class News
     /**
      * Get modifier
      *
-     * @return \AppBundle\Entity\User
+     * @return \UserBundle\Entity\User
      */
     public function getModifier()
     {

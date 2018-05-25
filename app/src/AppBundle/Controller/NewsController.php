@@ -119,17 +119,20 @@ class NewsController extends Controller
     public function addAction(Request $request)
     {
         $news = new News();
+        $news->setCreator($this->getUser());
         $form = $this->createForm(NewsType::class, $news);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
-                $this->newsRepository->save($news);
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($news);
+                $em->flush();
 
                 $this->addFlash('success', 'message.created_successfully');
             }
             catch (\Doctrine\DBAL\DBALException $e) {
-                $this->addFlash('error', 'message.delete_failed');
+                $this->addFlash('error', 'message.create_failed');
             }
             finally {
                 return $this->redirectToRoute('homepage');
@@ -164,13 +167,14 @@ class NewsController extends Controller
      */
     public function editAction(Request $request, News $news)
     {
+        $news->setModifier($this->getUser());
         $form = $this->createForm(NewsType::class, $news);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
                 $this->newsRepository->save($news);
-                $this->addFlash('success', 'message.created_successfully');
+                $this->addFlash('success', 'message.edited_successfully');
 
                 return $this->redirectToRoute('news_view', ['id' => $news->getId()]);
             }

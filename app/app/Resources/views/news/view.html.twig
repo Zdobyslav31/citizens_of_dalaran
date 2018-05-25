@@ -8,10 +8,10 @@
     {{ post.title }}
 {% endblock %}
 {%  block content_description %}
-    {{ 'description.created'|trans({'%date%': post.createdDate|localizeddate('long', 'none'), '%author%': post.creator.login}) }}
+    {{ 'description.created'|trans({'%date%': post.createdDate|localizeddate('long', 'none'), '%author%': post.creator.username}) }}
     {% if post.modifier %}
         <br>
-        {{ 'description.modified'|trans({'%date%': post.modifiedDate|localizeddate('long', 'none'), '%author%': post.modifier.login}) }}
+        {{ 'description.modified'|trans({'%date%': post.modifiedDate|localizeddate('long', 'none'), '%author%': post.modifier.username}) }}
     {% endif %}
 {% endblock %}
 {% block content %}
