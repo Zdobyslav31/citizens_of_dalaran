@@ -22,18 +22,18 @@
     {% block stylesheets %}
         {% stylesheets
             '@bootstrap_css'
-            '../app/Resources/public/css/*'
             '@tagsinput_css'
-        %}
+            '../app/Resources/public/css/*' %}
             <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}"/>
         {% endstylesheets %}
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
     {% endblock %}
     <style>
         body {
-            {% image '../app/Resources/public/images/bg-4.jpg' %}
-                background-image: ("{{ asset_url }}");
-        {% endimage %}
+            {% image '../app/Resources/public/images/background.jpg' %}
+                background: url("{{ asset_url }}") no-repeat fixed;
+            {% endimage %}
+            background-size: cover;
         }
     </style>
 
@@ -96,11 +96,7 @@
     {% endblock %}
 </footer>
 {% block javascripts %}
-    {% javascripts
-        '@jquery'
-        '@bootstrap_js'
-        '@tagsinput_js'
-        '../app/Resources/public/js/*' %}
+    {% javascripts '@jquery' '@bootstrap_js' '@tagsinput_js' '../app/Resources/public/js/*' %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
     {{ tinymce_init({

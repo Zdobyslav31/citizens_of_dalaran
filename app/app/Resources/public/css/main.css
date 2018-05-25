@@ -17,6 +17,18 @@ body {
 }
 
 
+body {
+    padding-top: 5rem;
+}
+
+.card {
+    background-color: rgba(255,255,255,0.7);
+}
+
+.side-menu {
+    background-color: rgba(255,255,255,0.7);
+}
+
 .starter-template {
     padding: 3rem 1.5rem;
     text-align: center;

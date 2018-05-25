@@ -1,5 +1,4 @@
 <?php
-
 /*
  * This file is part of the Symfony package.
  *
@@ -8,9 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace AppBundle\Form\Type;
-
 use AppBundle\Entity\Tag;
 use AppBundle\Form\DataTransformer\TagArrayToStringTransformer;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -20,7 +17,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
-
 /**
  * Defines the custom form field type used to manipulate tags values across
  * Bootstrap-tagsinput javascript plugin.
@@ -32,12 +28,10 @@ use Symfony\Component\Form\FormView;
 class TagsInputType extends AbstractType
 {
     private $manager;
-
     public function __construct(ObjectManager $manager)
     {
         $this->manager = $manager;
     }
-
     /**
      * {@inheritdoc}
      */
@@ -52,7 +46,6 @@ class TagsInputType extends AbstractType
             ->addModelTransformer(new TagArrayToStringTransformer($this->manager), true)
         ;
     }
-
     /**
      * {@inheritdoc}
      */
@@ -60,7 +53,6 @@ class TagsInputType extends AbstractType
     {
         $view->vars['tags'] = $this->manager->getRepository(Tag::class)->findAll();
     }
-
     /**
      * {@inheritdoc}
      */

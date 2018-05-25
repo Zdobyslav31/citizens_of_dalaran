@@ -3,7 +3,6 @@
  * News type.
  */
 namespace AppBundle\Form;
-
 use AppBundle\Entity\News;
 use AppBundle\Entity\Tag;
 use AppBundle\Entity\User;
@@ -18,7 +17,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-
 /**
  * Class NewsType.
  */
@@ -33,7 +31,6 @@ class NewsType extends AbstractType
     {
         $this->tagRepository = $tagRepository;
     }
-
     /**
      * {@inheritdoc}
      *
@@ -112,7 +109,6 @@ class NewsType extends AbstractType
             ]
         );
     }
-
     /**
      * {@inheritdoc}
      *
@@ -126,7 +122,6 @@ class NewsType extends AbstractType
             ]
         );
     }
-
     /**
      * {@inheritdoc}
      *
