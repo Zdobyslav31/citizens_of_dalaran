@@ -137,11 +137,10 @@ class NewsController extends Controller
                 $this->newsRepository->save($news);
 
                 $this->addFlash('success', 'message.created_successfully');
+                return $this->redirectToRoute('tag_view', ['id' => $news->getId()]);
             }
             catch (\Doctrine\DBAL\DBALException $e) {
                 $this->addFlash('error', 'message.create_failed');
-            }
-            finally {
                 return $this->redirectToRoute('homepage');
             }
         }

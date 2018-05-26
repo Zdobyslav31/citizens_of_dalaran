@@ -41,10 +41,12 @@ class ImageUploadListener
         $file = $entity->getImage();
 
         // only upload new files
-        if ($file instanceof UploadedFile) {
-            $fileName = $this->uploader->upload($file);
-            $entity->setImage($fileName);
+        if (!$file instanceof UploadedFile) {
+            return;
         }
+
+        $fileName = $this->uploader->upload($file);
+        $entity->setPhoto($fileName);
     }
 
     public function postLoad(LifecycleEventArgs $args)

@@ -87,7 +87,8 @@ class News
      * @ORM\Column(type="string", nullable=true)
      * @Assert\Image(
      *     maxWidth="2500",
-     *     maxHeight="2500"
+     *     maxHeight="2500",
+     *     allowPortrait=false
      * )
      */
     private $image;
