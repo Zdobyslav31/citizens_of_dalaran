@@ -1,14 +1,33 @@
 {% extends "@FOSUser/layout.html.twig" %}
 
 {% block title %}
-    {{ 'title.show_profile'|trans }}
+    {{ 'title.show_profile'|trans }}: {{ user.username }}
 {% endblock %}
 {% block content_title %}
-    {{ 'title.show_profile'|trans }}
+    {{ 'title.show_profile'|trans }}: {{ user.username }}
 {% endblock %}
 
 {% block fos_user_content %}
-{% include "@FOSUser/Profile/show_content.html.twig" %}
+
+    <div class="fos_user_user_show row">
+        <div class="col col-md-4">
+            {% if user.img %}
+                <img class="mb-3 w-100" src="{{ user.img }}" alt="user {{ user.username }} profile image">
+            {% else %}
+                {% image '../app/Resources/public/images/placeholder.png' %}
+                    <img class="mb-3 w-100" src="{{ asset_url }}" alt="placeholder image">
+                {%  endimage %}
+            {% endif %}
+            <p>{{ user.description }}</p>
+        </div>
+        <div class="col col-md-8">
+            <p>{{ 'profile.show.username'|trans({}, 'FOSUserBundle') }}: {{ user.username }}</p>
+            <p>{{ 'profile.show.email'|trans({}, 'FOSUserBundle') }}: {{ user.email }}</p>
+            {% if user.name %}
+                <p>{{ 'profile.show.name'|trans }}: {{ user.name }}</p>
+            {% endif %}
+        </div>
+    </div>
 
     <a href="{{ url('fos_user_change_password') }}" class="btn btn-secondary m-1">
         {{ 'message.change_password'|trans }}

@@ -38,7 +38,7 @@
         <img class="mb-3 w-100" src="{{ post.img }}" alt="{{ post.title }} - image">
     {% else %}
         {% image '../app/Resources/public/images/placeholder.png' %}
-            <img class="mb-3 w-100" src="{{ asset_url }}" alt="{{ post.title }} - image">
+            <img class="mb-3 w-100" src="{{ asset_url }}" alt="placeholder image">
         {%  endimage %}
     {% endif %}
     {{ post.content|raw }}

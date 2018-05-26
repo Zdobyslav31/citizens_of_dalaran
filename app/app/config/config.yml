@@ -135,3 +135,9 @@ fos_user:
     from_email:
         address: "noreply@citizens.pl"
         sender_name: "Citizens of Dalaran - do not reply"
+    registration:
+        form:
+            type: UserBundle\Form\RegistrationType
+    profile:
+        form:
+            type: UserBundle\Form\RegistrationType
