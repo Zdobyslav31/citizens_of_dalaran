@@ -1,0 +1,17 @@
+{% extends "@FOSUser/layout.html.twig" %}
+{% block title %}
+    {{ 'title.register_confirmation'|trans }}
+{% endblock %}
+{% block content_title %}
+    {{ 'title.register_confirmation'|trans }}
+{% endblock %}
+
+{% block fos_user_content %}
+    <p>{{ 'registration.confirmed'|trans({'%username%': user.username}, 'FOSUserBundle') }}</p>
+    {% if targetUrl %}
+        <a class="btn btn-secondary float-right m-1" href="{{ targetUrl }}">{{ 'registration.back'|trans({}, 'FOSUserBundle') }}</a>
+    {% endif %}
+    <a href="{{ url('homepage') }}" class="btn btn-secondary m-1">
+        <i title="{{ 'title.news'|trans }}" class="far fa-newspaper"></i> {{ 'message.back_to_news'|trans }}
+    </a>
+{% endblock fos_user_content %}

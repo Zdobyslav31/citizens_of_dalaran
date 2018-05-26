@@ -1,0 +1,21 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% block title %}
+    {{ app.user.username }}: {{ 'title.edit_profile'|trans }}
+{% endblock %}
+{% block content_title %}
+    {{ app.user.username }}: {{ 'title.edit_profile'|trans }}
+{% endblock %}
+
+{% block fos_user_content %}
+    {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
+        {{ form_widget(form) }}
+        <div>
+            <input type="submit" class="btn btn-primary" value="{{ 'profile.edit.submit'|trans({}, 'FOSUserBundle') }}" />
+        </div>
+    {{ form_end(form) }}
+
+    <a href="{{ url('fos_user_profile_show') }}" class="btn btn-secondary m-1 float-right">
+        <i class="fas fa-user"></i> {{ 'message.back_to_profile'|trans }}
+    </a>
+{% endblock fos_user_content %}
