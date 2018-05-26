@@ -2,11 +2,13 @@
 
 namespace AppBundle\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use AppBundle\Repository\TextRepository;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use AppBundle\Entity\Text;
+use AppBundle\Repository\TextRepository;
+use AppBundle\Form\StaticTextType;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -61,59 +63,135 @@ class StaticController extends Controller
         );
     }
 
-//    /**
-//     * @Route("/what_is_larp", name="larps")
-//     */
-//    public function larps()
-//    {
-//        return $this->render('static/larps/what_is_larp.html.twig', [
-//            'sidebar' => 'larps',
-//            'active_element' => 'larps',
-//            'active_subelement' => 'what_is_larp'
-//        ]);
-//    }
-//    /**
-//     * @Route("/types", name="larps_types")
-//     */
-//    public function larps_types()
-//    {
-//        return $this->render('static/larps/types.html.twig', [
-//            'sidebar' => 'larps',
-//            'active_element' => 'larps',
-//            'active_subelement' => 'larp_types'
-//        ]);
-//    }
-//    /**
-//     * @Route("/terms", name="larp_terms")
-//     */
-//    public function larps_terms()
-//    {
-//        return $this->render('static/larps/terms.html.twig', [
-//            'sidebar' => 'larps',
-//            'active_element' => 'larps',
-//            'active_subelement' => 'larp_terms'
-//        ]);
-//    }
-//    /**
-//     * @Route("/history", name="larp_history")
-//     */
-//    public function larps_history()
-//    {
-//        return $this->render('static/larps/history.html.twig', [
-//            'sidebar' => 'larps',
-//            'active_element' => 'larps',
-//            'active_subelement' => 'larp_history'
-//        ]);
-//    }
-//    /**
-//     * @Route("/in_poland", name="larps_in_poland")
-//     */
-//    public function larps_in_poland()
-//    {
-//        return $this->render('static/larps/in_poland.html.twig', [
-//            'sidebar' => 'larps',
-//            'active_element' => 'larps',
-//            'active_subelement' => 'larps_in_poland'
-//        ]);
-//    }
+    /**
+     * Add action.
+     *
+     * @param \Symfony\Component\HttpFoundation\Request $request HTTP Request
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response HTTP Response
+     *
+     * @throws \Doctrine\ORM\OptimisticLockException
+     *
+     * @Route(
+     *     "/add",
+     *     name="texts_add",
+     * )
+     * @Method({"GET", "POST"})
+     */
+    public function addAction(Request $request)
+    {
+        $text = new Text();
+        $form = $this->createForm(StaticTextType::class, $text);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            try {
+                $this->textRepository->save($text);
+                $this->addFlash('success', 'message.created_successfully');
+            } catch (\Doctrine\DBAL\DBALException $e) {
+                $this->addFlash('error', 'message.add_failed');
+            } finally {
+                return $this->redirectToRoute('static', ['title' => $text->getParentTitle()]);
+            }
+        }
+
+        return $this->render(
+            'static/add.html.twig',
+            [
+                'text' => $text,
+                'scroll_to_content' => true,
+                'form' => $form->createView(),
+            ]
+        );
+    }
+
+    /**
+     * Edit action.
+     *
+     * @param \Symfony\Component\HttpFoundation\Request $request HTTP Request
+     * @param Text $text Text entity
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response HTTP Response
+     *
+     * @throws \Doctrine\ORM\OptimisticLockException
+     *
+     * @Route(
+     *     "/edit/{id}",
+     *     requirements={"id": "[1-9]\d*"},
+     *     name="texts_edit",
+     * )
+     * @Method({"GET", "POST"})
+     */
+    public function editAction(Request $request, Text $text)
+    {
+        $form = $this->createForm(StaticTextType::class, $text);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            try {
+                $this->textRepository->save($text);
+                $this->addFlash('success', 'message.edited_successfully');
+            } catch (\Doctrine\DBAL\DBALException $e) {
+                $this->addFlash('error', 'message.edit_failed');
+            } finally {
+                return $this->redirectToRoute('static', ['title' => $text->getParentTitle()]);
+            }
+        }
+
+        return $this->render(
+            'static/edit.html.twig',
+            [
+                'text' => $text,
+                'scroll_to_content' => true,
+                'form' => $form->createView(),
+            ]
+        );
+    }
+
+    /**
+     * Delete action.
+     *
+     * @param \Symfony\Component\HttpFoundation\Request $request HTTP Request
+     *
+     * @param Text $text Text entity
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response HTTP Response
+     *
+     * @throws \Doctrine\ORM\OptimisticLockException
+     *
+     * @Route(
+     *     "/delete/{id}",
+     *     requirements={"id": "[1-9]\d*"},
+     *     name="texts_delete",
+     * )
+     * @Method({"GET", "POST"})
+     */
+    public function deleteAction(Request $request, Text $text)
+    {
+        $form = $this->createForm(FormType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            try {
+                $this->textRepository->delete($text);
+                $this->addFlash('success', 'message.deleted_successfully');
+
+                return $this->redirectToRoute('static', ['title' => $text->getParentTitle()]);
+            }
+            catch (\Doctrine\DBAL\DBALException $e) {
+                $this->addFlash('error', 'message.delete_failed');
+                return $this->redirectToRoute('static', ['title' => $text->getParentTitle()]);
+            }
+        }
+
+        return $this->render(
+            'static/delete.html.twig',
+            [
+                'text' => $text,
+                'scroll_to_content' => True,
+                'form' => $form->createView(),
+            ]
+        );
+    }
 }
+

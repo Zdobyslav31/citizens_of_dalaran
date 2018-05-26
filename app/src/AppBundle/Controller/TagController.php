@@ -5,12 +5,12 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Tag;
-use AppBundle\Form\TagType;
 use AppBundle\Repository\TagRepository;
+use AppBundle\Form\TagType;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
 
 /**

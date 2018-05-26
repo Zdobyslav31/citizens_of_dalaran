@@ -47,9 +47,9 @@ class Text
     private $parentTitle;
 
     /**
-     * @var integer
+     * @var float
      *
-     * @ORM\Column(name="number", type="smallint", nullable=false)
+     * @ORM\Column(name="number", type="float", nullable=false)
      * @Assert\NotBlank
      */
     private $number;

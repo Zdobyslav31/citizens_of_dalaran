@@ -45,7 +45,7 @@ class RegistrationType extends AbstractType
             'name',
             TextType::class,
             [
-                'label' => 'label.name',
+                'label' => 'label.names',
                 'required' => false,
                 'attr' => [
                     'max_length' => 254,

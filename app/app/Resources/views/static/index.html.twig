@@ -5,7 +5,7 @@
 
 
 {% block content %}
-    {#<a class="btn btn-success mb-3" href="{{ path('news_add') }}"><i class="fas fa-plus"></i> {{ 'message.add_new'|trans }}</a>#}
+    <a class="btn btn-success mb-3" href="{{ path('texts_add') }}"><i class="fas fa-plus"></i> {{ 'message.add_new'|trans }}</a>
     {% if texts is defined and texts|length %}
         <ol>
             {% for id, text in texts %}
@@ -14,46 +14,16 @@
         </ol>
         {% for id, text in texts %}
             <div class="card post mb-3">
-                {#<div class="card-header">#}
-                    {#<a href="{{ url('news_view',{'id': text.id}) }}" class="link-unstyled">#}
-                    {##}
-                    {#</a>#}
-                    {#<span class="float-right">#}
-                        {#<span class="d-none d-md-block">#}
-                            {#{{ 'description.created'|trans({'%date%': post.createdDate|localizeddate('long', 'none'), '%author%': post.creator.username}) }}#}
-                        {#</span>#}
-                        {#<span class="d-block d-md-none">#}
-                            {#{{ 'description.created'|trans({'%date%': post.createdDate|localizeddate('short', 'none'), '%author%': post.creator.username}) }}#}
-                        {#</span>#}
-                        {#{% if post.modifier %}#}
-                            {#<span class="d-none d-md-block">#}
-                                {#{{ 'description.modified'|trans({'%date%': post.modifiedDate|localizeddate('long', 'none'), '%author%': post.modifier.username}) }}#}
-                            {#</span>#}
-                            {#<span class="d-block d-md-none">#}
-                                {#{{ 'description.modified'|trans({'%date%': post.modifiedDate|localizeddate('short', 'none'), '%author%': post.modifier.username}) }}#}
-                            {#</span>#}
-                        {#{% endif %}#}
-                    {#</span>#}
-                {#</div>#}
                 <div id="{{ id }}" class="card-body">
-                    {#<a href="{{ url('news_view',{'id': post.id}) }}">#}
-                        {#{% if post.img %}#}
-                            {#<img class="mb-3 news-image mr-lg-3" src="{{ post.img }}" alt="{{ post.title }} - image">#}
-                        {#{% else %}#}
-                            {#{% image '../app/Resources/public/images/placeholder.png' %}#}
-                                {#<img class="mb-3 news-image mr-lg-3" src="{{ asset_url }}" alt="{{ post.title }} - image">#}
-                            {#{%  endimage %}#}
-                        {#{% endif %}#}
-                    </a>
+                    <span class="d-block text-center mt-2 float-right">
+                        <a href="{{ url('texts_edit',{'id': text.id}) }}" class="btn btn-primary m-1"><i class="fas fa-edit"></i> {{ 'message.edit'|trans }}</a>
+                        <a href="{{ url('texts_delete',{'id': text.id}) }}" class="btn btn-danger m-1"><i class="fas fa-trash-alt"></i> {{ 'message.delete'|trans }}</a>
+                    </span>
                     <h2>
                         {{ text.title }}
                     </h2>
                     {{ text.content|raw }}
-                    {#<span class="d-block text-center mt-2">#}
-                        {#<a href="{{ url('news_view',{'id': post.id}) }}" class="btn btn-secondary m-1"><i class="fas fa-eye"></i> {{ 'message.read_more'|trans }}</a>#}
-                        {#<a href="{{ url('news_edit',{'id': post.id}) }}" class="btn btn-primary m-1"><i class="fas fa-edit"></i> {{ 'message.edit'|trans }}</a>#}
-                        {#<a href="{{ url('news_delete',{'id': post.id}) }}" class="btn btn-danger m-1"><i class="fas fa-trash-alt"></i> {{ 'message.delete'|trans }}</a>#}
-                    {#</span>#}
+                    <a href="#content_title" class="btn btn-secondary">{{ 'message.scroll_to_top'|trans }}</a>
                 </div>
             </div>
         {% endfor %}

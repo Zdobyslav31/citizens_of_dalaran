@@ -59,15 +59,21 @@ message.edit_failed: 'Błąd bazy danych. Nie udało się edytować rekordu'
 message.add_failed: 'Błąd bazy danych. Nie udało się dodać rekordu'
 layout.user: Użytkownik
 title.about_website: 'O serwisie'
-title.change_password: Zmień hasło
-message.back_to_profile: Wróć do profilu użytkownika
-title.edit_profile: Edytuj profil uzytkownika
-title.show_profile: Profil uzytkownika
-profile.show.name: Imię i nazwisko
-message.edit_profile: Edytuj profil
-title.login: Logowanie
-message.no_account_register: Psst... Nie masz jeszcze konta?
-message.register: Zarejestruj się!
-title.register_confirmation: Potwierdzenie rejestracji
+title.change_password: 'Zmień hasło'
+message.back_to_profile: 'Wróć do profilu użytkownika'
+title.edit_profile: 'Edytuj profil uzytkownika'
+title.show_profile: 'Profil uzytkownika'
+profile.show.name: 'Imię i nazwisko'
+message.edit_profile: 'Edytuj profil'
+message.no_account_register: 'Psst... Nie masz jeszcze konta?'
+message.register: 'Zarejestruj się!'
+title.register_confirmation: 'Potwierdzenie rejestracji'
 title.register: Rejestracja
-message.change_password: Zmień hasło
+message.change_password: 'Zmień hasło'
+label.names: 'Imię i nazwisko'
+title.text_add: Dodaj tekst
+message.back_to_texts: Wróć do tekstów
+message.scroll_to_top: Do góry
+label.parent_title: Tytuł działu
+label.number: Numer akapitu
+label.image_description: Tekst obrazka
