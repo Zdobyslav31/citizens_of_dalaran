@@ -22,13 +22,13 @@
                 </div>
             </li>
             <li class="nav-item dropdown{% if active_element == 'larps' %} active{% endif %}">
-                <a class="nav-link dropdown-toggle" href="{{ url('larps') }}" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ 'title.about_larp'|trans }}</a>
+                <a class="nav-link dropdown-toggle" href="{{ url('static',{'title': 'what_is_larp'}) }}" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ 'title.about_larp'|trans }}</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown01">
-                    <a class="dropdown-item{% if active_subelement == 'what_is_larp' %} active{% endif %}" href="{{ url('larps') }}">{{ 'title.what_is_larp'|trans }}</a>
-                    <a class="dropdown-item{% if active_subelement == 'larp_types' %} active{% endif %}" href="{{ url('larps_types') }}">{{ 'title.larp_types'|trans }}</a>
-                    <a class="dropdown-item{% if active_subelement == 'larp_terms' %} active{% endif %}" href="{{ url('larp_terms') }}">{{ 'title.larp_terms'|trans }}</a>
-                    <a class="dropdown-item{% if active_subelement == 'larp_history' %} active{% endif %}" href="{{ url('larp_history') }}">{{ 'title.larp_history'|trans }}</a>
-                    <a class="dropdown-item{% if active_element == 'larps_in_poland' %} active{% endif %}" href="#">{{ 'title.larps_in_poland'|trans }}</a>
+                    <a class="dropdown-item{% if active_subelement == 'what_is_larp' %} active{% endif %}" href="{{ url('static',{'title': 'what_is_larp'}) }}">{{ 'title.larp.what_is_larp'|trans }}</a>
+                    <a class="dropdown-item{% if active_subelement == 'types' %} active{% endif %}" href="{{ url('static',{'title': 'types'}) }}">{{ 'title.larp.types'|trans }}</a>
+                    <a class="dropdown-item{% if active_subelement == 'terms' %} active{% endif %}" href="{{ url('static',{'title': 'terms'}) }}">{{ 'title.larp.terms'|trans }}</a>
+                    <a class="dropdown-item{% if active_subelement == 'history' %} active{% endif %}" href="{{ url('static',{'title': 'history'}) }}">{{ 'title.larp.history'|trans }}</a>
+                    <a class="dropdown-item{% if active_subelement == 'in_poland' %} active{% endif %}" href="{{ url('static',{'title': 'in_poland'}) }}">{{ 'title.larp.in_poland'|trans }}</a>
                 </div>
             </li>
             <li class="nav-item{% if active_element == 'about_website' %} active{% endif %}">

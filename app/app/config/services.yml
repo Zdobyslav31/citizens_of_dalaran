@@ -49,3 +49,7 @@ services:
     AppBundle\Repository\TagRepository:
         factory: 'doctrine.orm.entity_manager:getRepository'
         arguments: ['AppBundle\Entity\Tag']
+
+    AppBundle\Repository\TextRepository:
+        factory: 'doctrine.orm.entity_manager:getRepository'
+        arguments: ['AppBundle\Entity\Text']

@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ ('title.larp.' ~ active_subelement)|trans }}{% endblock %}
+{% block content_title %}{{ ('title.larp.' ~ active_subelement)|trans }}{% endblock %}
+
+
+{% block content %}
+    {#<a class="btn btn-success mb-3" href="{{ path('news_add') }}"><i class="fas fa-plus"></i> {{ 'message.add_new'|trans }}</a>#}
+    {% if texts is defined and texts|length %}
+        <ol>
+            {% for id, text in texts %}
+                <a href="#{{ id }}"><li>{{ text.title }}</li></a>
+            {% endfor %}
+        </ol>
+        {% for id, text in texts %}
+            <div class="card post mb-3">
+                {#<div class="card-header">#}
+                    {#<a href="{{ url('news_view',{'id': text.id}) }}" class="link-unstyled">#}
+                    {##}
+                    {#</a>#}
+                    {#<span class="float-right">#}
+                        {#<span class="d-none d-md-block">#}
+                            {#{{ 'description.created'|trans({'%date%': post.createdDate|localizeddate('long', 'none'), '%author%': post.creator.username}) }}#}
+                        {#</span>#}
+                        {#<span class="d-block d-md-none">#}
+                            {#{{ 'description.created'|trans({'%date%': post.createdDate|localizeddate('short', 'none'), '%author%': post.creator.username}) }}#}
+                        {#</span>#}
+                        {#{% if post.modifier %}#}
+                            {#<span class="d-none d-md-block">#}
+                                {#{{ 'description.modified'|trans({'%date%': post.modifiedDate|localizeddate('long', 'none'), '%author%': post.modifier.username}) }}#}
+                            {#</span>#}
+                            {#<span class="d-block d-md-none">#}
+                                {#{{ 'description.modified'|trans({'%date%': post.modifiedDate|localizeddate('short', 'none'), '%author%': post.modifier.username}) }}#}
+                            {#</span>#}
+                        {#{% endif %}#}
+                    {#</span>#}
+                {#</div>#}
+                <div id="{{ id }}" class="card-body">
+                    {#<a href="{{ url('news_view',{'id': post.id}) }}">#}
+                        {#{% if post.img %}#}
+                            {#<img class="mb-3 news-image mr-lg-3" src="{{ post.img }}" alt="{{ post.title }} - image">#}
+                        {#{% else %}#}
+                            {#{% image '../app/Resources/public/images/placeholder.png' %}#}
+                                {#<img class="mb-3 news-image mr-lg-3" src="{{ asset_url }}" alt="{{ post.title }} - image">#}
+                            {#{%  endimage %}#}
+                        {#{% endif %}#}
+                    </a>
+                    <h2>
+                        {{ text.title }}
+                    </h2>
+                    {{ text.content|raw }}
+                    {#<span class="d-block text-center mt-2">#}
+                        {#<a href="{{ url('news_view',{'id': post.id}) }}" class="btn btn-secondary m-1"><i class="fas fa-eye"></i> {{ 'message.read_more'|trans }}</a>#}
+                        {#<a href="{{ url('news_edit',{'id': post.id}) }}" class="btn btn-primary m-1"><i class="fas fa-edit"></i> {{ 'message.edit'|trans }}</a>#}
+                        {#<a href="{{ url('news_delete',{'id': post.id}) }}" class="btn btn-danger m-1"><i class="fas fa-trash-alt"></i> {{ 'message.delete'|trans }}</a>#}
+                    {#</span>#}
+                </div>
+            </div>
+        {% endfor %}
+        {#<div class="d-flex justify-content-center">#}
+            {#{% if news.haveToPaginate %}#}
+
+                {#<div class="navigation text-center">#}
+                    {#<nav aria-label="Page navigation">#}
+                        {#{{ pagerfanta(news, 'twitter_bootstrap4_translated', {routeName: 'homepage_paginated'}) }}#}
+                    {#</nav>#}
+                {#</div>#}
+            {#{% endif %}#}
+        {#</div>#}
+    {% else %}
+        {{ 'message.empty_list'|trans }}
+    {% endif %}
+{% endblock %}

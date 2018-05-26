@@ -7,7 +7,19 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Event
  *
- * @ORM\Table(name="event", indexes={@ORM\Index(name="fk_events_tags1_idx", columns={"tags_id"}), @ORM\Index(name="fk_events_application1_idx", columns={"template_application_id"})})
+ * @ORM\Table(
+ *     name="event",
+ *     indexes={
+ *      @ORM\Index(
+ *          name="fk_events_tags1_idx",
+ *          columns={"tags_id"}
+ *      ),
+ *      @ORM\Index(
+ *          name="fk_events_application1_idx",
+ *          columns={"template_application_id"}
+ *      )
+ *     }
+ * )
  * @ORM\Entity
  */
 class Event

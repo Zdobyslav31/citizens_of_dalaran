@@ -3,11 +3,11 @@ title.homepage: 'Strona główna'
 title.group: 'Nasza grupa'
 title.news: Aktualności
 title.about_larp: 'O larpach'
-title.what_is_larp: 'Czym jest larp?'
-title.larp_types: 'Rodzaje larpów'
-title.larp_terms: Pojęcia
-title.larp_history: 'Historia larpów'
-title.larps_in_poland: 'Larpy w Polsce'
+title.larp.what_is_larp: 'Czym jest larp?'
+title.larp.types: 'Rodzaje larpów'
+title.larp.terms: Pojęcia
+title.larp.history: 'Historia larpów'
+title.larp.in_poland: 'Larpy w Polsce'
 title.login: Zaloguj
 title.contact: Kontakt
 title.events: Wydarzenia

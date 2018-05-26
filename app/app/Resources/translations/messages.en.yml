@@ -3,11 +3,11 @@ title.homepage: Home
 title.group: 'Our group'
 title.news: News
 title.about_larp: 'About larp'
-title.what_is_larp: 'What is larp?'
-title.larp_types: 'Typess of larp'
-title.larp_terms: Terms
-title.larp_history: 'Larping history'
-title.larps_in_poland: 'Larps in Poland'
+title.larp.what_is_larp: 'What is larp?'
+title.larp.types: 'Types of larp'
+title.larp.terms: Terms
+title.larp.history: 'Larping history'
+title.larp.in_poland: 'Larps in Poland'
 title.login: 'Sign in'
 title.contact: Contact
 title.about: 'Who we are'
