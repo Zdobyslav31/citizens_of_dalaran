@@ -12,6 +12,7 @@ use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -84,14 +85,11 @@ class NewsType extends AbstractType
             ]
         );
         $builder->add(
-            'img',
-            TextType::class,
+            'image',
+            FileType::class,
             [
                 'label' => 'label.image',
                 'required' => false,
-                'attr' => [
-                    'max_length' => 200,
-                ],
             ]
         );
     }

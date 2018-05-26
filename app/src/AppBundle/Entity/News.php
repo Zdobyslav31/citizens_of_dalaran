@@ -84,15 +84,13 @@ class News
     private $content;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="img", type="string", length=200, nullable=true)
-     * @Assert\Length(
-     *     min="3",
-     *     max="200",
+     * @ORM\Column(type="string", nullable=true)
+     * @Assert\Image(
+     *     maxWidth="2500",
+     *     maxHeight="2500"
      * )
      */
-    private $img;
+    private $image;
 
     /**
      * @var integer
@@ -271,30 +269,6 @@ class News
     }
 
     /**
-     * Set img
-     *
-     * @param string $img
-     *
-     * @return News
-     */
-    public function setImg($img)
-    {
-        $this->img = $img;
-
-        return $this;
-    }
-
-    /**
-     * Get img
-     *
-     * @return string
-     */
-    public function getImg()
-    {
-        return $this->img;
-    }
-
-    /**
      * Get id
      *
      * @return integer
@@ -386,4 +360,28 @@ class News
         return $this->tags;
     }
 
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     *
+     * @return News
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
 }

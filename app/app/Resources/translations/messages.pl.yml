@@ -71,9 +71,11 @@ title.register_confirmation: 'Potwierdzenie rejestracji'
 title.register: Rejestracja
 message.change_password: 'Zmień hasło'
 label.names: 'Imię i nazwisko'
-title.text_add: Dodaj tekst
-message.back_to_texts: Wróć do tekstów
-message.scroll_to_top: Do góry
-label.parent_title: Tytuł działu
-label.number: Numer akapitu
-label.image_description: Tekst obrazka
+title.text_add: 'Dodaj tekst'
+message.back_to_texts: 'Wróć do tekstów'
+message.scroll_to_top: 'Do góry'
+label.parent_title: 'Tytuł działu'
+label.number: 'Numer akapitu'
+label.image_description: 'Tekst obrazka'
+title.text_delete: Usuń akapit
+title.text_edit: Edytuj akapit

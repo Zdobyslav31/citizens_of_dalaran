@@ -42,6 +42,15 @@ services:
     #     arguments:
     #         $someArgument: 'some_value'
 
+    AppBundle\Service\FileUploader:
+        arguments:
+            $targetDirectory: '%images_directory%'
+
+    AppBundle\EventListener\ImageUploadListener:
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }
+
     AppBundle\Repository\NewsRepository:
         factory: 'doctrine.orm.entity_manager:getRepository'
         arguments: ['AppBundle\Entity\News']

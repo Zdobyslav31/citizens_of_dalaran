@@ -12,6 +12,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\File\File;
+use AppBundle\Service\FileUploader;
 
 /**
  * Class NewsController.
@@ -105,6 +107,7 @@ class NewsController extends Controller
      * Add action.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request HTTP Request
+     * @param FileUploader $fileUploader
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response HTTP Response
      *
@@ -116,7 +119,7 @@ class NewsController extends Controller
      * )
      * @Method({"GET", "POST"})
      */
-    public function addAction(Request $request)
+    public function addAction(Request $request, FileUploader $fileUploader)
     {
         $news = new News();
         $news->setCreator($this->getUser());
@@ -125,9 +128,13 @@ class NewsController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($news);
-                $em->flush();
+                if (!empty($news->getImage())) {
+                    $file = $news->getImage();
+                    $fileName = $fileUploader->upload($file);
+                    $news->setImage($fileName);
+                }
+
+                $this->newsRepository->save($news);
 
                 $this->addFlash('success', 'message.created_successfully');
             }
@@ -153,6 +160,8 @@ class NewsController extends Controller
      * Edit action.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request HTTP Request
+     * @param News $news
+     * @param FileUploader $fileUploader
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response HTTP Response
      *
@@ -165,14 +174,25 @@ class NewsController extends Controller
      * )
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, News $news)
+    public function editAction(Request $request, News $news, FileUploader $fileUploader)
     {
         $news->setModifier($this->getUser());
+        if (!empty($news->getImage())) {
+            $news->setImage(
+                new File($this->getParameter('images_directory').'/'.$news->getImage())
+            );
+        }
+
         $form = $this->createForm(NewsType::class, $news);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
+                if (!empty($news->getImage())) {
+                    $file = $news->getImage();
+                    $fileName = $fileUploader->upload($file);
+                    $news->setImage($fileName);
+                }
                 $this->newsRepository->save($news);
                 $this->addFlash('success', 'message.edited_successfully');
 
@@ -238,5 +258,14 @@ class NewsController extends Controller
                 'form' => $form->createView(),
             ]
         );
+    }
+
+
+    /**
+     * @return string
+     */
+    private function generateUniqueFileName()
+    {
+        return md5(uniqid());
     }
 }
