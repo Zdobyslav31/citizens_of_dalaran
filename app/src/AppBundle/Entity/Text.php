@@ -67,15 +67,13 @@ class Text
     private $content;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="img", type="string", length=200, nullable=true)
-     * @Assert\Length(
-     *     min="3",
-     *     max="200",
+     * @ORM\Column(type="string", nullable=true)
+     * @Assert\Image(
+     *     maxWidth="2500",
+     *     maxHeight="2500"
      * )
      */
-    private $img;
+    private $image;
 
     /**
      * @var string
@@ -159,27 +157,27 @@ class Text
     }
 
     /**
-     * Set img
+     * Set image
      *
-     * @param string $img
+     * @param string $image
      *
      * @return Text
      */
-    public function setImg($img)
+    public function setImage($image)
     {
-        $this->img = $img;
+        $this->image = $image;
 
         return $this;
     }
 
     /**
-     * Get img
+     * Get image
      *
      * @return string
      */
-    public function getImg()
+    public function getImage()
     {
-        return $this->img;
+        return $this->image;
     }
 
     /**

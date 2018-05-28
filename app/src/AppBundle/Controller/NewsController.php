@@ -5,15 +5,15 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\News;
-use AppBundle\Form\NewsType;
 use AppBundle\Repository\NewsRepository;
+use AppBundle\Form\NewsType;
+use AppBundle\Service\FileUploader;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\File\File;
-use AppBundle\Service\FileUploader;
 
 /**
  * Class NewsController.

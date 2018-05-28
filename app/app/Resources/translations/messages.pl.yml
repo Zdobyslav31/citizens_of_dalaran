@@ -53,7 +53,6 @@ label.image: Obrazek
 title.news_delete: 'Usuń wpis'
 title.news_edit: 'Edytuj wpis'
 message.add_more_tags: 'Dodaj więcej tagów'
-message.add_more_tags_info: 'Dodaj tagi w nowej karcie, którą otworzy przycisk. Następnie wróć do tej karty i odśwież ją. Nowe tagi pojawią się na liście.'
 message.delete_failed: 'Błąd bazy danych. Nie udało się usunąć rekordu'
 message.edit_failed: 'Błąd bazy danych. Nie udało się edytować rekordu'
 message.add_failed: 'Błąd bazy danych. Nie udało się dodać rekordu'
@@ -79,3 +78,11 @@ label.number: 'Numer akapitu'
 label.image_description: 'Tekst obrazka'
 title.text_delete: Usuń akapit
 title.text_edit: Edytuj akapit
+label.description: Opis
+label.birthday: Data urodzenia
+label.phone_number: Numer kontaktowy
+label.emergency_phone: 'Kontakt alarmowy (do osoby, którą mamy poinformawać w razie wypadku)'
+label.health_issues: 'Problemy zdrowotne, o których powinniśmy wiedzieć'
+label.nourishment_issues: 'Czy są jakieś rzeczy których nie jesz, lub nie pijesz?'
+message.personal_data_title: Informacje o osobie
+message.personal_data_info: 'Tych danych nie musisz podawać w trakcie rejestracji. Będą potrzebne, kiedy będziesz chciał wziąć udział w jednym z naszych wydarzeń.'

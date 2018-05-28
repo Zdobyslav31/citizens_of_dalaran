@@ -6,6 +6,25 @@
     {{ 'title.register'|trans }}
 {% endblock %}
 
-{% block fos_user_content %}
-{% include "@FOSUser/Registration/register_content.html.twig" %}
+{% block fos_user_content %}{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+    {{ form_row(form.username) }}
+    {{ form_row(form.plainPassword) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.profilePictureFile) }}
+    {{ form_row(form.description) }}
+    <hr>
+    <div class="card text-white bg-info mb-3">
+        <div class="card-header"><h4>{{ 'message.personal_data_title'|trans }}</h4></div>
+        <div class="card-body">{{ 'message.personal_data_info'|trans }}</div>
+    </div>
+    {{ form_row(form.name) }}
+    {{ form_row(form.dateOfBirth) }}
+    {{ form_row(form.phoneNumber) }}
+    {{ form_row(form.emergencyPhone) }}
+    {{ form_row(form.healthIssues) }}
+    {{ form_row(form.nourishmentIssues) }}
+    <div>
+        <input type="submit" value="{{ 'registration.submit'|trans({}, 'FOSUserBundle') }}" />
+    </div>
+    {{ form_end(form) }}
 {% endblock fos_user_content %}

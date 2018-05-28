@@ -5,10 +5,12 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Text;
 use AppBundle\Repository\TextRepository;
 use AppBundle\Form\StaticTextType;
+use AppBundle\Service\FileUploader;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -16,7 +18,7 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * @Route("/larps")
  */
-class StaticController extends Controller
+class TextsController extends Controller
 {
     /**
      * Text repository.
@@ -26,7 +28,7 @@ class StaticController extends Controller
     protected $textRepository = null;
 
     /**
-     * StaticController constructor.
+     * TextsController constructor.
      *
      * @param \AppBundle\Repository\TextRepository $textRepository Text repository
      */
@@ -67,6 +69,7 @@ class StaticController extends Controller
      * Add action.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request HTTP Request
+     * @param FileUploader $fileUploader
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response HTTP Response
      *
@@ -78,7 +81,7 @@ class StaticController extends Controller
      * )
      * @Method({"GET", "POST"})
      */
-    public function addAction(Request $request)
+    public function addAction(Request $request, FileUploader $fileUploader)
     {
         $text = new Text();
         $form = $this->createForm(StaticTextType::class, $text);
@@ -86,6 +89,12 @@ class StaticController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
+                if (!empty($text->getImage())) {
+                    $file = $text->getImage();
+                    $fileName = $fileUploader->upload($file);
+                    $text->setImage($fileName);
+                }
+
                 $this->textRepository->save($text);
                 $this->addFlash('success', 'message.created_successfully');
             } catch (\Doctrine\DBAL\DBALException $e) {
@@ -110,6 +119,7 @@ class StaticController extends Controller
      *
      * @param \Symfony\Component\HttpFoundation\Request $request HTTP Request
      * @param Text $text Text entity
+     * @param FileUploader $fileUploader
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response HTTP Response
      *
@@ -122,13 +132,23 @@ class StaticController extends Controller
      * )
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Text $text)
+    public function editAction(Request $request, Text $text, FileUploader $fileUploader)
     {
+        if (!empty($text->getImage())) {
+            $text->setImage(
+                new File($this->getParameter('images_directory').'/'.$text->getImage())
+            );
+        }
         $form = $this->createForm(StaticTextType::class, $text);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
+                if (!empty($text->getImage())) {
+                    $file = $text->getImage();
+                    $fileName = $fileUploader->upload($file);
+                    $text->setImage($fileName);
+                }
                 $this->textRepository->save($text);
                 $this->addFlash('success', 'message.edited_successfully');
             } catch (\Doctrine\DBAL\DBALException $e) {

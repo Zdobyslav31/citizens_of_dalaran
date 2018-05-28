@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Controller used to manage contents related to the group in the public part of the site.
  *
- * @Route("/about")
+ * @Route("/group")
  */
 class GroupController extends Controller
 {

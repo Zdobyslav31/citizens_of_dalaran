@@ -36,6 +36,12 @@
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('contact') }}">
+                    <i title="{{ 'title.contact'|trans }}" class="fa fa-envelope"></i>
+                    <span class="d-md-none d-lg-inline"> {{ 'title.contact'|trans }}</span>
+                </a>
+            </li>
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('fos_user_profile_show') }}">
@@ -44,18 +50,6 @@
                     </a>
                 </li>
             {% endif %}
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url('tags_index') }}">
-                    <i title="{{ 'title.tags'|trans }}" class="fas fa-tags"></i>
-                    <span class="d-md-none d-lg-inline"> {{ 'title.tags'|trans }}</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url('contact') }}">
-                    <i title="{{ 'title.contact'|trans }}" class="fa fa-envelope"></i>
-                    <span class="d-md-none d-lg-inline"> {{ 'title.contact'|trans }}</span>
-                </a>
-            </li>
             <li class="nav-item">
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                     <a class="nav-link" href="{{ path('fos_user_security_logout') }}">

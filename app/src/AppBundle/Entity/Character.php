@@ -7,7 +7,13 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Character
  *
- * @ORM\Table(name="character", indexes={@ORM\Index(name="fk_events_has_users_users1_idx", columns={"users_id"}), @ORM\Index(name="fk_events_has_users_events1_idx", columns={"events_id"})})
+ * @ORM\Table(
+ *     name="character",
+ *     indexes={
+ *      @ORM\Index(name="fk_events_has_users_users1_idx", columns={"users_id"}),
+ *      @ORM\Index(name="fk_events_has_users_events1_idx", columns={"events_id"})
+ *     }
+ * )
  * @ORM\Entity
  */
 class Character
@@ -88,9 +94,9 @@ class Character
     private $events;
 
     /**
-     * @var \AppBundle\Entity\User
+     * @var \UserBundle\Entity\User
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="users_id", referencedColumnName="id")
      * })

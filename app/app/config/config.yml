@@ -142,4 +142,4 @@ fos_user:
             type: UserBundle\Form\RegistrationType
     profile:
         form:
-            type: UserBundle\Form\RegistrationType
+            type: UserBundle\Form\ProfileType
