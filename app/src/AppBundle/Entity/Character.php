@@ -348,11 +348,11 @@ class Character
     /**
      * Set users
      *
-     * @param \AppBundle\Entity\User $users
+     * @param \UserBundle\Entity\User $users
      *
      * @return Character
      */
-    public function setUsers(\AppBundle\Entity\User $users = null)
+    public function setUsers(\UserBundle\Entity\User $users = null)
     {
         $this->users = $users;
 
@@ -362,7 +362,7 @@ class Character
     /**
      * Get users
      *
-     * @return \AppBundle\Entity\User
+     * @return \UserBundle\Entity\User
      */
     public function getUsers()
     {
