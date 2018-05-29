@@ -95,3 +95,4 @@ message.error.403: 'Hajże! A dokąd to się waść wybierasz? Próbujesz wejś�
 error.403: 'Błąd! 403 - dostęp zabroniony'
 message.error: 'Coś... coś poszło nie tak i nie możemy wyświetlić Ci strony. Przykro nam z tego powodu. Miało być inaczej!'
 error: 'Błąd!'
+message.contact_admin: Skontaktuj się z administratorem
