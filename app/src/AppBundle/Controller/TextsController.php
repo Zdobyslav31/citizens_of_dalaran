@@ -13,11 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
 
-/**
- * Controller used to manage static text contents in the public part of the site.
- *
- * @Route("/larps")
- */
+
 class TextsController extends Controller
 {
     /**
@@ -38,32 +34,97 @@ class TextsController extends Controller
     }
 
     /**
-     * Index action.
+     * Index larps action.
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP Response
      *
      *
      * @Route(
-     *     "/{title}",
+     *     "larps/{title}",
      *     requirements={"title": "what_is_larp|types|terms|history|in_poland"},
-     *     name="static",
+     *     name="larps",
      * )
      * @Method("GET")
      */
-    public function indexAction($title)
+    public function indexLarpsAction($title)
+    {
+        $texts = $this->textRepository->queryByParent($title);
+
+            return $this->render(
+                'texts/index.html.twig',
+                [
+                    'sidebar' => 'larps',
+                    'active_element' => 'larps',
+                    'active_subelement' => $title,
+                    'texts' => $texts,
+                    'index' => true
+                ]
+            );
+    }
+
+
+
+    /**
+     * Index group action.
+     *
+     * @return \Symfony\Component\HttpFoundation\Response HTTP Response
+     *
+     *
+     * @Route(
+     *     "group/{title}",
+     *     requirements={"title": "about|contact"},
+     *     name="group",
+     * )
+     * @Method("GET")
+     */
+    public function indexGroupAction($title)
     {
         $texts = $this->textRepository->queryByParent($title);
 
         return $this->render(
-            'static/index.html.twig',
+            'texts/index.html.twig',
             [
-                'sidebar' => 'larps',
-                'active_element' => 'larps',
+                'sidebar' => 'group',
+                'active_element' => 'group',
                 'active_subelement' => $title,
-                'texts' => $texts
+                'texts' => $texts,
+                'index' => false
             ]
         );
     }
+
+    /**
+     * Index default action.
+     *
+     * @return \Symfony\Component\HttpFoundation\Response HTTP Response
+     *
+     *
+     * @Route(
+     *     "texts/{title}",
+     *     name="static",
+     * )
+     * @Method("GET")
+     */
+    public function indexDefaultAction($title)
+    {
+        if (in_array($title, ['what_is_larp','types','terms','history','in_poland'])) {
+            return $this->indexLarpsAction($title);
+        } elseif (in_array($title, ['contact','about'])) {
+            return $this->indexGroupAction($title);
+        }
+        $texts = $this->textRepository->queryByParent($title);
+
+        return $this->render(
+            'texts/index.html.twig',
+            [
+                'active_element' => $title,
+                'texts' => $texts,
+                'index' => false
+            ]
+        );
+    }
+
+
 
     /**
      * Add action.
@@ -76,7 +137,7 @@ class TextsController extends Controller
      * @throws \Doctrine\ORM\OptimisticLockException
      *
      * @Route(
-     *     "/add",
+     *     "text/add",
      *     name="texts_add",
      * )
      * @Method({"GET", "POST"})
@@ -105,7 +166,7 @@ class TextsController extends Controller
         }
 
         return $this->render(
-            'static/add.html.twig',
+            'texts/add.html.twig',
             [
                 'text' => $text,
                 'scroll_to_content' => true,
@@ -126,7 +187,7 @@ class TextsController extends Controller
      * @throws \Doctrine\ORM\OptimisticLockException
      *
      * @Route(
-     *     "/edit/{id}",
+     *     "text/edit/{id}",
      *     requirements={"id": "[1-9]\d*"},
      *     name="texts_edit",
      * )
@@ -159,7 +220,7 @@ class TextsController extends Controller
         }
 
         return $this->render(
-            'static/edit.html.twig',
+            'texts/edit.html.twig',
             [
                 'text' => $text,
                 'scroll_to_content' => true,
@@ -180,7 +241,7 @@ class TextsController extends Controller
      * @throws \Doctrine\ORM\OptimisticLockException
      *
      * @Route(
-     *     "/delete/{id}",
+     *     "text/delete/{id}",
      *     requirements={"id": "[1-9]\d*"},
      *     name="texts_delete",
      * )
@@ -205,7 +266,7 @@ class TextsController extends Controller
         }
 
         return $this->render(
-            'static/delete.html.twig',
+            'texts/delete.html.twig',
             [
                 'text' => $text,
                 'scroll_to_content' => True,

@@ -122,9 +122,10 @@ stfalcon_tinymce:
         simple:
             menu:
                 edit: {title: 'Edit', items: 'undo redo | cut copy paste'}
-                insert: { title: 'Insert', items: 'hr | pagebreak | charmap' }
-                view: { title : 'View', items : 'visualaid | preview | code' }
-                table: { title : 'Table' , items: 'inserttable tableprops deletetable | cell row column' }
+                insert: {title: 'Insert', items: 'hr | pagebreak | charmap'}
+                view: {title: 'View', items : 'visualaid | preview | code'}
+                style: {title: 'Format', items: 'bold italic underline strikethrough superscript subscript | formats | removeformat'}
+                table: {title: 'Table' , items: 'inserttable tableprops deletetable | cell row column'}
             plugins:
                 - "hr, link, lists, charmap, nonbreaking, preview, code, table, pagebreak, emoticons, textcolor"
             toolbar: "undo redo | bold italic underline strikethrough | forecolor backcolor | fontselect fontsizeselect | removeformat | bullist numlist | alignleft aligncenter alignright alignjustify | link emoticons"

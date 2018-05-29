@@ -21,8 +21,8 @@
     {{ form_widget(form) }}
     <div>
         <input type="submit" value="{{ 'action.save'|trans }}" class="btn btn-primary" />
-        <a class="btn btn-secondary float-right" href="{{ path('static', {'title': 'what_is_larp'}) }}">
-            {{ 'message.back_to_texts'|trans }}
+        <a class="btn btn-secondary float-right" href="{{ app.request.headers.get('referer') }}">
+            {{ 'message.back'|trans }}
         </a>
     </div>
     {{ form_end(form) }}

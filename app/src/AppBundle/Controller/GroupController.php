@@ -14,17 +14,6 @@ use Symfony\Component\HttpFoundation\Request;
 class GroupController extends Controller
 {
     /**
-     * @Route("/", name="about")
-     */
-    public function about()
-    {
-        return $this->render('static/group/about.html.twig', [
-            'sidebar' => 'group',
-            'active_element' => 'group',
-            'active_subelement' => 'about'
-        ]);
-    }
-    /**
      * @Route("/events", name="events")
      */
     public function events()
@@ -45,17 +34,6 @@ class GroupController extends Controller
             'sidebar' => 'group',
             'active_element' => 'group',
             'active_subelement' => 'gallery'
-        ]);
-    }
-    /**
-     * @Route("/contact", name="contact")
-     */
-    public function contact()
-    {
-        return $this->render('static/group/contact.html.twig', [
-            'sidebar' => 'group',
-            'active_element' => 'group',
-            'active_subelement' => 'contact'
         ]);
     }
 }

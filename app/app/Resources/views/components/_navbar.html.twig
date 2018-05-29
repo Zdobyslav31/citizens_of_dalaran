@@ -13,33 +13,33 @@
                 <a class="nav-link" href="{{ url('homepage') }}">{{ 'title.news'|trans }}{#<span class="sr-only">(current)</span>#}</a>
             </li>
             <li class="nav-item dropdown{% if active_element == 'group' %} active{% endif %}">
-                <a class="nav-link dropdown-toggle" href="{{ url('about') }}" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ 'title.group'|trans }}</a>
+                <a class="nav-link dropdown-toggle" href="{{ url('group',{'title': 'about'}) }}" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ 'title.group'|trans }}</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown01">
-                    <a class="dropdown-item{% if active_subelement == 'about' %} active{% endif %}" href="{{ url('about') }}">{{ 'title.about'|trans }}</a>
-                    <a class="dropdown-item{% if active_subelement == 'events' %} active{% endif %}" href="{{ url('events') }}">{{ 'title.events'|trans }}</a>
-                    <a class="dropdown-item{% if active_subelement == 'gallery' %} active{% endif %}" href="{{ url('gallery') }}">{{ 'title.gallery'|trans }}</a>
-                    <a class="dropdown-item{% if active_subelement == 'contact' %} active{% endif %}" href="{{ url('contact') }}">{{ 'title.contact'|trans }}</a>
+                    <a class="dropdown-item{% if active_subelement == 'about' %} active{% endif %}" href="{{ url('group',{'title': 'about'}) }}">{{ 'title.group.about'|trans }}</a>
+                    <a class="dropdown-item{% if active_subelement == 'events' %} active{% endif %}" href="{{ url('events') }}">{{ 'title.group.events'|trans }}</a>
+                    <a class="dropdown-item{% if active_subelement == 'gallery' %} active{% endif %}" href="{{ url('gallery') }}">{{ 'title.group.gallery'|trans }}</a>
+                    <a class="dropdown-item{% if active_subelement == 'contact' %} active{% endif %}" href="{{ url('group',{'title': 'contact'}) }}">{{ 'title.group.contact'|trans }}</a>
                 </div>
             </li>
             <li class="nav-item dropdown{% if active_element == 'larps' %} active{% endif %}">
-                <a class="nav-link dropdown-toggle" href="{{ url('static',{'title': 'what_is_larp'}) }}" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ 'title.about_larp'|trans }}</a>
+                <a class="nav-link dropdown-toggle" href="{{ url('larps',{'title': 'what_is_larp'}) }}" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ 'title.about_larp'|trans }}</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown01">
-                    <a class="dropdown-item{% if active_subelement == 'what_is_larp' %} active{% endif %}" href="{{ url('static',{'title': 'what_is_larp'}) }}">{{ 'title.larp.what_is_larp'|trans }}</a>
-                    <a class="dropdown-item{% if active_subelement == 'types' %} active{% endif %}" href="{{ url('static',{'title': 'types'}) }}">{{ 'title.larp.types'|trans }}</a>
-                    <a class="dropdown-item{% if active_subelement == 'terms' %} active{% endif %}" href="{{ url('static',{'title': 'terms'}) }}">{{ 'title.larp.terms'|trans }}</a>
-                    <a class="dropdown-item{% if active_subelement == 'history' %} active{% endif %}" href="{{ url('static',{'title': 'history'}) }}">{{ 'title.larp.history'|trans }}</a>
-                    <a class="dropdown-item{% if active_subelement == 'in_poland' %} active{% endif %}" href="{{ url('static',{'title': 'in_poland'}) }}">{{ 'title.larp.in_poland'|trans }}</a>
+                    <a class="dropdown-item{% if active_subelement == 'what_is_larp' %} active{% endif %}" href="{{ url('larps',{'title': 'what_is_larp'}) }}">{{ 'title.larps.what_is_larp'|trans }}</a>
+                    <a class="dropdown-item{% if active_subelement == 'types' %} active{% endif %}" href="{{ url('larps',{'title': 'types'}) }}">{{ 'title.larps.types'|trans }}</a>
+                    <a class="dropdown-item{% if active_subelement == 'terms' %} active{% endif %}" href="{{ url('larps',{'title': 'terms'}) }}">{{ 'title.larps.terms'|trans }}</a>
+                    <a class="dropdown-item{% if active_subelement == 'history' %} active{% endif %}" href="{{ url('larps',{'title': 'history'}) }}">{{ 'title.larps.history'|trans }}</a>
+                    <a class="dropdown-item{% if active_subelement == 'in_poland' %} active{% endif %}" href="{{ url('larps',{'title': 'in_poland'}) }}">{{ 'title.larps.in_poland'|trans }}</a>
                 </div>
             </li>
             <li class="nav-item{% if active_element == 'about_website' %} active{% endif %}">
-                <a class="nav-link" href="#">{{ 'title.about_website'|trans }}</a>
+                <a class="nav-link" href="{{ path('static',{'title': 'about_website'}) }}">{{ 'title.about_website'|trans }}</a>
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" href="{{ url('contact') }}">
-                    <i title="{{ 'title.contact'|trans }}" class="fa fa-envelope"></i>
-                    <span class="d-md-none d-lg-inline"> {{ 'title.contact'|trans }}</span>
+                <a class="nav-link" href="{{ url('group',{'title': 'contact'}) }}">
+                    <i title="{{ 'title.group.contact'|trans }}" class="fa fa-envelope"></i>
+                    <span class="d-md-none d-lg-inline"> {{ 'title.group.contact'|trans }}</span>
                 </a>
             </li>
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}

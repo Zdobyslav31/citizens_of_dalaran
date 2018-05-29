@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    {% if  texts|length %}
+        {% if active_subelement %}
+            {{ ('title.' ~ active_element ~ '.' ~ active_subelement)|trans }}
+        {% else %}
+            {{ ('title.' ~ active_element)|trans }}
+        {% endif %}
+    {% else %}
+        {{ 'title.texts_not_found'|trans }}
+    {% endif %}
+{% endblock %}
+{% block content_title %}
+    {% if  texts|length %}
+        {% if active_subelement %}
+            {{ ('title.' ~ active_element ~ '.' ~ active_subelement)|trans }}
+        {% else %}
+            {{ ('title.' ~ active_element)|trans }}
+        {% endif %}
+    {% else %}
+        {{ 'title.texts_not_found'|trans }}
+    {% endif %}
+{% endblock %}
+
+
+{% block content %}
+    {% if texts|length %}
+        <a class="btn btn-success mb-3 float-right" href="{{ path('texts_add') }}"><i class="fas fa-plus"></i> {{ 'message.add_new'|trans }}</a>
+        {% if index %}
+            <ol>
+                {% for id, text in texts %}
+                    <a href="#{{ id }}"><li>{{ text.title }}</li></a>
+                {% endfor %}
+            </ol>
+            <a class="card text-white bg-info mb-3" href="{{ path('static', {'title': 'about_website'}) }}">
+                <div class="card-body">
+                    <i class="fas fa-info-circle"></i> {{ 'message.info_source'|trans }}
+                </div>
+            </a>
+        {% endif %}
+        <div class="clearfix"></div>
+        {% for id, text in texts %}
+            <div class="card post mb-3">
+                <div id="{{ id }}" class="card-body">
+                    <span class="d-block text-center float-right">
+                        <a href="{{ url('texts_edit',{'id': text.id}) }}" class="btn btn-primary m-1"><i class="fas fa-edit"></i> {{ 'message.edit'|trans }}</a>
+                        <a href="{{ url('texts_delete',{'id': text.id}) }}" class="btn btn-danger m-1"><i class="fas fa-trash-alt"></i> {{ 'message.delete'|trans }}</a>
+                    </span>
+                    <h2>
+                        {{ text.title }}
+                    </h2>
+                    {{ text.content|raw }}
+                    <a href="#content_title" class="btn btn-secondary">{{ 'message.scroll_to_top'|trans }}</a>
+                </div>
+            </div>
+        {% endfor %}
+        {#<div class="d-flex justify-content-center">#}
+            {#{% if news.haveToPaginate %}#}
+
+                {#<div class="navigation text-center">#}
+                    {#<nav aria-label="Page navigation">#}
+                        {#{{ pagerfanta(news, 'twitter_bootstrap4_translated', {routeName: 'homepage_paginated'}) }}#}
+                    {#</nav>#}
+                {#</div>#}
+            {#{% endif %}#}
+        {#</div>#}
+    {% else %}
+        <p>{{ 'message.texts_not_found'|trans }}</p>
+        <div>
+            <a class="btn btn-secondary float-right" href="{{ app.request.headers.get('referer') }}">
+                {{ 'message.back'|trans }}
+            </a>
+        </div>
+    {% endif %}
+{% endblock %}

@@ -51,6 +51,9 @@ class StaticTextType extends AbstractType
                     'Pojęcia' => 'terms',
                     'Historia' => 'history',
                     'Larpy w Polsce' => 'in_poland',
+                    'O serwisie' => 'about_website',
+                    'O grupie' => 'about',
+                    'Kontakt' => 'contact',
                 ],
                 'expanded' => true
             ]
@@ -86,12 +89,14 @@ class StaticTextType extends AbstractType
         );
         $builder->add(
             'imgDescription',
-            TextType::class,
+            TextareaType::class,
             [
                 'label' => 'label.image_description',
                 'required' => false,
                 'attr' => [
                     'max_length' => 999,
+                    'class' => 'tinymce',
+                    'rows' => 1,
                 ],
             ]
         );

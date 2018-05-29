@@ -3,16 +3,16 @@ title.homepage: 'Strona główna'
 title.group: 'Nasza grupa'
 title.news: Aktualności
 title.about_larp: 'O larpach'
-title.larp.what_is_larp: 'Czym jest larp?'
-title.larp.types: 'Rodzaje larpów'
-title.larp.terms: Pojęcia
-title.larp.history: 'Historia larpów'
-title.larp.in_poland: 'Larpy w Polsce'
+title.larps.what_is_larp: 'Czym jest larp?'
+title.larps.types: 'Rodzaje larpów'
+title.larps.terms: Pojęcia
+title.larps.history: 'Historia larpów'
+title.larps.in_poland: 'Larpy w Polsce'
 title.login: Zaloguj
-title.contact: Kontakt
-title.events: Wydarzenia
-title.gallery: Galeria
-title.about: 'Kim jesteśmy'
+title.group.contact: Kontakt
+title.group.events: Wydarzenia
+title.group.gallery: Galeria
+title.group.about: 'Kim jesteśmy'
 title.upcoming_events: 'Nadchodzące wydarzenia'
 message.more_events: 'Więcej wydarzeń'
 title.social: 'Znajdź nas w sieci'
@@ -76,13 +76,16 @@ message.scroll_to_top: 'Do góry'
 label.parent_title: 'Tytuł działu'
 label.number: 'Numer akapitu'
 label.image_description: 'Tekst obrazka'
-title.text_delete: Usuń akapit
-title.text_edit: Edytuj akapit
+title.text_delete: 'Usuń akapit'
+title.text_edit: 'Edytuj akapit'
 label.description: Opis
-label.birthday: Data urodzenia
-label.phone_number: Numer kontaktowy
+label.birthday: 'Data urodzenia'
+label.phone_number: 'Numer kontaktowy'
 label.emergency_phone: 'Kontakt alarmowy (do osoby, którą mamy poinformawać w razie wypadku)'
 label.health_issues: 'Problemy zdrowotne, o których powinniśmy wiedzieć'
 label.nourishment_issues: 'Czy są jakieś rzeczy których nie jesz, lub nie pijesz?'
-message.personal_data_title: Informacje o osobie
+message.personal_data_title: 'Informacje o osobie'
 message.personal_data_info: 'Tych danych nie musisz podawać w trakcie rejestracji. Będą potrzebne, kiedy będziesz chciał wziąć udział w jednym z naszych wydarzeń.'
+message.info_source: 'Informacje i cytaty zawarte w tej części strony pochodzą ze źródeł wymienionych w zakładce "O serwisie".'
+title.texts_not_found: 'Brak tekstów'
+message.texts_not_found: 'Przepraszamy, nie znaleźliśmy na naszej stronie żadnych tekstów na ten temat.'
