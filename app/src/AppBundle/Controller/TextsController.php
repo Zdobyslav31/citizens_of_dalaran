@@ -150,12 +150,6 @@ class TextsController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
-                if (!empty($text->getImage())) {
-                    $file = $text->getImage();
-                    $fileName = $fileUploader->upload($file);
-                    $text->setImage($fileName);
-                }
-
                 $this->textRepository->save($text);
                 $this->addFlash('success', 'message.created_successfully');
             } catch (\Doctrine\DBAL\DBALException $e) {
@@ -195,21 +189,11 @@ class TextsController extends Controller
      */
     public function editAction(Request $request, Text $text, FileUploader $fileUploader)
     {
-        if (!empty($text->getImage())) {
-            $text->setImage(
-                new File($this->getParameter('images_directory').'/'.$text->getImage())
-            );
-        }
         $form = $this->createForm(StaticTextType::class, $text);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
-                if (!empty($text->getImage())) {
-                    $file = $text->getImage();
-                    $fileName = $fileUploader->upload($file);
-                    $text->setImage($fileName);
-                }
                 $this->textRepository->save($text);
                 $this->addFlash('success', 'message.edited_successfully');
             } catch (\Doctrine\DBAL\DBALException $e) {

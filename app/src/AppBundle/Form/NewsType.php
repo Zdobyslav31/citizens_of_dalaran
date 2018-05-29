@@ -26,7 +26,7 @@ class NewsType extends AbstractType
     /**
      * NewsType constructor.
      *
-     * @param TagRepository $tagsRepository Tag repository
+     * @param TagRepository $tagRepository Tag repository
      */
     public function __construct(TagRepository $tagRepository)
     {
@@ -84,12 +84,10 @@ class NewsType extends AbstractType
                 ],
             ]
         );
-        $builder->add(
-            'image',
-            FileType::class,
+        $builder->add('imageFile',
+            null,
             [
                 'label' => 'label.image',
-                'required' => false,
             ]
         );
     }

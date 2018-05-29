@@ -34,8 +34,8 @@
                 </div>
                 <div class="card-body">
                     <a href="{{ url('news_view',{'id': post.id}) }}">
-                        {% if post.image %}
-                            <img class="mb-3 news-image mr-lg-3" src="{{ asset('uploads/images/' ~ post.image) }}" alt="{{ post.title }} - image">
+                        {% if post.imagePath %}
+                            <img class="mb-3 news-image mr-lg-3" src="/uploads/news/images/{{ post.imagePath }}" alt="{{ post.title }} - image">
                         {% else %}
                             {% image '../app/Resources/public/images/placeholder.png' %}
                                 <img class="mb-3 news-image mr-lg-3" src="{{ asset_url }}" alt="{{ post.title }} - image">

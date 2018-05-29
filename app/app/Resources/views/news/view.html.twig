@@ -34,8 +34,8 @@
             <i class="fas fa-trash-alt"></i> {{ 'message.delete'|trans }}
         </a>
     </h4>
-    {% if post.image %}
-        <img class="mb-3 w-100" src="{{ asset('uploads/images/' ~ post.image) }}" alt="{{ post.title }} - image">
+    {% if post.imagePath %}
+        <img class="mb-3 w-100" src="/uploads/news/images/{{ post.imagePath }}" alt="{{ post.title }} - image">
     {% else %}
         {% image '../app/Resources/public/images/placeholder.png' %}
             <img class="mb-3 w-100" src="{{ asset_url }}" alt="{{ post.title }} - image">

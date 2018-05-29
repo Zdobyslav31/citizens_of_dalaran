@@ -79,12 +79,10 @@ class StaticTextType extends AbstractType
                 ],
             ]
         );
-        $builder->add(
-            'image',
-            FileType::class,
+        $builder->add('imageFile',
+            null,
             [
                 'label' => 'label.image',
-                'required' => false,
             ]
         );
         $builder->add(
