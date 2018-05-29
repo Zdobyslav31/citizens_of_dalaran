@@ -861,11 +861,11 @@ class Application
     /**
      * Set users
      *
-     * @param \AppBundle\Entity\User $users
+     * @param \UserBundle\Entity\User $users
      *
      * @return Application
      */
-    public function setUsers(\AppBundle\Entity\User $users = null)
+    public function setUsers(\UserBundle\Entity\User $users = null)
     {
         $this->users = $users;
 
@@ -875,7 +875,7 @@ class Application
     /**
      * Get users
      *
-     * @return \AppBundle\Entity\User
+     * @return \UserBundle\Entity\User
      */
     public function getUsers()
     {
