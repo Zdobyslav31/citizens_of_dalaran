@@ -88,6 +88,7 @@ class NewsType extends AbstractType
             null,
             [
                 'label' => 'label.image',
+                'data_class' => null,
             ]
         );
     }

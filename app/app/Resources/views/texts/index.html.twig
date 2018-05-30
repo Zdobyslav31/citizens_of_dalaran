@@ -40,8 +40,14 @@
         {% endif %}
         <div class="clearfix"></div>
         {% for id, text in texts %}
-            <div class="card post mb-3">
-                <div id="{{ id }}" class="card-body">
+            <div id="{{ id }}" class="card post mb-3">
+                {% if text.imagePath %}
+                    <img class="card-img-top" src="/uploads/texts/images/{{ text.imagePath }}" alt="{{ text.imgDescription }} - photo">
+                    {% if text.imgDescription %}
+                        <em class="mr-3 ml-3 mb-0">{{ text.imgDescription|raw }}</em>
+                    {% endif %}
+                {% endif %}
+                <div class="card-body">
                     <span class="d-block text-center float-right">
                         <a href="{{ url('texts_edit',{'id': text.id}) }}" class="btn btn-primary m-1"><i class="fas fa-edit"></i> {{ 'message.edit'|trans }}</a>
                         <a href="{{ url('texts_delete',{'id': text.id}) }}" class="btn btn-danger m-1"><i class="fas fa-trash-alt"></i> {{ 'message.delete'|trans }}</a>

@@ -29,6 +29,11 @@ class NewsController extends Controller
     protected $newsRepository = null;
 
     /**
+     * Path to upload images
+     */
+    const UPLOAD_DIR = 'news/images';
+
+    /**
      * NewsController constructor.
      *
      * @param \AppBundle\Repository\NewsRepository $newsRepository New repository
@@ -107,6 +112,7 @@ class NewsController extends Controller
      * Add action.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request HTTP Request
+     * @param FileUploader $fileUploader
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response HTTP Response
      *
@@ -118,16 +124,19 @@ class NewsController extends Controller
      * )
      * @Method({"GET", "POST"})
      */
-    public function addAction(Request $request)
+    public function addAction(Request $request, FileUploader $fileUploader)
     {
-        $news = new News();
+        $news = new News($fileUploader);
         $news->setCreator($this->getUser());
         $form = $this->createForm(NewsType::class, $news);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
-
+                if (null !== $news->getImageFile()) {
+                    $news->setImagePath($fileUploader->upload($news->getImageFile(), self::UPLOAD_DIR));
+                    $news->clearImageFile();
+                }
                 $this->newsRepository->save($news);
 
                 $this->addFlash('success', 'message.created_successfully');
@@ -176,6 +185,21 @@ class NewsController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
+                if (null !== $news->getImageFile()) {
+                    $news->setImagePath($fileUploader->upload($news->getImageFile(), self::UPLOAD_DIR));
+                    if (file_exists($fileUploader->getTargetDirectory(self::UPLOAD_DIR).'/'.$news->getTempImagePath())) {
+                        $fileUploader->removeImageFile($news->getTempImagePath(), self::UPLOAD_DIR);
+                        $news->setTempImagePath(null);
+                    }
+                    $news->clearImageFile();
+
+                }
+                else {
+                    if (null != $news->getTempImagePath()) {
+                        $news->setImagePath($news->getTempImagePath());
+                    }
+                }
+
                 $this->newsRepository->save($news);
                 $this->addFlash('success', 'message.edited_successfully');
 
@@ -215,13 +239,16 @@ class NewsController extends Controller
      * )
      * @Method({"GET", "POST"})
      */
-    public function deleteAction(Request $request, News $news)
+    public function deleteAction(Request $request, News $news, FileUploader $fileUploader)
     {
         $form = $this->createForm(FormType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
+                if (null != $news->getImagePath()) {
+                    $fileUploader->removeImageFile($news->getImagePath(), self::UPLOAD_DIR);
+                }
                 $this->newsRepository->delete($news);
                 $this->addFlash('success', 'message.deleted_successfully');
 

@@ -8,7 +8,7 @@ imports:
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
-    images_directory: '%kernel.project_dir%/web/uploads/images'
+    app.upload_directory: '%kernel.project_dir%/web/uploads'
 
 
 framework:
@@ -122,12 +122,12 @@ stfalcon_tinymce:
         simple:
             menu:
                 edit: {title: 'Edit', items: 'undo redo | cut copy paste'}
-                insert: {title: 'Insert', items: 'hr | pagebreak | charmap'}
+                insert: {title: 'Insert', items: 'hr | pagebreak | charmap nonbreaking'}
                 view: {title: 'View', items : 'visualaid | preview | code'}
                 style: {title: 'Format', items: 'bold italic underline strikethrough superscript subscript | formats | removeformat'}
                 table: {title: 'Table' , items: 'inserttable tableprops deletetable | cell row column'}
             plugins:
-                - "hr, link, lists, charmap, nonbreaking, preview, code, table, pagebreak, emoticons, textcolor"
+                - "hr, link, lists, charmap, nonbreaking, preview, code, table, pagebreak, emoticons, textcolor, nonbreaking"
             toolbar: "undo redo | bold italic underline strikethrough | forecolor backcolor | fontselect fontsizeselect | removeformat | bullist numlist | alignleft aligncenter alignright alignjustify | link emoticons"
 
 # FOSUserBundle

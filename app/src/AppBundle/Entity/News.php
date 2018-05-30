@@ -5,6 +5,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Service\FileUploader;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -28,6 +29,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 class News
 {
     const NUM_ITEMS = 10;
+    protected $fileUploader;
 
     /**
      * @var string
@@ -155,10 +157,12 @@ class News
 
     /**
      * Constructor
+     * @param FileUploader $fileUploader New file uploader
      */
-    public function __construct()
+    public function __construct(FileUploader $fileUploader)
     {
         $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->fileUploader = $fileUploader;
     }
 
     /**
@@ -382,7 +386,7 @@ class News
      */
     public function setImageFile(UploadedFile $file = null) {
         // set the value of the holder
-        $this->imageFile       =   $file;
+        $this->imageFile = $file;
         // check if we have an old image path
         if (isset($this->imagePath)) {
             // store the old name to delete after the update
@@ -393,6 +397,13 @@ class News
         }
 
         return $this;
+    }
+
+    /**
+     * Clears image file
+     */
+    public function clearImageFile() {
+        $this->imageFile = null;
     }
 
     /**
@@ -429,112 +440,25 @@ class News
     }
 
     /**
-     * Get the absolute path of the imagePath
-     */
-    public function getImageAbsolutePath() {
-        return null === $this->imagePath
-            ? null
-            : $this->getUploadRootDir().'/'.$this->imagePath;
-    }
-
-    /**
-     * Get root directory for file uploads
+     * Set tempImagePath
      *
-     * @return string
+     * @param string $tempImagePath
+     * @return News
      */
-    protected function getUploadRootDir($type='image') {
-        // the absolute directory path where uploaded
-        // documents should be saved
-        return __DIR__.'/../../../web/'.$this->getUploadDir($type);
-    }
-
-    /**
-     * Specifies where in the /web directory image uploads are stored
-     *
-     * @return string
-     */
-    protected function getUploadDir($type='image') {
-        // the type param is to change these methods at a later date for more file uploads
-        // get rid of the __DIR__ so it doesn't screw up
-        // when displaying uploaded doc/image in the view.
-        return 'uploads/news/images';
-    }
-
-    /**
-     * Get the web path for the user
-     *
-     * @return string
-     */
-    public function getWebImagePath() {
-
-        return '/'.$this->getUploadDir().'/'.$this->getImagePath();
-    }
-
-    /**
-     * @ORM\PrePersist()
-     * @ORM\PreUpdate()
-     */
-    public function preUploadImage() {
-        if (null !== $this->getImageFile()) {
-            // a file was uploaded
-            // generate a unique filename
-            $filename = $this->generateRandomImageFilename();
-            $this->setImagePath($filename.'.'.$this->getImageFile()->guessExtension());
-        }
-    }
-
-    /**
-     * Generates a 32 char long random filename
-     *
-     * @return string
-     */
-    public function generateRandomImageFilename() {
-        $count =0;
-        do {
-            $randomString = md5(uniqid());
-            $count++;
-        }
-
-        while(file_exists($this->getUploadRootDir().'/'.$randomString.'.'.$this->getImageFile()->guessExtension()) && $count < 50);
-
-        return $randomString;
-    }
-
-    /**
-     * @ORM\PostPersist()
-     * @ORM\PostUpdate()
-     *
-     * Upload the profile picture
-     *
-     * @return mixed
-     */
-    public function uploadImage() {
-        // check there is a profile pic to upload
-        if ($this->getImageFile() === null) {
-            return;
-        }
-        // if there is an error when moving the file, an exception will
-        // be automatically thrown by move(). This will properly prevent
-        // the entity from being persisted to the database on error
-        $this->getImageFile()->move($this->getUploadRootDir(), $this->getImagePath());
-
-        // check if we have an old image
-        if (isset($this->tempImagePath) && file_exists($this->getUploadRootDir().'/'.$this->tempImagePath)) {
-            // delete the old image
-            unlink($this->getUploadRootDir().'/'.$this->tempImagePath);
-            // clear the temp image path
-            $this->tempImagePath = null;
-        }
-        $this->imageFile = null;
-    }
-
-    /**
-     * @ORM\PostRemove()
-     */
-    public function removeImageFile()
+    public function setTempImagePath($tempImagePath)
     {
-        if ($file = $this->getImageAbsolutePath() && file_exists($this->getImageAbsolutePath())) {
-            unlink($file);
-        }
+        $this->tempImagePath = $tempImagePath;
+
+        return $this;
+    }
+
+    /**
+     * Get tempImagePath
+     *
+     * @return string
+     */
+    public function getTempImagePath()
+    {
+        return $this->tempImagePath;
     }
 }

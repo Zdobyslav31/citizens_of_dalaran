@@ -43,8 +43,9 @@ services:
     #         $someArgument: 'some_value'
 
     AppBundle\Service\FileUploader:
+        class: AppBundle\Service\FileUploader
         arguments:
-            $targetDirectory: '%images_directory%'
+            ['%app.upload_directory%']
 
 #    AppBundle\EventListener\ImageUploadListener:
 #        tags:
