@@ -77,7 +77,8 @@ class NewsController extends Controller
         return $this->render('news/index.html.twig', [
             'carousel' => 'always',
             'active_element' => 'news',
-            'news' => $news
+            'news' => $news,
+            'subdirectory_path' => self::UPLOAD_DIR,
         ]);
     }
 
@@ -104,6 +105,7 @@ class NewsController extends Controller
                 'active_element' => 'news',
                 'scroll_to_content' => True,
                 'size' => $news->getTags()->getValues(),
+                'subdirectory_path' => self::UPLOAD_DIR,
             ]
         );
     }

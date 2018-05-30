@@ -62,7 +62,8 @@ class TextsController extends Controller
                     'active_element' => 'larps',
                     'active_subelement' => $title,
                     'texts' => $texts,
-                    'index' => true
+                    'index' => true,
+                    'subdirectory_path' => self::UPLOAD_DIR,
                 ]
             );
     }
@@ -93,7 +94,8 @@ class TextsController extends Controller
                 'active_element' => 'group',
                 'active_subelement' => $title,
                 'texts' => $texts,
-                'index' => false
+                'index' => false,
+                'subdirectory_path' => self::UPLOAD_DIR,
             ]
         );
     }
@@ -124,7 +126,8 @@ class TextsController extends Controller
             [
                 'active_element' => $title,
                 'texts' => $texts,
-                'index' => false
+                'index' => false,
+                'subdirectory_path' => self::UPLOAD_DIR,
             ]
         );
     }
