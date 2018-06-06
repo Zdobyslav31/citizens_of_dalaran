@@ -61,7 +61,7 @@ title.about_website: 'O serwisie'
 title.change_password: 'Zmień hasło'
 message.back_to_profile: 'Wróć do profilu użytkownika'
 title.edit_profile: 'Edytuj profil uzytkownika'
-title.show_profile: 'Profil uzytkownika'
+title.show_profile: 'Profil użytkownika'
 profile.show.name: 'Imię i nazwisko'
 message.edit_profile: 'Edytuj profil'
 message.no_account_register: 'Psst... Nie masz jeszcze konta?'
@@ -94,5 +94,11 @@ error.404: 'Błąd! 404 - nie znaleziono strony'
 message.error.403: 'Hajże! A dokąd to się waść wybierasz? Próbujesz wejść do krainy, która nie jest dla Ciebie dostępna. Zaprzestań tego.'
 error.403: 'Błąd! 403 - dostęp zabroniony'
 message.error: 'Coś... coś poszło nie tak i nie możemy wyświetlić Ci strony. Przykro nam z tego powodu. Miało być inaczej!'
-error: 'Błąd!'
-message.contact_admin: Skontaktuj się z administratorem
+error: Błąd!
+message.contact_admin: 'Skontaktuj się z administratorem'
+message.user_role: Rola użytkownika
+info.super_admin: 'Główny administrator'
+info.admin: 'Administrator'
+info.redactor: Redaktor
+info.footer: '© 2018 Copyright: Jędrzej Kubala. Powered by Symfony 3.4'
+title.users: Użytkownicy

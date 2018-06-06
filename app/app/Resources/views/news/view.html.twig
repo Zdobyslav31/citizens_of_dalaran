@@ -27,7 +27,7 @@
         <a class="btn btn-secondary float-right m-1 mb-3" href="{{ path('homepage') }}">
             <i title="{{ 'title.news'|trans }}" class="far fa-newspaper"></i> {{ 'message.back_to_news'|trans }}
         </a>
-        {% if is_granted("ROLE_ADMIN") %}
+        {% if is_granted("ROLE_REDACTOR") %}
             <a class="btn btn-primary float-right m-1 mb-3" href="{{ path('news_edit', {'id': post.id}) }}">
                 <i class="fas fa-edit"></i> {{ 'message.edit'|trans }}
             </a>

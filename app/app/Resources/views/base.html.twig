@@ -87,14 +87,7 @@
     </div>
 {% endblock %}
 
-<footer class="page-footer bg-light">
-    {% block footer %}
-        <div class="container-fluid text-center">Footer content</div>
-        <div class="footer-copyright text-center bg-secondary">
-            © 2018 Copyright: Jędrzej Kubala
-        </div>
-    {% endblock %}
-</footer>
+{{ include('components/_footer.html.twig') }}
 {% block javascripts %}
     {% javascripts '@jquery' '@bootstrap_js' '@tagsinput_js' '../app/Resources/public/js/*' %}
         <script type="text/javascript" src="{{ asset_url }}"></script>

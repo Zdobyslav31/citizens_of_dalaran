@@ -1,5 +1,5 @@
 <nav class="side-menu d-none d-md-block rounded navbar navbar-light">
-    <a class="navbar-brand" href="#">{{ 'title.about_larp'|trans }}</a>
+    <a class="navbar-brand" href="{{ url('larps',{'title': 'what_is_larp'}) }}"><i class="fas fa-chess"></i> {{ 'title.about_larp'|trans }}</a>
     <ul class="navbar-nav nav flex-column">
         <li class="nav-item">
             <a class="nav-link{% if active_subelement == 'what_is_larp' %} active{% endif %}" href="{{ url('larps',{'title': 'what_is_larp'}) }}">{{ 'title.larps.what_is_larp'|trans }}</a>

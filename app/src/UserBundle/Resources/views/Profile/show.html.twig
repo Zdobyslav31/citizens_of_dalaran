@@ -1,3 +1,4 @@
+{% set active_element = 'profile' %}
 {% extends "@FOSUser/layout.html.twig" %}
 
 {% block title %}
@@ -5,6 +6,15 @@
 {% endblock %}
 {% block content_title %}
     {{ 'title.show_profile'|trans }}: {{ user.username }}
+{% endblock %}
+{%  block content_description %}
+    {% if is_granted("ROLE_SUPER_ADMIN") %}
+        {{ 'message.user_role'|trans }}: {{ 'info.super_admin'|trans }}
+    {% elseif is_granted("ROLE_ADMIN") %}
+        {{ 'message.user_role'|trans }}: {{ 'info.admin'|trans }}
+    {% elseif is_granted("ROLE_REDACTOR") %}
+        {{ 'message.user_role'|trans }}: {{ 'info.redactor'|trans }}
+    {% endif %}
 {% endblock %}
 
 {% block fos_user_content %}

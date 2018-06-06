@@ -7,7 +7,7 @@
 {% block content %}
     {% if tag is defined and tag|length %}
         <div class="clearfix">
-            {% if is_granted("ROLE_ADMIN") %}
+            {% if is_granted("ROLE_REDACTOR") %}
                     <a class="btn btn-primary float-left m-1" href="{{ path('tags_edit', {'id': tag.id}) }}">
                         <i class="fas fa-edit"></i> {{ 'message.edit'|trans }}
                     </a>
@@ -62,7 +62,7 @@
                         {{ post.summary|raw }}
                         <span class="d-block text-center">
                         <a href="{{ url('news_view',{'id': post.id}) }}" class="btn btn-secondary">{{ 'message.read_more'|trans }}</a>
-                        {% if is_granted("ROLE_ADMIN") %}
+                        {% if is_granted("ROLE_REDACTOR") %}
                             <a href="{{ url('news_edit',{'id': post.id}) }}" class="btn btn-primary m-1"><i class="fas fa-edit"></i> {{ 'message.edit'|trans }}</a>
                             <a href="{{ url('news_delete',{'id': post.id}) }}" class="btn btn-danger m-1"><i class="fas fa-trash-alt"></i> {{ 'message.delete'|trans }}</a>
                         {% endif %}

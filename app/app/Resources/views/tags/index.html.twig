@@ -27,7 +27,7 @@
     {% else %}
         {{ 'message.empty_list'|trans }}
     {% endif %}
-    {% if is_granted("ROLE_ADMIN") %}
+    {% if is_granted("ROLE_REDACTOR") %}
         <a class="btn btn-success" href="{{ path('tags_add') }}"><i class="fas fa-plus"></i> {{ 'message.add_new'|trans }}</a>
     {% endif %}
     <a class="btn btn-secondary float-right" href="{{ path('homepage') }}">
