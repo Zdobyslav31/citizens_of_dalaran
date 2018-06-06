@@ -71,6 +71,7 @@ class TagController extends Controller
      * View action.
      *
      * @param Tag $tag Tag entity
+     * @param NewsController $newsController
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP Response
      *
@@ -81,13 +82,14 @@ class TagController extends Controller
      * )
      * @Method("GET")
      */
-    public function viewAction(Tag $tag)
+    public function viewAction(Tag $tag, NewsController $newsController)
     {
 
         return $this->render(
             'tags/view.html.twig',
             [
-                'tag' => $tag
+                'tag' => $tag,
+                'subdirectory_path' => $newsController::UPLOAD_DIR,
             ]
         );
     }

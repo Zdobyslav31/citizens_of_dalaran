@@ -25,7 +25,9 @@
 
 {% block content %}
     {% if texts|length %}
-        <a class="btn btn-success mb-3 float-right" href="{{ path('texts_add') }}"><i class="fas fa-plus"></i> {{ 'message.add_new'|trans }}</a>
+        {% if is_granted("ROLE_ADMIN") %}
+            <a class="btn btn-success mb-3 float-right" href="{{ path('texts_add') }}"><i class="fas fa-plus"></i> {{ 'message.add_new'|trans }}</a>
+        {% endif %}
         {% if index %}
             <ol>
                 {% for id, text in texts %}
@@ -48,10 +50,12 @@
                     {% endif %}
                 {% endif %}
                 <div class="card-body">
-                    <span class="d-block text-center float-right">
-                        <a href="{{ url('texts_edit',{'id': text.id}) }}" class="btn btn-primary m-1"><i class="fas fa-edit"></i> {{ 'message.edit'|trans }}</a>
-                        <a href="{{ url('texts_delete',{'id': text.id}) }}" class="btn btn-danger m-1"><i class="fas fa-trash-alt"></i> {{ 'message.delete'|trans }}</a>
-                    </span>
+                    {% if is_granted("ROLE_ADMIN") %}
+                        <span class="d-block text-center float-right">
+                            <a href="{{ url('texts_edit',{'id': text.id}) }}" class="btn btn-primary m-1"><i class="fas fa-edit"></i> {{ 'message.edit'|trans }}</a>
+                            <a href="{{ url('texts_delete',{'id': text.id}) }}" class="btn btn-danger m-1"><i class="fas fa-trash-alt"></i> {{ 'message.delete'|trans }}</a>
+                        </span>
+                    {% endif %}
                     <h2>
                         {{ text.title }}
                     </h2>
