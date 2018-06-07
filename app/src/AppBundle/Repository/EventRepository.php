@@ -17,21 +17,21 @@ use UserBundle\Entity\User;
  */
 class EventRepository extends EntityRepository
 {
-//    /**
-//     * Gets all records paginated.
-//     *
-//     * @param int $page Page number
-//     *
-//     * @return \Pagerfanta\Pagerfanta Result
-//     */
-//    public function findAllPaginated($page = 1)
-//    {
-//        $paginator = new Pagerfanta(new DoctrineORMAdapter($this->queryAll(), false));
-//        $paginator->setMaxPerPage(Event::NUM_ITEMS);
-//        $paginator->setCurrentPage($page);
-//
-//        return $paginator;
-//    }
+    /**
+     * Gets all records paginated.
+     *
+     * @param int $page Page number
+     *
+     * @return \Pagerfanta\Pagerfanta Result
+     */
+    public function findAllPaginated($page = 1)
+    {
+        $paginator = new Pagerfanta(new DoctrineORMAdapter($this->queryAll(), false));
+        $paginator->setMaxPerPage(Event::NUM_ITEMS);
+        $paginator->setCurrentPage($page);
+
+        return $paginator;
+    }
 
     /**
      * Query all entities.

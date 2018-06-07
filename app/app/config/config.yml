@@ -12,7 +12,8 @@ parameters:
 
 
 framework:
-    #esi: ~
+    esi: { enabled: true }
+    fragments: { path: /_fragment }
     default_locale: pl
     translator: { fallbacks: ['%locale%'] }
     secret: '%secret%'

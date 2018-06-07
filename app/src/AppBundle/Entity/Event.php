@@ -26,6 +26,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Event
 {
+    const NUM_ITEMS = 10;
     /**
      * @var string
      *

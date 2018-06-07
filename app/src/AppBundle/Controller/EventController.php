@@ -45,13 +45,16 @@ class EventController extends Controller
     {
         $events = $this->eventRepository->findUpcoming($max);
 
-        return $this->render(
+        $response = $this->render(
             'components/_calendar.html.twig',
             [
                 'events' => $events
             ]
         );
+        $response->setSharedMaxAge(60);
+        return $response;
     }
+
     /**
      * Index action.
      *
@@ -65,23 +68,13 @@ class EventController extends Controller
      *     requirements={"page": "[1-9]\d*"},
      *     name="homepage_paginated",
      * )
-     * @Route(
-     *     "/news",
-     *     defaults={"page": 1},
-     *     name="tags_index",
-     * )
-     * @Route(
-     *     "news/page/{page}",
-     *     requirements={"page": "[1-9]\d*"},
-     *     name="tags_index_paginated",
-     * )
      * @Method("GET")
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP Response
      */
     public function indexAction(Request $request, $page)
     {
-        $news = $this->newsRepository->findAllPaginated($page);
+        $news = $this->eventRepository->findAllPaginated($page);
 
         return $this->render('news/index.html.twig', [
             'carousel' => 'always',

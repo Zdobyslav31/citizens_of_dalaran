@@ -7,7 +7,6 @@
 {% if active_subelement is not defined %}
     {% set active_subelement = null %}
 {% endif %}
-
 <!DOCTYPE html>
 <html lang="{{ app.request.locale|split('_')|first|default('en') }}">
 <head>
@@ -80,8 +79,7 @@
                         {% if sidebar is not defined %}
                             {% include 'components/_social.html.twig' %}
                         {% endif %}
-                        {#{% include 'components/_calendar.html.twig' %}#}
-                        {{ render(controller(
+                        {{ render_esi(controller(
                             'AppBundle:Event:upcomingEvents',
                             { 'max': 2 }
                         )) }}
