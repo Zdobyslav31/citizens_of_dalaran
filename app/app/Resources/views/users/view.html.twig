@@ -51,9 +51,13 @@
             {% else %}
                 <p><em>{{ user.description }}</em></p>
             {% endif %}
-
-            <a href="{{ url('user_index') }}" class="btn btn-secondary m-1">
-                {{ 'message.back_to_users'|trans }}
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ url('user_index') }}" class="btn btn-secondary m-1">
+                    <i class="fas fa-users"></i> {{ 'message.all_users'|trans }}
+                </a>
+            {% endif %}
+            <a class="btn btn-secondary" href="{{ app.request.headers.get('referer') }}">
+                <i class="fas fa-arrow-circle-left"></i> {{ 'message.back'|trans }}
             </a>
         </div>
     </div>
@@ -62,51 +66,7 @@
         <h2 class="m-3 text-center">{{ 'title.associated_posts'|trans }}</h2>
         <div class="clearfix"></div>
         {% for post in posts %}
-            <div class="card post mb-3">
-                <div class="card-header">
-                    <a href="{{ url('news_view',{'id': post.id}) }}" class="link-unstyled">
-                        <h3 class="float-left">
-                            {{ post.title }}
-                        </h3>
-                    </a>
-                    <span class="float-right">
-                        <span class="d-none d-md-block">
-                            {{ 'description.created'|trans({'%date%': post.createdDate|localizeddate('long', 'none'), '%author%': post.creator.username}) }}
-                        </span>
-                        <span class="d-block d-md-none">
-                            {{ 'description.created'|trans({'%date%': post.createdDate|localizeddate('short', 'none'), '%author%': post.creator.username}) }}
-                        </span>
-                        {% if post.modifier %}
-                            <span class="d-none d-md-block">
-                                {{ 'description.modified'|trans({'%date%': post.modifiedDate|localizeddate('long', 'none'), '%author%': post.modifier.username}) }}
-                            </span>
-                            <span class="d-block d-md-none">
-                                {{ 'description.modified'|trans({'%date%': post.modifiedDate|localizeddate('short', 'none'), '%author%': post.modifier.username}) }}
-                            </span>
-                        {% endif %}
-                    </span>
-                </div>
-                <div class="card-body">
-                    <a href="{{ url('news_view',{'id': post.id}) }}">
-                        {% if post.imagePath %}
-                            <img class="mb-3 news-image mr-lg-3" src="{{ asset('./uploads/' ~ subdirectory_path ~ '/' ~ post.imagePath) }}" alt="{{ post.title }} - image">
-                        {% else %}
-                            {% image '../app/Resources/public/images/placeholder.png' %}
-                                <img class="mb-3 news-image mr-lg-3" src="{{ asset_url }}" alt="{{ post.title }} - image">
-                            {%  endimage %}
-                        {% endif %}
-                    </a>
-                    {{ post.summary|raw }}
-                    <span class="d-block text-center">
-                        <a href="{{ url('news_view',{'id': post.id}) }}" class="btn btn-secondary">{{ 'message.read_more'|trans }}</a>
-                        {% if is_granted("ROLE_REDACTOR") %}
-                            <a href="{{ url('news_edit',{'id': post.id}) }}" class="btn btn-primary m-1"><i class="fas fa-edit"></i> {{ 'message.edit'|trans }}</a>
-                            <a href="{{ url('news_delete',{'id': post.id}) }}" class="btn btn-danger m-1"><i class="fas fa-trash-alt"></i> {{ 'message.delete'|trans }}</a>
-                        {% endif %}
-                    </span>
-
-                </div>
-            </div>
+            {{ include('news/_summary_single.html.twig') }}
         {% endfor %}
     {% else %}
         {{ 'message.no_associated_posts'|trans }}

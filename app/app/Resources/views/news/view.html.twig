@@ -8,10 +8,22 @@
     {{ post.title }}
 {% endblock %}
 {%  block content_description %}
-    {{ 'description.created'|trans({'%date%': post.createdDate|localizeddate('long', 'none'), '%author%': post.creator.username}) }}
-    {% if post.modifier %}
+    {% if post.creator %}
+        {{ 'description.created'|trans({'%date%': post.createdDate|localizeddate('long', 'none')}) }}
+        <a href="{{ path('user_view', {'id': post.creator.id}) }}"> {{ post.creator.username }}</a>
+    {% else %}
+        {{ 'description.created'|trans({'%date%': post.createdDate|localizeddate('long', 'none')}) }}
+        <em>{{ 'info.deleted_user'|trans }}</em>
+    {% endif %}
+    {% if post.modifiedDate != post.createdDate %}
         <br>
-        {{ 'description.modified'|trans({'%date%': post.modifiedDate|localizeddate('long', 'none'), '%author%': post.modifier.username}) }}
+        {% if post.modifier %}
+            {{ 'description.modified'|trans({'%date%': post.modifiedDate|localizeddate('long', 'none')}) }}
+            <a href="{{ path('user_view', {'id': post.modifier.id}) }}"> {{ post.modifier.username }}</a>
+        {% else %}
+            {{ 'description.modified'|trans({'%date%': post.modifiedDate|localizeddate('long', 'none')}) }}
+            <em>{{ 'info.deleted_user'|trans }}</em>
+        {% endif %}
     {% endif %}
 {% endblock %}
 {% block content %}

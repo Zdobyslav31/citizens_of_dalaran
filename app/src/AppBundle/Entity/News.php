@@ -126,9 +126,8 @@ class News
      *
      * @ORM\ManyToOne(targetEntity="\UserBundle\Entity\User")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="creator_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="creator_id", referencedColumnName="id", onDelete="SET NULL")
      * })
-     * @Assert\NotBlank
      */
     private $creator;
 
@@ -137,7 +136,7 @@ class News
      *
      * @ORM\ManyToOne(targetEntity="\UserBundle\Entity\User")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="modifier_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="modifier_id", referencedColumnName="id", onDelete="SET NULL")
      * })
      */
     private $modifier;
