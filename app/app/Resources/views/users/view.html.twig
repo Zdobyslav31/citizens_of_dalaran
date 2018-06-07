@@ -27,7 +27,7 @@
     <div class="fos_user_user_show row">
         <div class="col col-md-4">
             {% if user.profilePicturePath %}
-                <img class="mb-3 w-100" src="/uploads/user/profilepics/{{ user.profilePicturePath }}" alt="user {{ user.username }} profile image">
+                <img class="mb-3 w-100" src="./uploads/user/profilepics/{{ user.profilePicturePath }}" alt="user {{ user.username }} profile image">
             {% else %}
                 {% image '../app/Resources/public/images/placeholder.png' %}
                     <img class="mb-3 w-100" src="{{ asset_url }}" alt="placeholder image">
