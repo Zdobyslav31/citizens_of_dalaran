@@ -37,7 +37,7 @@ message.add_new: 'Dodaj nowy'
 message.delete_confirmation: 'Czy na pewno chcesz usunąć? Tej akcji nie będzie można cofnąć.'
 message.back_to_tags: 'Wróć do tagów'
 title.associated_posts: 'Powiązane wpisy'
-message.no_associated_posts: 'Brak wpisów powiązanych z tym tagiem'
+message.no_associated_posts: 'Brak powiązanych wpisów'
 message.back: Wróć
 label.name: Nazwa
 message.edited_successfully: 'Edytowano poprawnie'
@@ -96,9 +96,18 @@ error.403: 'Błąd! 403 - dostęp zabroniony'
 message.error: 'Coś... coś poszło nie tak i nie możemy wyświetlić Ci strony. Przykro nam z tego powodu. Miało być inaczej!'
 error: Błąd!
 message.contact_admin: 'Skontaktuj się z administratorem'
-message.user_role: Rola użytkownika
+message.user_role: 'Rola użytkownika'
 info.super_admin: 'Główny administrator'
-info.admin: 'Administrator'
+info.admin: Administrator
 info.redactor: Redaktor
 info.footer: '© 2018 Copyright: Jędrzej Kubala. Powered by Symfony 3.4'
 title.users: Użytkownicy
+profile.show.created_date: Zarejestrowano
+profile.show.last_login: 'Ostatnie logowanie'
+profile.show.date_of_birth: 'Data urodzenia'
+profile.show.phone_number: 'Numer telefonu'
+profile.show.emergency_phone: 'Telefon alarmowy'
+profile.show.health_issues: 'Kwestie zdrowotne'
+profile.show.noishment_issues: 'Kwestie żywieniowe'
+title.admin_panel: 'Panel administratora'
+message.back_to_users: 'Wróć do użytkowników'

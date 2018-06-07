@@ -23,7 +23,7 @@
             </a>
         </div>
         {% if tag.news.values|length %}
-            <h2 class="text-center">{{ 'title.associated_posts'|trans }}</h2>
+            <h2 class="m-3 text-center">{{ 'title.associated_posts'|trans }}</h2>
             {% for post in tag.news.values %}
                 <div class="card post mb-3">
                     <div class="card-header">

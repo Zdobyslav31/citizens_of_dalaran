@@ -22,28 +22,33 @@
                     {% set current_role = 'redactor' %}
                 {% endif %}
             {% endfor %}
-            <div class="media mb-3">
-                {% if user.profilePicturePath %}
-                    <img class="mr-3 media-image" src="/uploads/user/profilepics/{{ user.profilePicturePath }}" alt="user {{ user.username }} profile image">
-                {% else %}
-                    {% image '../app/Resources/public/images/placeholder.png' %}
-                        <img class="mr-3 media-image" src="{{ asset_url }}" alt="placeholder image">
-                    {%  endimage %}
-                {% endif %}
+            <div class="media mb-3 border rounded">
+                <a class="link-unstyled" href="{{ path('user_view', {'id': user.id}) }}">
+                    {% if user.profilePicturePath %}
+                        <img class="mr-3 media-image rounded" src="/uploads/user/profilepics/{{ user.profilePicturePath }}" alt="user {{ user.username }} profile image">
+                    {% else %}
+                        {% image '../app/Resources/public/images/placeholder.png' %}
+                            <img class="mr-3 media-image rounded" src="{{ asset_url }}" alt="placeholder image">
+                        {%  endimage %}
+                    {% endif %}
+                </a>
                 <div class="media-body">
-                    <h5 class="mt-0">
-                        {% if current_role == 'user' %}
-                            {{ user.username }}
-                        {% else %}
-                            <strong>{{ user.username }}</strong>
-                                <br>
-                                <small><em>{{ ('info.' ~ current_role)|trans }}</em></small>
+                    <a class="link-unstyled" href="{{ path('user_view', {'id': user.id}) }}">
+                        <h5 class="mt-1">
+                            {% if current_role == 'user' %}
+                                {{ user.username }}
+                            {% else %}
+                                <strong>{{ user.username }}</strong>
+                                    <br>
+                                    <small><em>{{ ('info.' ~ current_role)|trans }}</em></small>
+                            {% endif %}
+                        </h5>
+                    </a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <p class="mb-0">{{ 'profile.show.email'|trans({}, 'FOSUserBundle') }}: {{ user.email }}</p>
+                        {% if user.name %}
+                            <p class="mb-0">{{ 'profile.show.name'|trans }}: {{ user.name }}</p>
                         {% endif %}
-                    </h5>
-
-                    <p class="mb-0">{{ 'profile.show.email'|trans({}, 'FOSUserBundle') }}: {{ user.email }}</p>
-                    {% if user.name %}
-                        <p class="mb-0">{{ 'profile.show.name'|trans }}: {{ user.name }}</p>
                     {% endif %}
                 </div>
             </div>

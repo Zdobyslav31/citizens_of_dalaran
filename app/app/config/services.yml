@@ -47,11 +47,6 @@ services:
         arguments:
             ['%app.upload_directory%']
 
-#    AppBundle\EventListener\ImageUploadListener:
-#        tags:
-#            - { name: doctrine.event_listener, event: prePersist }
-#            - { name: doctrine.event_listener, event: preUpdate }
-
     AppBundle\Repository\NewsRepository:
         factory: 'doctrine.orm.entity_manager:getRepository'
         arguments: ['AppBundle\Entity\News']
@@ -63,3 +58,7 @@ services:
     AppBundle\Repository\TextRepository:
         factory: 'doctrine.orm.entity_manager:getRepository'
         arguments: ['AppBundle\Entity\Text']
+
+    AppBundle\Repository\EventRepository:
+        factory: 'doctrine.orm.entity_manager:getRepository'
+        arguments: ['AppBundle\Entity\Event']

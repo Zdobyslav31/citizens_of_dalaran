@@ -31,7 +31,6 @@
             <p><em>{{ user.description }}</em></p>
         </div>
         <div class="col col-md-8">
-            <p>{{ 'profile.show.username'|trans({}, 'FOSUserBundle') }}: {{ user.username }}</p>
             <p>{{ 'profile.show.email'|trans({}, 'FOSUserBundle') }}: {{ user.email }}</p>
             {% if user.name %}
                 <p>{{ 'profile.show.name'|trans }}: {{ user.name }}</p>

@@ -146,3 +146,70 @@ fos_user:
     profile:
         form:
             type: UserBundle\Form\ProfileType
+
+easy_admin:
+    site_name: '<img src="../app/Resources/public/images/logo.png" class="d-inline-block" width="30" height="30" alt="Citizens of Dalaran logo" /> Citizens of Dalaran'
+    design:
+        brand_color: 'purple'
+        menu:
+            - { label: 'title.homepage', route: 'homepage', icon: 'home' }
+            - { entity: 'User', icon: 'user' }
+            - { entity: 'News', icon: 'newspaper-o' }
+            - { entity: 'Event', icon: 'calendar' }
+    formats:
+        date:     'd-m-Y'
+        time:     'H:i'
+        datetime: 'd-m-Y H:i:s'
+    entities:
+        News:
+            class: AppBundle\Entity\News
+            image_base_path: '/uploads/news/images/'
+            list:
+                fields:
+                    - title
+                    - { property: 'imagePath', type: 'image'}
+                    - createdDate
+                    - creator
+                    - modifiedDate
+                    - modifier
+            edit:
+                fields:
+                    - title
+                    - imagePath
+                    - { property: 'summary', type: 'ckeditor' }
+                    - { property: 'content', type: 'ckeditor' }
+        User:
+            class: UserBundle\Entity\User
+            image_base_path: '/uploads/user/profilepics/'
+            list:
+                fields: 
+                    - username
+                    - { property: 'profilePicturePath', type: 'image'}
+                    - roles
+                    - { property: 'email', type: 'email' }
+                    - enabled
+                    - createdDate
+                    - lastLogin
+                    - name
+                    - dateOfBirth
+                    - { property: 'phoneNumber', type: 'tel' }
+                    - { property: 'emergencyPhone', type: 'tel' }
+            edit:
+                fields:
+                    - username
+                    - email
+                    - enabled
+                    - { property: 'plainPassword', type: 'text', type_options: { required: false } }
+                    - { property: 'roles', type: 'choice', type_options: { multiple: true, choices: { 'ROLE_USER': 'ROLE_USER', 'ROLE_REDACTOR': 'ROLE_REDACTOR', 'ROLE_ADMIN': 'ROLE_ADMIN' } } }
+                form_options: { validation_groups: ['Profile'] }
+            new:
+                fields:
+                    - username
+                    - email
+                    - enabled
+                    - { property: 'plainPassword', type: 'text', type_options: { required: true } }
+                    - { property: 'roles', type: 'choice', type_options: { multiple: true, choices: { 'ROLE_USER': 'ROLE_USER', 'ROLE_REDACTOR': 'ROLE_REDACTOR', 'ROLE_ADMIN': 'ROLE_ADMIN' } } }
+                form_options: { validation_groups: ['Registration'] }
+
+        Event:
+            class: AppBundle\Entity\Event

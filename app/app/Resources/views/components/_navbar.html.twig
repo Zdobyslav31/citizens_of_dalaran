@@ -4,10 +4,10 @@
             <img src="{{ asset_url }}" class="d-inline-block" width="30" height="30" alt="Citizens of Dalaran logo" />
         {% endimage %} {{ 'title.website'|trans }}
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsDefault" aria-controls="navbarsDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse justify-content-between" id="navbarsExampleDefault">
+    <div class="collapse navbar-collapse justify-content-between" id="navbarsDefault">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item{% if active_element == 'news' %} active{% endif %}">
                 <a class="nav-link" href="{{ url('homepage') }}">
@@ -81,6 +81,15 @@
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">
+            {% if is_granted('ROLE_ADMIN') %}
+            <li class="nav-item{% if active_element == 'admin' %} active{% endif %}">
+                <a class="nav-link" href="{{ path('admin') }}">
+                    <i class="fas fa-shield-alt"></i>
+                    <span class="d-md-none d-lg-inline"> {{ 'title.admin_panel'|trans }}</span>
+                    {% if active_element == 'admin' %}<span class="sr-only">(current)</span>{% endif %}
+                </a>
+            </li>
+            {% endif %}
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                 <li class="nav-item{% if active_element == 'profile' %} active{% endif %}">
                     <a class="nav-link" href="{{ path('fos_user_profile_show') }}">

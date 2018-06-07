@@ -6,59 +6,38 @@
             </h3>
         </div>
         <div class="card-body">
-            <ul class="list-unstyled">
-
-                <li>
-                    <h4>
-                        Pyrkon
-                    </h4>
-                    <div class="media">
-                        <div class="mr-3">
-                            <div class="card text-center date">
-                                <div class="card-header month">
-                                    <span class="card-title strong">
-                                        Maj
-                                    </span>
+            {% if events is defined and events|length %}
+                <ul class="list-unstyled">
+                    {% for event in events %}
+                        <li>
+                            <h4>
+                                {{ event.name }}
+                            </h4>
+                            <div class="media">
+                                <div class="mr-3">
+                                    <div class="card text-center date">
+                                        <div class="card-header month">
+                                            <span class="card-title strong">
+                                                {{ event.dateStart|localizeddate('none', 'none', null, null, "MMM") }}
+                                            </span>
+                                        </div>
+                                        <div class="card-body day text-danger">
+                                            {{ event.dateStart|localizeddate('none', 'none', null, null, "d") }}
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="card-body day text-danger">
-                                    18
-                                </div>
+                                <a href="#" class="link-unstyled media-body">
+                                    <p>
+                                        {{ event.summary }}
+                                    </p>
+                                </a>
                             </div>
-                        </div>
-                        <a href="#" class="link-unstyled media-body">
-                            <p>
-                                Warcraftowa sesja zdjęciowa na Festiwalu Fantastyki Pyrkon w Poznaniu.
-                            </p>
-                        </a>
-                    </div>
-                </li>
-
-                <li>
-                    <h4>
-                        Larp "Szepty Nawiedzonych Krain"
-                    </h4>
-                    <div class="media">
-                        <div class="mr-3">
-                            <div class="card  text-center date">
-                                <div class="card-header month">
-                                    <span class="card-title strong">
-                                        Sie
-                                    </span>
-                                </div>
-                                <div class="card-body text-danger day">
-                                    23
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#" class="link-unstyled media-body">
-                            <p>
-                                3-dniowy larp terenowy w świecie World of Warcraft. Zdawało się, że Nawiedzone Krainy są na uboczu ważnych wydarzeń...
-                            </p>
-                        </a>
-                    </div>
-                </li>
-
-            </ul>
+                        </li>
+                        {% endfor %}
+                </ul>
+            {% else %}
+                {{ 'message.empty_list'|trans }}
+            {% endif %}
             <a href="{{ url('events') }}" class="btn btn-secondary btn-block">{{ 'message.more_events'|trans }}</a>
         </div>
     </div>

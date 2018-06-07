@@ -35,3 +35,4 @@ security:
         - { path: ^/admin/, role: ROLE_ADMIN }
         - { path: ^/(news|tag)/(add|edit|delete), role: ROLE_REDACTOR }
         - { path: ^/(text)/(add|edit|delete), role: ROLE_ADMIN }
+        - { path: ^/users, role: ROLE_REDACTOR }

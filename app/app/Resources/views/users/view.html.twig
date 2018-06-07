@@ -1,0 +1,114 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    {{ 'title.show_profile'|trans }}: {{ user.username }}
+{% endblock %}
+{% block content_title %}
+    {{ 'title.show_profile'|trans }}: {{ user.username }}
+{% endblock %}
+{% block content_description %}
+    {% set current_role = 'user' %}
+    {% for role in user.roles %}
+        {% if role == "ROLE_SUPER_ADMIN" %}
+            {% set current_role = 'super_admin' %}
+        {% elseif role == "ROLE_ADMIN" and current_role != 'super_admin' %}
+            {% set current_role = 'admin' %}
+        {% elseif role == "ROLE_REDACTOR" and current_role != 'super_admin' and current_role != 'admin' %}
+            {% set current_role = 'redactor' %}
+        {% endif %}
+    {% endfor %}
+    {% if current_role != 'user' %}
+    {{ 'message.user_role'|trans }}: {{ ('info.' ~ current_role)|trans }}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+
+    <div class="fos_user_user_show row">
+        <div class="col col-md-4">
+            {% if user.profilePicturePath %}
+                <img class="mb-3 w-100" src="/uploads/user/profilepics/{{ user.profilePicturePath }}" alt="user {{ user.username }} profile image">
+            {% else %}
+                {% image '../app/Resources/public/images/placeholder.png' %}
+                    <img class="mb-3 w-100" src="{{ asset_url }}" alt="placeholder image">
+                {%  endimage %}
+            {% endif %}
+            {% if is_granted('ROLE_ADMIN') %}
+                <p><em>{{ user.description }}</em></p>
+            {% endif %}
+        </div>
+        <div class="col col-md-8">
+            <p>{{ 'profile.show.created_date'|trans }}: {{ user.createdDate|localizeddate('long', 'none') }}<br>
+                {{ 'profile.show.last_login'|trans }}: {{ user.lastLogin|localizeddate('long', 'none') }}</p>
+            {% if is_granted('ROLE_ADMIN') %}
+                <p>{{ 'profile.show.email'|trans({}, 'FOSUserBundle') }}: {{ user.email }}</p>
+                <p>{{ 'profile.show.name'|trans }}: {{ user.name }}</p>
+                <p>{{ 'profile.show.date_of_birth'|trans }}: {{ user.dateOfBirth|localizeddate('long', 'none') }}</p>
+                <p>{{ 'profile.show.phone_number'|trans }}: {{ user.phoneNumber }}</p>
+                <p>{{ 'profile.show.emergency_phone'|trans }}: {{ user.emergencyPhone }}</p>
+                <p>{{ 'profile.show.health_issues'|trans }}: <br>{{ user.healthIssues }}</p>
+                <p>{{ 'profile.show.noishment_issues'|trans }}: <br>{{ user.nourishmentIssues }}</p>
+            {% else %}
+                <p><em>{{ user.description }}</em></p>
+            {% endif %}
+
+            <a href="{{ url('user_index') }}" class="btn btn-secondary m-1">
+                {{ 'message.back_to_users'|trans }}
+            </a>
+        </div>
+    </div>
+    {% if posts|length %}
+        <hr>
+        <h2 class="m-3 text-center">{{ 'title.associated_posts'|trans }}</h2>
+        <div class="clearfix"></div>
+        {% for post in posts %}
+            <div class="card post mb-3">
+                <div class="card-header">
+                    <a href="{{ url('news_view',{'id': post.id}) }}" class="link-unstyled">
+                        <h3 class="float-left">
+                            {{ post.title }}
+                        </h3>
+                    </a>
+                    <span class="float-right">
+                        <span class="d-none d-md-block">
+                            {{ 'description.created'|trans({'%date%': post.createdDate|localizeddate('long', 'none'), '%author%': post.creator.username}) }}
+                        </span>
+                        <span class="d-block d-md-none">
+                            {{ 'description.created'|trans({'%date%': post.createdDate|localizeddate('short', 'none'), '%author%': post.creator.username}) }}
+                        </span>
+                        {% if post.modifier %}
+                            <span class="d-none d-md-block">
+                                {{ 'description.modified'|trans({'%date%': post.modifiedDate|localizeddate('long', 'none'), '%author%': post.modifier.username}) }}
+                            </span>
+                            <span class="d-block d-md-none">
+                                {{ 'description.modified'|trans({'%date%': post.modifiedDate|localizeddate('short', 'none'), '%author%': post.modifier.username}) }}
+                            </span>
+                        {% endif %}
+                    </span>
+                </div>
+                <div class="card-body">
+                    <a href="{{ url('news_view',{'id': post.id}) }}">
+                        {% if post.imagePath %}
+                            <img class="mb-3 news-image mr-lg-3" src="{{ asset('./uploads/' ~ subdirectory_path ~ '/' ~ post.imagePath) }}" alt="{{ post.title }} - image">
+                        {% else %}
+                            {% image '../app/Resources/public/images/placeholder.png' %}
+                                <img class="mb-3 news-image mr-lg-3" src="{{ asset_url }}" alt="{{ post.title }} - image">
+                            {%  endimage %}
+                        {% endif %}
+                    </a>
+                    {{ post.summary|raw }}
+                    <span class="d-block text-center">
+                        <a href="{{ url('news_view',{'id': post.id}) }}" class="btn btn-secondary">{{ 'message.read_more'|trans }}</a>
+                        {% if is_granted("ROLE_REDACTOR") %}
+                            <a href="{{ url('news_edit',{'id': post.id}) }}" class="btn btn-primary m-1"><i class="fas fa-edit"></i> {{ 'message.edit'|trans }}</a>
+                            <a href="{{ url('news_delete',{'id': post.id}) }}" class="btn btn-danger m-1"><i class="fas fa-trash-alt"></i> {{ 'message.delete'|trans }}</a>
+                        {% endif %}
+                    </span>
+
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        {{ 'message.no_associated_posts'|trans }}
+    {% endif %}
+{% endblock %}
