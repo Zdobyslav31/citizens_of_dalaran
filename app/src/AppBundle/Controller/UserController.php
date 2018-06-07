@@ -30,6 +30,11 @@ class UserController extends Controller
     protected $userManager = null;
 
     /**
+     * Path to upload images
+     */
+    const UPLOAD_DIR = 'user/profilepics';
+
+    /**
      * UserController constructor.
      *
      * @param UserManager $userManager
@@ -58,6 +63,7 @@ class UserController extends Controller
             'carousel' => null,
             'active_element' => 'users',
             'users' => $users,
+            'user_subdirectory_path' => $this::UPLOAD_DIR,
         ]);
     }
 
@@ -84,7 +90,8 @@ class UserController extends Controller
                 'active_element' => 'users',
                 'scroll_to_content' => True,
                 'posts' => $newsRepository->findAllByUser($user),
-                'subdirectory_path' => $newsController::UPLOAD_DIR,
+                'user_subdirectory_path' => $this::UPLOAD_DIR,
+                'news_subdirectory_path' => $newsController::UPLOAD_DIR,
             ]
         );
     }

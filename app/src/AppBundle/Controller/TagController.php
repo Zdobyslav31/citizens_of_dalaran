@@ -89,7 +89,7 @@ class TagController extends Controller
             'tags/view.html.twig',
             [
                 'tag' => $tag,
-                'subdirectory_path' => $newsController::UPLOAD_DIR,
+                'news_subdirectory_path' => $newsController::UPLOAD_DIR,
             ]
         );
     }

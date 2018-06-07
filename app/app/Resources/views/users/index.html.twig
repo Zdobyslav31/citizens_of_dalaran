@@ -25,7 +25,7 @@
             <div class="media mb-3 border rounded">
                 <a class="link-unstyled" href="{{ path('user_view', {'id': user.id}) }}">
                     {% if user.profilePicturePath %}
-                        <img class="mr-3 media-image rounded" src="/uploads/user/profilepics/{{ user.profilePicturePath }}" alt="user {{ user.username }} profile image">
+                        <img class="mr-3 media-image rounded" src="{{ asset('./uploads/' ~ user_subdirectory_path ~ '/' ~ user.profilePicturePath) }}" alt="user {{ user.username }} profile image">
                     {% else %}
                         {% image '../app/Resources/public/images/placeholder.png' %}
                             <img class="mr-3 media-image rounded" src="{{ asset_url }}" alt="placeholder image">

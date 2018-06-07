@@ -63,7 +63,7 @@ class TextsController extends Controller
                     'active_subelement' => $title,
                     'texts' => $texts,
                     'index' => true,
-                    'subdirectory_path' => self::UPLOAD_DIR,
+                    'text_subdirectory_path' => self::UPLOAD_DIR,
                 ]
             );
     }
@@ -95,7 +95,7 @@ class TextsController extends Controller
                 'active_subelement' => $title,
                 'texts' => $texts,
                 'index' => false,
-                'subdirectory_path' => self::UPLOAD_DIR,
+                'text_subdirectory_path' => self::UPLOAD_DIR,
             ]
         );
     }
@@ -127,7 +127,7 @@ class TextsController extends Controller
                 'active_element' => $title,
                 'texts' => $texts,
                 'index' => false,
-                'subdirectory_path' => self::UPLOAD_DIR,
+                'text_subdirectory_path' => self::UPLOAD_DIR,
             ]
         );
     }
