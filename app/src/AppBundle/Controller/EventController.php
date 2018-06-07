@@ -51,12 +51,14 @@ class EventController extends Controller
                 'events' => $events
             ]
         );
-        $response->setSharedMaxAge(60);
+        $response->setSharedMaxAge(600);    //for ESI caching
         return $response;
     }
 
     /**
      * Index action.
+     * @param integer $page
+     * @param Request $request
      *
      * @Route(
      *     "/",

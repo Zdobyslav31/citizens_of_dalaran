@@ -164,7 +164,7 @@ easy_admin:
     entities:
         News:
             class: AppBundle\Entity\News
-            image_base_path: '/uploads/news/images/'
+            image_base_path: './uploads/news/images/'
             list:
                 fields:
                     - title
@@ -181,7 +181,7 @@ easy_admin:
                     - { property: 'content', type: 'ckeditor' }
         User:
             class: UserBundle\Entity\User
-            image_base_path: '/uploads/user/profilepics/'
+            image_base_path: './uploads/user/profilepics/'
             list:
                 fields: 
                     - username
