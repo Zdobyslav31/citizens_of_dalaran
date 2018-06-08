@@ -25,13 +25,13 @@
                         {{ 'title.group.about'|trans }}
                         {% if active_subelement == 'about' %}<span class="sr-only">(current)</span>{% endif %}
                     </a>
-                    <a class="dropdown-item{% if active_subelement == 'events' %} active{% endif %}" href="{{ url('events') }}">
+                    <a class="dropdown-item{% if active_subelement == 'events' %} active{% endif %}" href="{{ path('event_index') }}">
                         {{ 'title.group.events'|trans }}
                         {% if active_subelement == 'events' %}<span class="sr-only">(current)</span>{% endif %}
                     </a>
-                    <a class="dropdown-item{% if active_subelement == 'gallery' %} active{% endif %}" href="{{ url('gallery') }}">
-                        {{ 'title.group.gallery'|trans }}
-                        {% if active_subelement == 'gallery' %}<span class="sr-only">(current)</span>{% endif %}
+                    <a class="dropdown-item{% if active_subelement == 'archive' %} active{% endif %}" href="{{ url('archive_event_index') }}">
+                        {{ 'title.group.archive'|trans }}
+                        {% if active_subelement == 'archive' %}<span class="sr-only">(current)</span>{% endif %}
                     </a>
                     <a class="dropdown-item{% if active_subelement == 'contact' %} active{% endif %}" href="{{ url('group',{'title': 'contact'}) }}">
                         {{ 'title.group.contact'|trans }}

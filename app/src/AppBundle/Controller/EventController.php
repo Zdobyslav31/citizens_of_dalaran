@@ -7,6 +7,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Event;
 use AppBundle\Repository\EventRepository;
 //use AppBundle\Form\NewsType;
+use AppBundle\Repository\TagRepository;
 use AppBundle\Service\FileUploader;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -30,6 +31,11 @@ class EventController extends Controller
      * @var \AppBundle\Repository\EventRepository|null Event repository
      */
     protected $eventRepository = null;
+
+    /**
+     * Path to upload images
+     */
+    const UPLOAD_DIR = 'events/images';
 
     /**
      * EventController constructor.
@@ -63,12 +69,12 @@ class EventController extends Controller
      * @Route(
      *     "/",
      *     defaults={"page": 1},
-     *     name="homepage",
+     *     name="event_index",
      * )
      * @Route(
      *     "/page/{page}",
      *     requirements={"page": "[1-9]\d*"},
-     *     name="homepage_paginated",
+     *     name="event_index_paginated",
      * )
      * @Method("GET")
      *
@@ -76,42 +82,89 @@ class EventController extends Controller
      */
     public function indexAction(Request $request, $page)
     {
-        $news = $this->eventRepository->findAllPaginated($page);
+        $events = $this->eventRepository->findPaginated($page, 'future');
 
-        return $this->render('news/index.html.twig', [
-            'carousel' => 'always',
-            'active_element' => 'news',
-            'news' => $news
+        return $this->render('events/index.html.twig', [
+            'right_hide' => true,
+            'scroll_to_content' => true,
+            'sidebar' => 'group',
+            'active_element' => 'group',
+            'active_subelement' => 'events',
+            'title' => 'title.events.actual',
+            'events' => $events,
+            'event_subdirectory_path' => self::UPLOAD_DIR,
         ]);
     }
-//
-//    /**
-//     * View action.
-//     *
-//     * @param News $news News entity
-//     *
-//     * @return \Symfony\Component\HttpFoundation\Response HTTP Response
-//     *
-//     * @Route(
-//     *     "news/{id}",
-//     *     requirements={"id": "[1-9]\d*"},
-//     *     name="news_view",
-//     * )
-//     * @Method("GET")
-//     */
-//    public function viewAction(News $news)
-//    {
-//        return $this->render(
-//            'news/view.html.twig',
-//            [
-//                'post' => $news,
-//                'active_element' => 'news',
-//                'scroll_to_content' => True,
-//                'size' => $news->getTags()->getValues(),
-//            ]
-//        );
-//    }
-//
+
+    /**
+     * Archive index action.
+     * @param integer $page
+     * @param Request $request
+     *
+     * @Route(
+     *     "/archive/",
+     *     defaults={"page": 1},
+     *     name="archive_event_index",
+     * )
+     * @Route(
+     *     "/archive/page/{page}",
+     *     requirements={"page": "[1-9]\d*"},
+     *     name="archive_event_index_paginated",
+     * )
+     * @Method("GET")
+     *
+     * @return \Symfony\Component\HttpFoundation\Response HTTP Response
+     */
+    public function ArchiveIndexAction(Request $request, $page)
+    {
+        $events = $this->eventRepository->findPaginated($page, 'past');
+
+        return $this->render('events/index.html.twig', [
+            'right_hide' => true,
+            'sidebar' => 'group',
+            'active_element' => 'group',
+            'active_subelement' => 'archive',
+            'title' => 'title.events.archive',
+            'events' => $events,
+            'event_subdirectory_path' => self::UPLOAD_DIR,
+        ]);
+    }
+
+    /**
+     * View action.
+     *
+     * @param Event $event Event entity
+     * @param NewsController $newsController
+     *
+     * @return \Symfony\Component\HttpFoundation\Response HTTP Response
+     *
+     * @Route(
+     *     "/{id}",
+     *     requirements={"id": "[1-9]\d*"},
+     *     name="event_view",
+     * )
+     * @Method("GET")
+     */
+    public function viewAction(Event $event, NewsController $newsController)
+    {
+        if ($event->getDateEnd() > new \DateTime('now')) {
+            $active_subelement = 'events';
+        } else {
+            $active_subelement = 'archive';
+        }
+        return $this->render(
+            'events/view.html.twig',
+            [
+                'event' => $event,
+                'right_hide' => true,
+                'active_element' => 'group',
+                'active_subelement' => $active_subelement,
+                'event_subdirectory_path' => self::UPLOAD_DIR,
+                'news_subdirectory_path' => $newsController::UPLOAD_DIR,
+            ]
+        );
+    }
+
 //    /**
 //     * Add action.
 //     *
@@ -123,30 +176,27 @@ class EventController extends Controller
 //     * @throws \Doctrine\ORM\OptimisticLockException
 //     *
 //     * @Route(
-//     *     "news/add",
-//     *     name="news_add",
+//     *     "add",
+//     *     name="event_add",
 //     * )
 //     * @Method({"GET", "POST"})
 //     */
 //    public function addAction(Request $request, FileUploader $fileUploader)
 //    {
-//        $news = new News();
-//        $news->setCreator($this->getUser());
-//        $form = $this->createForm(NewsType::class, $news);
+//        $event = new Event($fileUploader);
+//        $form = $this->createForm(EventType::class, $event);
 //        $form->handleRequest($request);
 //
 //        if ($form->isSubmitted() && $form->isValid()) {
 //            try {
-//                if (!empty($news->getImage())) {
-//                    $file = $news->getImage();
-//                    $fileName = $fileUploader->upload($file);
-//                    $news->setImage($fileName);
+//                if (null !== $event->getImageFile()) {
+//                    $event->setImagePath($fileUploader->upload($event->getImageFile(), self::UPLOAD_DIR));
+//                    $event->clearImageFile();
 //                }
-//
-//                $this->newsRepository->save($news);
+//                $this->eventRepository->save($event);
 //
 //                $this->addFlash('success', 'message.created_successfully');
-//                return $this->redirectToRoute('tag_view', ['id' => $news->getId()]);
+//                return $this->redirectToRoute('event_view', ['id' => $event->getId()]);
 //            }
 //            catch (\Doctrine\DBAL\DBALException $e) {
 //                $this->addFlash('error', 'message.create_failed');
@@ -155,15 +205,15 @@ class EventController extends Controller
 //        }
 //
 //        return $this->render(
-//            'news/add.html.twig',
+//            'events/add.html.twig',
 //            [
-//                'news' => $news,
+//                'event' => $event,
 //                'scroll_to_content' => True,
 //                'form' => $form->createView(),
 //            ]
 //        );
 //    }
-//
+
 //    /**
 //     * Edit action.
 //     *

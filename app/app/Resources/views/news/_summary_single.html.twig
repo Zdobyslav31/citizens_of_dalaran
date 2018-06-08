@@ -1,9 +1,9 @@
 <div class="card post mb-3">
     <div class="card-header">
         <a href="{{ url('news_view',{'id': post.id}) }}" class="link-unstyled">
-            <h2 class="float-left">
+            <h3 class="float-left">
                 {{ post.title }}
-            </h2>
+            </h3>
         </a>
         <span class="float-right">
             {% if post.creator %}

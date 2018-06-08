@@ -11,34 +11,26 @@
                     {% for event in events %}
                         <li>
                             <h4>
-                                {{ event.name }}
+                                <a href="{{ path('event_view', {'id': event.id}) }}" class="link-unstyled">{{ event.name }}</a>
                             </h4>
                             <div class="media">
                                 <div class="mr-3">
-                                    <div class="card text-center date">
-                                        <div class="card-header month">
-                                            <span class="card-title strong">
-                                                {{ event.dateStart|localizeddate('none', 'none', null, null, "MMM") }}
-                                            </span>
-                                        </div>
-                                        <div class="card-body day text-danger">
-                                            {{ event.dateStart|localizeddate('none', 'none', null, null, "d") }}
-                                        </div>
-                                    </div>
+                                    {{ include('events/_calendar_card.html.twig') }}
                                 </div>
-                                <a href="#" class="link-unstyled media-body">
-                                    <p>
+                                <div class="media-body">
+                                    <p class="mb-1">
                                         {{ event.summary }}
                                     </p>
-                                </a>
+                                </div>
+
                             </div>
                         </li>
-                        {% endfor %}
+                    {% endfor %}
                 </ul>
             {% else %}
                 {{ 'message.empty_list'|trans }}
             {% endif %}
-            <a href="{{ url('events') }}" class="btn btn-secondary btn-block">{{ 'message.more_events'|trans }}</a>
+            <a href="{{ url('event_index') }}" class="btn btn-secondary btn-block">{{ 'message.more_events'|trans }}</a>
         </div>
     </div>
 </aside>

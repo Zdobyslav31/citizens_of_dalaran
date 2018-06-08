@@ -43,9 +43,11 @@
 {% block body %}
     {% include 'components/_navbar.html.twig' %}
     <div id="front-container">
-        {% if carousel is not null %}
-            {% include 'components/_carousel.html.twig' with {carousel: carousel}%}
-        {% endif %}
+        {% block front_container %}
+            {% if carousel is not null %}
+                {% include 'components/_carousel.html.twig' with {carousel: carousel}%}
+            {% endif %}
+        {% endblock %}
     </div>
     <div id="main-container" class="container">
         <div class="row main-row">

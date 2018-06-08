@@ -5,10 +5,10 @@
             <a class="nav-link{% if active_subelement == 'about' %} active{% endif %}" href="{{ url('group',{'title': 'about'}) }}">{{ 'title.group.about'|trans }}</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link{% if active_subelement == 'events' %} active{% endif %}" href="{{ url('events') }}">{{ 'title.group.events'|trans }}</a>
+            <a class="nav-link{% if active_subelement == 'events' %} active{% endif %}" href="{{ url('event_index') }}">{{ 'title.group.events'|trans }}</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link{% if active_subelement == 'gallery' %} active{% endif %}" href="{{ url('gallery') }}">{{ 'title.group.gallery'|trans }}</a>
+            <a class="nav-link{% if active_subelement == 'archive' %} active{% endif %}" href="{{ url('archive_event_index') }}">{{ 'title.group.archive'|trans }}</a>
         </li>
         <li class="nav-item">
             <a class="nav-link{% if active_subelement == 'contact' %} active{% endif %}" href="{{ url('group',{'title': 'contact'}) }}">{{ 'title.group.contact'|trans }}</a>

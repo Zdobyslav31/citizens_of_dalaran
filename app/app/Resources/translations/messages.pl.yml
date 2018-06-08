@@ -11,7 +11,7 @@ title.larps.in_poland: 'Larpy w Polsce'
 title.login: Zaloguj
 title.group.contact: Kontakt
 title.group.events: Wydarzenia
-title.group.gallery: Galeria
+title.group.archive: 'Minione wydarzenia'
 title.group.about: 'Kim jesteśmy'
 title.upcoming_events: 'Nadchodzące wydarzenia'
 message.more_events: 'Więcej wydarzeń'
@@ -112,3 +112,16 @@ profile.show.noishment_issues: 'Kwestie żywieniowe'
 title.admin_panel: 'Panel administratora'
 message.all_users: 'Wszyscy użytkownicy'
 info.deleted_user: '(użytkownik usunięty)'
+title.informations: Informacje
+label.date_start: 'Data rozpoczęcia'
+label.date_end: 'Data zakończenia'
+label.price: Koszt
+label.location: Miejsce
+label.participants_limit: 'Limit uczestników'
+message.apply: 'Zgłoś się!'
+title.events.actual: 'Wydarzenia aktualne'
+title.events.archive: 'Minione wydarzenia'
+message.back_to_events: 'Wróć do wydarzeń'
+message.back_to_archive: 'Wróć do archiwum'
+message.show_archive: 'Pokaż minione wydarzenia'
+message.show_actual: 'Pokaż aktualne wydarzenia'

@@ -177,6 +177,8 @@ easy_admin:
                 fields:
                     - title
                     - imagePath
+                    - createdDate
+                    - modifiedDate
                     - { property: 'summary', type: 'ckeditor' }
                     - { property: 'content', type: 'ckeditor' }
         User:

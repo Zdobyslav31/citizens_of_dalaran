@@ -1,0 +1,10 @@
+<div class="card text-center date">
+    <div class="card-header month">
+        <span class="card-title strong">
+            {{ event.dateStart|localizeddate('none', 'none', null, null, "MMM") }}
+        </span>
+    </div>
+    <div class="card-body day text-danger">
+        {{ event.dateStart|localizeddate('none', 'none', null, null, "d") }}
+    </div>
+</div>

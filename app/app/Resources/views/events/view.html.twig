@@ -1,0 +1,109 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ event.name }}{% endblock %}
+{% block content_title %}{{ event.name }}{% endblock %}
+
+
+{% block front_container %}
+    {% if event.imagePath %}
+        <img class="d-block w-100" src="{{ asset('./uploads/' ~ event_subdirectory_path ~ '/' ~ event.imagePath) }}" alt="{{ event.name }} cover image">
+        <div class="carousel-caption d-none d-md-block">
+            <h3>{{ event.name }}</h3>
+            <p>{{ event.summary }}</p>
+        </div>
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+
+
+{% block content %}
+    <div class="row">
+        <div class="col col-12 col-md-5">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h3 class="mb-0">
+                        {{ 'title.informations'|trans }}
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled mb-0">
+                        <li>
+                            <i class="far fa-calendar-alt"></i>
+                            <strong> {{ 'label.date_start'|trans }}: </strong>
+                            {{ event.dateStart|localizeddate('long', 'none') }}
+                        </li>
+                        <li>
+                            <i class="fas fa-calendar-alt"></i>
+                            <strong> {{ 'label.date_end'|trans }}: </strong>
+                            {{ event.dateEnd|localizeddate('long', 'none') }}
+                        </li>
+                        {% if event.price %}
+                            <li>
+                                <i class="fas fa-dollar-sign"></i>
+                                <strong> {{ 'label.price'|trans }}: </strong>
+                                {{ event.price|localizedcurrency('PLN') }}
+                            </li>
+                        {% endif %}
+                        {% if event.location %}
+                            <li>
+                                <i class="far fa-map"></i>
+                                <strong> {{ 'label.location'|trans }}: </strong>
+                                {% if event.locationLink %}<a href="#" data-toggle="modal" data-target="#exampleModal">{% endif %}
+                                    {{ event.location }}
+                                {% if event.locationLink %}</a>
+                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">{{ event.location }}</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body text-center">
+                                                <iframe width="600" height="450" frameborder="0" style="border:0"
+                                                    src="{{ event.locationLink }}" allowfullscreen></iframe>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>{% endif %}
+                            </li>
+                        {% endif %}
+                        {% if event.participantsLimit %}
+                            <li>
+                                <i class="fas fa-users"></i>
+                                <strong> {{ 'label.participants_limit'|trans }}: </strong>
+                                {{ event.participantsLimit }}
+                            </li>
+                        {% endif %}
+                    </ul>
+                    {% if event.templateApplication %}
+                        <a href="#" class="btn btn-primary">{{ 'message.apply'|trans }}</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col col-md-7">
+            {{ event.description }}
+            <span class="text-center d-block mt-3">
+                <a href="{{ path('event_index') }}" class="btn btn-secondary"><i class="far fa-calendar-alt"></i> {{ ('message.back_to_' ~ active_subelement)|trans }}</a>
+            </span>
+        </div>
+    </div>
+    {% if event.tag %}
+        <hr>
+        {% if event.tag.news.values|length %}
+            <h2 class="m-3 text-center">{{ 'title.associated_posts'|trans }}</h2>
+            <div class="clearfix"></div>
+            {% for post in event.tag.news.values %}
+                {{ include('news/_summary_single.html.twig') }}
+            {% endfor %}
+        {% else %}
+            {{ 'message.no_associated_posts'|trans }}
+        {% endif %}
+    {% endif %}
+{% endblock %}

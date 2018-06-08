@@ -24,9 +24,16 @@ class EventRepository extends EntityRepository
      *
      * @return \Pagerfanta\Pagerfanta Result
      */
-    public function findAllPaginated($page = 1)
+    public function findPaginated($page = 1, $criteria = null)
     {
-        $paginator = new Pagerfanta(new DoctrineORMAdapter($this->queryAll(), false));
+        if ('past' == $criteria) {
+            $collection = $this->findAllPast();
+        } elseif ('future' == $criteria) {
+            $collection = $this->findAllFuture();
+        } else {
+            $collection = $this->queryAll();
+        }
+        $paginator = new Pagerfanta(new DoctrineORMAdapter($collection, false));
         $paginator->setMaxPerPage(Event::NUM_ITEMS);
         $paginator->setCurrentPage($page);
 
@@ -40,7 +47,31 @@ class EventRepository extends EntityRepository
      */
     protected function queryAll()
     {
-        return $this->createQueryBuilder('event')->orderBy('event.dateStart', 'DESC');
+        return $this->createQueryBuilder('event')->orderBy('event.dateStart', 'ASC');
+    }
+
+    /**
+     * Query all future events
+     *
+     * @return \Doctrine\ORM\QueryBuilder
+     */
+    public function findAllFuture() {
+        return $this->createQueryBuilder('event')
+            ->orderBy('event.dateStart', 'ASC')
+            ->where('event.dateEnd > :now')
+            ->setParameter('now', new \DateTime('now'));
+    }
+
+    /**
+     * Query all past events
+     *
+     * @return \Doctrine\ORM\QueryBuilder
+     */
+    public function findAllPast() {
+        return $this->createQueryBuilder('event')
+            ->orderBy('event.dateStart', 'DESC')
+            ->where('event.dateEnd < :now')
+            ->setParameter('now', new \DateTime('now'));
     }
 
     /**
@@ -56,7 +87,7 @@ class EventRepository extends EntityRepository
             ->orderBy('event.dateStart', 'ASC')
             ->where('event.dateStart > :now')
             ->setMaxResults($max)
-            ->setParameters(['now' => new \DateTime('now')])
+            ->setParameter('now', new \DateTime('now'))
             ->getQuery();
 
         return $query->execute();

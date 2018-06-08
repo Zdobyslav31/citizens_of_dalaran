@@ -3,6 +3,9 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use AppBundle\Service\FileUploader;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Event
@@ -12,7 +15,7 @@ use Doctrine\ORM\Mapping as ORM;
  *     indexes={
  *      @ORM\Index(
  *          name="fk_events_tags1_idx",
- *          columns={"tags_id"}
+ *          columns={"tag_id"}
  *      ),
  *      @ORM\Index(
  *          name="fk_events_application1_idx",
@@ -27,6 +30,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Event
 {
     const NUM_ITEMS = 10;
+    protected $fileUploader;
     /**
      * @var string
      *
@@ -84,11 +88,26 @@ class Event
     private $price;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="img", type="string", length=127, nullable=true)
+     * @ORM\Column(type="string", nullable=true)
+     * @Assert\Image(
+     *     minRatio="3",
+     *     maxRatio="4",
+     *     minWidth="1700",
+     *     maxWidth="1900",
+     *     minHeight="400",
+     *     maxHeight="600"
+     * )
      */
-    private $img;
+    protected $imageFile;
+
+
+    // for temporary storage
+    private $tempImagePath;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    protected $imagePath;
 
     /**
      * @var boolean
@@ -128,10 +147,10 @@ class Event
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Tag")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="tags_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="tag_id", referencedColumnName="id")
      * })
      */
-    private $tags;
+    private $tag;
 
 
 
@@ -327,28 +346,89 @@ class Event
         return $this->price;
     }
 
+
     /**
-     * Set img
+     * Sets the file used for image uploads
      *
-     * @param string $img
-     *
-     * @return Event
+     * @param UploadedFile $file
+     * @return object
      */
-    public function setImg($img)
-    {
-        $this->img = $img;
+    public function setImageFile(UploadedFile $file = null) {
+        // set the value of the holder
+        $this->imageFile = $file;
+        // check if we have an old image path
+        if (isset($this->imagePath)) {
+            // store the old name to delete after the update
+            $this->tempImagePath = $this->imagePath;
+            $this->imagePath = null;
+        } else {
+            $this->imagePath = 'initial';
+        }
 
         return $this;
     }
 
     /**
-     * Get img
+     * Clears image file
+     */
+    public function clearImageFile() {
+        $this->imageFile = null;
+    }
+
+    /**
+     * Get the file used for image uploads
+     *
+     * @return UploadedFile
+     */
+    public function getImageFile() {
+
+        return $this->imageFile;
+    }
+
+    /**
+     * Set imagePath
+     *
+     * @param string $imagePath
+     * @return Event
+     */
+    public function setImagePath($imagePath)
+    {
+        $this->imagePath = $imagePath;
+
+        return $this;
+    }
+
+    /**
+     * Get imagePath
      *
      * @return string
      */
-    public function getImg()
+    public function getImagePath()
     {
-        return $this->img;
+        return $this->imagePath;
+    }
+
+    /**
+     * Set tempImagePath
+     *
+     * @param string $tempImagePath
+     * @return Event
+     */
+    public function setTempImagePath($tempImagePath)
+    {
+        $this->tempImagePath = $tempImagePath;
+
+        return $this;
+    }
+
+    /**
+     * Get tempImagePath
+     *
+     * @return string
+     */
+    public function getTempImagePath()
+    {
+        return $this->tempImagePath;
     }
 
     /**
@@ -434,26 +514,26 @@ class Event
     }
 
     /**
-     * Set tags
+     * Set tag
      *
-     * @param \AppBundle\Entity\Tag $tags
+     * @param \AppBundle\Entity\Tag $tag
      *
      * @return Event
      */
-    public function setTags(\AppBundle\Entity\Tag $tags = null)
+    public function setTag(\AppBundle\Entity\Tag $tag = null)
     {
-        $this->tags = $tags;
+        $this->tag = $tag;
 
         return $this;
     }
 
     /**
-     * Get tags
+     * Get tag
      *
      * @return \AppBundle\Entity\Tag
      */
-    public function getTags()
+    public function getTag()
     {
-        return $this->tags;
+        return $this->tag;
     }
 }
