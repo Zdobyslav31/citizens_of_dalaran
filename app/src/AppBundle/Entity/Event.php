@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use AppBundle\Service\FileUploader;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
  * Event
@@ -41,14 +42,14 @@ class Event
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_start", type="date", nullable=false)
+     * @ORM\Column(name="date_start", type="datetime", nullable=false)
      */
     private $dateStart;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_end", type="date", nullable=false)
+     * @ORM\Column(name="date_end", type="datetime", nullable=false)
      */
     private $dateEnd;
 
@@ -62,7 +63,7 @@ class Event
     /**
      * @var string
      *
-     * @ORM\Column(name="location_link", type="string", length=255, nullable=true)
+     * @ORM\Column(name="location_link", type="string", length=1000, nullable=true)
      */
     private $locationLink;
 
@@ -90,12 +91,12 @@ class Event
     /**
      * @ORM\Column(type="string", nullable=true)
      * @Assert\Image(
-     *     minRatio="3",
-     *     maxRatio="4",
-     *     minWidth="1700",
-     *     maxWidth="1900",
-     *     minHeight="400",
-     *     maxHeight="600"
+     *     minRatio="3.3",
+     *     maxRatio="3.9",
+     *     minWidth="1000",
+     *     maxWidth="2000",
+     *     minHeight="200",
+     *     maxHeight="1000"
      * )
      */
     protected $imageFile;
@@ -115,6 +116,13 @@ class Event
      * @ORM\Column(name="displayed_main", type="boolean", nullable=false)
      */
     private $displayedMain;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="applications_allowed", type="boolean", nullable=false)
+     */
+    private $applicationsAllowed;
 
     /**
      * @var integer
@@ -153,6 +161,27 @@ class Event
     private $tag;
 
 
+    /**
+     * Constructor
+     * @param FileUploader $fileUploader New file uploader
+     */
+    public function __construct(FileUploader $fileUploader)
+    {
+        $this->fileUploader = $fileUploader;
+    }
+
+    /**
+     * @Assert\Callback
+     * @param ExecutionContextInterface $context
+     */
+    public function validate(ExecutionContextInterface $context)
+    {
+        if ($this->getDisplayedMain() == true && $this->getImagePath() == null) {
+            $context->buildViolation('If you want the Event to be displayedMain, you have to upload cover image')
+                ->atPath('displayedMain')
+                ->addViolation();
+        }
+    }
 
     /**
      * Set name
@@ -535,5 +564,29 @@ class Event
     public function getTag()
     {
         return $this->tag;
+    }
+
+    /**
+     * Set applicationsAllowed
+     *
+     * @param boolean $applicationsAllowed
+     *
+     * @return Event
+     */
+    public function setApplicationsAllowed($applicationsAllowed)
+    {
+        $this->applicationsAllowed = $applicationsAllowed;
+
+        return $this;
+    }
+
+    /**
+     * Get applicationsAllowed
+     *
+     * @return boolean
+     */
+    public function getApplicationsAllowed()
+    {
+        return $this->applicationsAllowed;
     }
 }

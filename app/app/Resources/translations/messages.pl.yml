@@ -125,3 +125,19 @@ message.back_to_events: 'Wróć do wydarzeń'
 message.back_to_archive: 'Wróć do archiwum'
 message.show_archive: 'Pokaż minione wydarzenia'
 message.show_actual: 'Pokaż aktualne wydarzenia'
+message.more_info_about_website: 'Więcej informacji o witrynie'
+label.time_start: 'Godzina rozpoczęcia'
+label.time_end: 'Godzina zakończenia'
+title.event_add: 'Dodaj wydarzenie'
+title.events: Wydarzenia
+label.event_name: 'Nazwa wydarzenia'
+label.location_link: 'Link do osadzonej mapy Google wskazującej miejsce'
+label.event_summary: 'Krótkie zdanie opisu (wyświetlane w kalendarzu)'
+label.event_image: 'Obrazek w tle wydarzenia (zalecane wymiary: 1800x500px)'
+label.applications_allowed: 'Zgłoszenia otwarte'
+label.displayed_main: 'Wyświetlane w karuzeli zdjęć na górze strony (wymaga przesłania obrazka)'
+label.event_tag: 'Tag powiązany z wydarzeniem'
+label.template_application: 'Wzór ankiety zgłoszeniowej'
+title.event_edit: Edytuj wydarzenie
+message.back_to_event: Wróć do wydarzenia
+title.event_delete: Usuń wydarzenie

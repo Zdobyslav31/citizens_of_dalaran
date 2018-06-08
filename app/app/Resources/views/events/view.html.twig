@@ -6,10 +6,12 @@
 
 {% block front_container %}
     {% if event.imagePath %}
-        <img class="d-block w-100" src="{{ asset('./uploads/' ~ event_subdirectory_path ~ '/' ~ event.imagePath) }}" alt="{{ event.name }} cover image">
-        <div class="carousel-caption d-none d-md-block">
-            <h3>{{ event.name }}</h3>
-            <p>{{ event.summary }}</p>
+        <div class="position-relative">
+            <img class="d-block w-100" src="{{ asset('./uploads/' ~ event_subdirectory_path ~ '/' ~ event.imagePath) }}" alt="{{ event.name }} cover image">
+            <div class="carousel-caption d-none d-md-block">
+                <h3>{{ event.name }}</h3>
+                <p>{{ event.summary }}</p>
+            </div>
         </div>
     {% else %}
         {{ parent() }}
@@ -32,11 +34,26 @@
                             <i class="far fa-calendar-alt"></i>
                             <strong> {{ 'label.date_start'|trans }}: </strong>
                             {{ event.dateStart|localizeddate('long', 'none') }}
+                            {% if event.dateStart|date('d') == event.dateEnd|date('d') %}
+                                <ul class="list-unstyled mb-0 ml-3">
+                                    <li>
+                                        <i class="far fa-clock"></i>
+                                        <strong> {{ 'label.time_start'|trans }}: </strong>
+                                        {{ event.dateStart|localizeddate('none', 'short') }}
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-clock"></i>
+                                        <strong> {{ 'label.time_end'|trans }}: </strong>
+                                        {{ event.dateEnd|localizeddate('none', 'short') }}
+                                    </li>
+                                </ul>
+                            {% else %}
                         </li>
                         <li>
                             <i class="fas fa-calendar-alt"></i>
                             <strong> {{ 'label.date_end'|trans }}: </strong>
                             {{ event.dateEnd|localizeddate('long', 'none') }}
+                            {% endif %}
                         </li>
                         {% if event.price %}
                             <li>
@@ -88,7 +105,15 @@
             </div>
         </div>
         <div class="col col-md-7">
-            {{ event.description }}
+            {% if is_granted("ROLE_REDACTOR") %}
+                <a class="btn btn-primary float-right m-1 mb-3" href="{{ path('event_edit', {'id': event.id}) }}">
+                    <i class="fas fa-edit"></i> {{ 'message.edit'|trans }}
+                </a>
+                <a class="btn btn-danger float-right m-1 mb-3" href="{{ path('event_delete', {'id': event.id}) }}">
+                    <i class="fas fa-trash-alt"></i> {{ 'message.delete'|trans }}
+                </a>
+            {% endif %}
+            {{ event.description|raw }}
             <span class="text-center d-block mt-3">
                 <a href="{{ path('event_index') }}" class="btn btn-secondary"><i class="far fa-calendar-alt"></i> {{ ('message.back_to_' ~ active_subelement)|trans }}</a>
             </span>

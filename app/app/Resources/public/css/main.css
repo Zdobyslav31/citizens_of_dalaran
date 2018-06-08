@@ -81,6 +81,13 @@ body {
      background-color: #fcfcfa;
  }
 
+.image-caption {
+    position: absolute;
+    bottom: 20px;
+    right: 15%;
+    left: 15%;
+}
+
 #main {
     grid-column: 1 / 13;
     grid-row-start: 1;

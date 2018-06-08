@@ -30,9 +30,9 @@
         {% endblock %}
         <style>
             body {
-                {% image '../app/Resources/public/images/background.jpg' %}
-                    background: url("{{ asset_url }}") no-repeat fixed;
-                {% endimage %}
+
+                    background: url("{% block body_background_image %}{% image '../app/Resources/public/images/background.jpg' %}{{ asset_url }}{% endimage %}{% endblock %}") no-repeat fixed;
+
                 background-size: cover;
             }
         </style>

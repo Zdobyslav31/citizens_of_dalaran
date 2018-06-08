@@ -209,7 +209,7 @@ class NewsController extends Controller
             }
             catch (\Doctrine\DBAL\DBALException $e) {
                 $this->addFlash('error', 'message.edit_failed');
-                return $this->redirectToRoute('tag_view', ['id' => $news->getId()]);
+                return $this->redirectToRoute('news_view', ['id' => $news->getId()]);
             }
         }
 
@@ -258,7 +258,7 @@ class NewsController extends Controller
             }
             catch (\Doctrine\DBAL\DBALException $e) {
                 $this->addFlash('error', 'message.delete_failed');
-                return $this->redirectToRoute('tag_view', ['id' => $news->getId()]);
+                return $this->redirectToRoute('news_view', ['id' => $news->getId()]);
             }
         }
 
@@ -270,14 +270,5 @@ class NewsController extends Controller
                 'form' => $form->createView(),
             ]
         );
-    }
-
-
-    /**
-     * @return string
-     */
-    private function generateUniqueFileName()
-    {
-        return md5(uniqid());
     }
 }

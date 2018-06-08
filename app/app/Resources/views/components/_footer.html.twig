@@ -1,8 +1,8 @@
-<footer class="page-footer bg-light">
-    {% block footer %}
-        <div class="container-fluid text-center bg-secondary text-white">{{ 'info.footer'|trans }}</div>
-        {#<div class="footer-copyright text-center bg-secondary">#}
-            {#{{ 'info.copyright'|trans }}#}
-        {#</div>#}
+<footer class="page-footer bg-dark">
+    {% block footer_content %}
+        <div class="container-fluid text-center text-white">
+            {{ 'info.footer'|trans }}
+            <a class="ml-3 text-info" href="{{ path('static',{'title': 'about_website'}) }}">{{ 'message.more_info_about_website'|trans }}</a>
+        </div>
     {% endblock %}
 </footer>

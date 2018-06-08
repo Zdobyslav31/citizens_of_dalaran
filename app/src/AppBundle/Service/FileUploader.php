@@ -39,7 +39,7 @@ class FileUploader
     public function removeImageFile($fileName, $subdirectory_path)
     {
         $absolute_path = $this->uploadDirectory.'/'.$subdirectory_path.'/'.$fileName;
-        if (file_exists($absolute_path)) {
+        if (file_exists($absolute_path) && !is_dir($absolute_path)) {
             unlink($absolute_path);
         }
     }

@@ -5,9 +5,9 @@
 
 
 {% block content %}
-    {#{% if is_granted("ROLE_REDACTOR") %}#}
-        {#<a class="btn btn-success mb-3" href="{{ path('news_add') }}"><i class="fas fa-plus"></i> {{ 'message.add_new'|trans }}</a>#}
-    {#{% endif %}#}
+    {% if is_granted("ROLE_REDACTOR") %}
+        <a class="btn btn-success mb-3" href="{{ path('event_add') }}"><i class="fas fa-plus"></i> {{ 'message.add_new'|trans }}</a>
+    {% endif %}
     {% if events is defined and events|length %}
         {% set year = null %}
         {% for id, event in events %}
@@ -28,6 +28,14 @@
                             <a href="{{ path('event_view', {'id': event.id}) }}" class="link-unstyled">
                                 <h4>{{ event.name }}</h4>
                             </a>
+                            {% if is_granted("ROLE_REDACTOR") %}
+                                <a class="btn btn-primary float-right m-1 mb-3" href="{{ path('event_edit', {'id': event.id}) }}">
+                                    <i class="fas fa-edit"></i> {{ 'message.edit'|trans }}
+                                </a>
+                                <a class="btn btn-danger float-right m-1 mb-3" href="{{ path('event_delete', {'id': event.id}) }}">
+                                    <i class="fas fa-trash-alt"></i> {{ 'message.delete'|trans }}
+                                </a>
+                            {% endif %}
                             <p>
                                 {{ event.summary }}
                             </p>
@@ -38,17 +46,6 @@
             </div>
 
         {% endfor %}
-        <span class="text-center d-block mt-3">
-            {% if active_subelement == 'events' %}
-                <a href="{{ path('archive_event_index') }}" class="btn btn-secondary">
-                    <i class="fas fa-calendar-alt"></i> {{ 'message.show_archive'|trans }}
-                </a>
-            {% else %}
-                <a href="{{ path('event_index') }}" class="btn btn-secondary">
-                    <i class="far fa-calendar-alt"></i> {{ 'message.show_actual'|trans }}
-                </a>
-            {% endif %}
-        </span>
         <div class="d-flex justify-content-center">
             {% if events.haveToPaginate %}
                 <div class="navigation text-center">
@@ -61,4 +58,15 @@
     {% else %}
         {{ 'message.empty_list'|trans }}
     {% endif %}
+        <span class="text-center d-block mt-3">
+            {% if active_subelement == 'events' %}
+                <a href="{{ path('archive_event_index') }}" class="btn btn-secondary">
+                    <i class="fas fa-calendar-alt"></i> {{ 'message.show_archive'|trans }}
+                </a>
+            {% else %}
+                <a href="{{ path('event_index') }}" class="btn btn-secondary">
+                    <i class="far fa-calendar-alt"></i> {{ 'message.show_actual'|trans }}
+                </a>
+            {% endif %}
+        </span>
 {% endblock %}

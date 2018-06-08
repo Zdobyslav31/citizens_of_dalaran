@@ -4,8 +4,6 @@
  */
 namespace AppBundle\Form;
 use AppBundle\Entity\News;
-use AppBundle\Entity\Tag;
-use AppBundle\Entity\User;
 use AppBundle\Form\Type\TagsInputType;
 use AppBundle\Repository\TagRepository;
 use Symfony\Component\Form\CallbackTransformer;
@@ -23,6 +21,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class NewsType extends AbstractType
 {
+    private $tagRepository;
+
+
     /**
      * NewsType constructor.
      *

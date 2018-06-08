@@ -61,6 +61,7 @@ class TextsController extends Controller
                     'sidebar' => 'larps',
                     'active_element' => 'larps',
                     'active_subelement' => $title,
+                    'scroll_to_content' => true,
                     'texts' => $texts,
                     'index' => true,
                     'text_subdirectory_path' => self::UPLOAD_DIR,
@@ -93,6 +94,7 @@ class TextsController extends Controller
                 'sidebar' => 'group',
                 'active_element' => 'group',
                 'active_subelement' => $title,
+                'scroll_to_content' => true,
                 'texts' => $texts,
                 'index' => false,
                 'text_subdirectory_path' => self::UPLOAD_DIR,
@@ -125,6 +127,7 @@ class TextsController extends Controller
             'texts/index.html.twig',
             [
                 'active_element' => $title,
+                'scroll_to_content' => true,
                 'texts' => $texts,
                 'index' => false,
                 'text_subdirectory_path' => self::UPLOAD_DIR,
