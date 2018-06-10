@@ -138,6 +138,15 @@ label.applications_allowed: 'Zgłoszenia otwarte'
 label.displayed_main: 'Wyświetlane w karuzeli zdjęć na górze strony (wymaga przesłania obrazka)'
 label.event_tag: 'Tag powiązany z wydarzeniem'
 label.template_application: 'Wzór ankiety zgłoszeniowej'
-title.event_edit: Edytuj wydarzenie
-message.back_to_event: Wróć do wydarzenia
-title.event_delete: Usuń wydarzenie
+title.event_edit: 'Edytuj wydarzenie'
+message.back_to_event: 'Wróć do wydarzenia'
+title.event_delete: 'Usuń wydarzenie'
+carousel.slide1.alt: 'Larp W Obliczu Mrku'
+carousel.slide1.header: Weź udział w larpie!
+carousel.slide1.caption: Po co tylko czytać opowieści? Przeżyj je osobiście. To naprawdę proste.
+carousel.slide2.alt: Mapa larpowa
+carousel.slide2.header: Przeżywaj przygody!
+carousel.slide2.caption: Knuj intrygi, dokonuj czynów wspaniałych i podłych, walcz i zawieraj sojusze.
+carousel.slide3.alt: Magowie z World of Warcraft
+carousel.slide3.header: Dołącz do nas!
+carousel.slide3.caption: Stań się częścią naszej grupy, poznaj przyjaciół i baw się z nami.

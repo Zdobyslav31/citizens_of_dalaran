@@ -176,7 +176,6 @@ easy_admin:
             edit:
                 fields:
                     - title
-                    - imagePath
                     - createdDate
                     - modifiedDate
                     - { property: 'summary', type: 'ckeditor' }
@@ -216,3 +215,29 @@ easy_admin:
 
         Event:
             class: AppBundle\Entity\Event
+            image_base_path: './uploads/events/images/'
+            list:
+                fields:
+                    - name
+                    - { property: 'imagePath', type: 'image'}
+                    - dateStart
+                    - dateEnd
+                    - displayedMain
+                    - applicationsAllowed
+                    - location
+                    - price
+                    - participantsLimit
+            edit:
+                fields:
+                    - name
+                    - dateStart
+                    - dateEnd
+                    - displayedMain
+                    - applicationsAllowed
+                    - location
+                    - locationLink
+                    - price
+                    - participantsLimit
+                    - { property: 'summary', type: 'ckeditor' }
+                    - { property: 'description', type: 'ckeditor' }
+                    - tag

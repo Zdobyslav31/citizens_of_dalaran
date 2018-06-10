@@ -93,6 +93,18 @@ class EventRepository extends EntityRepository
         return $query->execute();
     }
 
+    public function findDisplayedMain($max)
+    {
+        $query = $this->createQueryBuilder('event')
+            ->select('event.id, event.imagePath, event.name, event.summary')
+            ->orderBy('event.dateStart', 'ASC')
+            ->Where('event.displayedMain = true')
+            ->setMaxResults($max)
+            ->getQuery();
+
+        return $query->execute();
+    }
+
     /**
      * Save entity.
      *

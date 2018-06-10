@@ -62,6 +62,42 @@ class EventController extends Controller
         return $response;
     }
 
+    public function carouselEventsAction($max = 3, $carousel)
+    {
+        $events = $this->eventRepository->findDisplayedMain($max);
+
+        $carousel_defaults = [
+            [
+                'image' => 'slide1.jpg',
+                'caption_h' => 'Header1',
+                'caption_p' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+            ],
+            [
+                'image' => 'slide2.jpg',
+                'caption_h' => 'Header2',
+                'caption_p' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+            ],
+            [
+                'image' => 'slide3.jpg',
+                'caption_h' => 'Header3',
+                'caption_p' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+            ]
+        ];
+
+        $response = $this->render(
+            'components/_carousel.html.twig',
+            [
+                'events' => $events,
+                'defaults' => $carousel_defaults,
+                'carousel_subdirectory_path' => '../app/Resources/public/images/',
+                'event_subdirectory_path' => self::UPLOAD_DIR,
+                'carousel' => $carousel,
+            ]
+        );
+        $response->setSharedMaxAge(600);    //for ESI caching
+        return $response;
+    }
+
     /**
      * Index action.
      * @param integer $page

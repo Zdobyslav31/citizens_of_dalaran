@@ -45,7 +45,10 @@
     <div id="front-container">
         {% block front_container %}
             {% if carousel is not null %}
-                {% include 'components/_carousel.html.twig' with {carousel: carousel}%}
+                {{ render_esi(controller(
+                    'AppBundle:Event:carouselEvents',
+                    { 'max': 3, 'carousel': carousel }
+                )) }}
             {% endif %}
         {% endblock %}
     </div>
