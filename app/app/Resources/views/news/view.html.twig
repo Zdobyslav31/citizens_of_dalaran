@@ -35,7 +35,7 @@
     <h4>
         {% if post.tags.values|length %}
             <span class="float-left mb-3">
-                <i title="{{ 'title.tags'|trans }}" class="fas fa-tags"></i> {{ 'message.tags'|trans }}
+                <a href="{{ path('tags_index') }}" class="link-unstyled"><i title="{{ 'title.tags'|trans }}" class="fas fa-tags"></i> {{ 'message.tags'|trans }}</a>
                 {% for tag in post.tags.values %}
                     <a href="{{ path('tag_view', {'id': tag.id}) }}" class="badge badge-dark">{{ tag.name }}</a>
                 {% endfor %}
