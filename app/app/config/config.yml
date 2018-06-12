@@ -149,7 +149,7 @@ fos_user:
             type: UserBundle\Form\ProfileType
 
 easy_admin:
-    site_name: '<img src="../app/Resources/public/images/logo.png" class="d-inline-block" width="30" height="30" alt="Citizens of Dalaran logo" /> Citizens of Dalaran'
+    site_name: 'Citizens of Dalaran'
     design:
         brand_color: 'purple'
         menu:

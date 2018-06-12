@@ -1,18 +1,18 @@
 <aside class="d-none d-md-block calendar">
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">
+            <h4 class="card-title">
                 <i class="far fa-calendar-alt"></i> {{ 'title.upcoming_events'|trans }}
-            </h3>
+            </h4>
         </div>
         <div class="card-body">
             {% if events is defined and events|length %}
                 <ul class="list-unstyled">
                     {% for event in events %}
                         <li>
-                            <h4>
+                            <h5>
                                 <a href="{{ path('event_view', {'id': event.id}) }}" class="link-unstyled">{{ event.name }}</a>
-                            </h4>
+                            </h5>
                             <div class="media">
                                 <div class="mr-3">
                                     {{ include('events/_calendar_card.html.twig') }}

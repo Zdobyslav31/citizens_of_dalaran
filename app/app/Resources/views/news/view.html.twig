@@ -8,23 +8,28 @@
     {{ post.title }}
 {% endblock %}
 {%  block content_description %}
-    {% if post.creator %}
-        {{ 'description.created'|trans({'%date%': post.createdDate|localizeddate('long', 'none')}) }}
-        <a href="{{ path('user_view', {'id': post.creator.id}) }}"> {{ post.creator.username }}</a>
-    {% else %}
-        {{ 'description.created'|trans({'%date%': post.createdDate|localizeddate('long', 'none')}) }}
-        <em>{{ 'info.deleted_user'|trans }}</em>
-    {% endif %}
+    <small>
+        <span class="d-block d-md-inline-block">
+            {% if post.creator %}
+                {{ 'description.created'|trans({'%date%': post.createdDate|localizeddate('long', 'none')}) }}
+                <a href="{{ path('user_view', {'id': post.creator.id}) }}"> {{ post.creator.username }}</a>
+            {% else %}
+                {{ 'description.created'|trans({'%date%': post.createdDate|localizeddate('long', 'none')}) }}
+                <em>{{ 'info.deleted_user'|trans }}</em>
+            {% endif %}
+        </span>
     {% if post.modifiedDate != post.createdDate %}
-        <br>
-        {% if post.modifier %}
-            {{ 'description.modified'|trans({'%date%': post.modifiedDate|localizeddate('long', 'none')}) }}
-            <a href="{{ path('user_view', {'id': post.modifier.id}) }}"> {{ post.modifier.username }}</a>
-        {% else %}
-            {{ 'description.modified'|trans({'%date%': post.modifiedDate|localizeddate('long', 'none')}) }}
-            <em>{{ 'info.deleted_user'|trans }}</em>
-        {% endif %}
+        <span class="d-block d-md-inline-block float-md-right">
+            {% if post.modifier %}
+                {{ 'description.modified'|trans({'%date%': post.modifiedDate|localizeddate('long', 'none')}) }}
+                <a href="{{ path('user_view', {'id': post.modifier.id}) }}"> {{ post.modifier.username }}</a>
+            {% else %}
+                {{ 'description.modified'|trans({'%date%': post.modifiedDate|localizeddate('long', 'none')}) }}
+                <em>{{ 'info.deleted_user'|trans }}</em>
+            {% endif %}
+        </span>
     {% endif %}
+    </small>
 {% endblock %}
 {% block content %}
     <h4>

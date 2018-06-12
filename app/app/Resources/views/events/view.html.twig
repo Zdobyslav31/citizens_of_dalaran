@@ -118,7 +118,15 @@
             {% endif %}
             {{ event.description|raw }}
             <span class="text-center d-block mt-3">
-                <a href="{{ path('event_index') }}" class="btn btn-secondary"><i class="far fa-calendar-alt"></i> {{ ('message.back_to_' ~ active_subelement)|trans }}</a>
+                {% if active_subelement == 'archive' %}
+                    <a href="{{ path('archive_event_index') }}" class="btn btn-secondary">
+                        <i class="fas fa-calendar-alt"></i> {{ ('message.back_to_' ~ active_subelement)|trans }}
+                    </a>
+                {% else %}
+                    <a href="{{ path('event_index') }}" class="btn btn-secondary">
+                        <i class="far fa-calendar-alt"></i> {{ ('message.back_to_' ~ active_subelement)|trans }}
+                    </a>
+                {% endif %}
             </span>
         </div>
     </div>

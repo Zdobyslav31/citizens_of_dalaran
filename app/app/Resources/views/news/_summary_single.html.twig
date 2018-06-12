@@ -5,7 +5,7 @@
                 {{ post.title }}
             </h3>
         </a>
-        <span class="float-right">
+        <span class="float-right"><small>
             {% if post.creator %}
                 <span class="d-none d-md-block">
                     {{ 'description.created'|trans({'%date%': post.createdDate|localizeddate('long', 'none')}) }}
@@ -46,7 +46,7 @@
                     </span>
                 {% endif %}
             {% endif %}
-        </span>
+        </small></span>
     </div>
     <div class="card-body">
         <a href="{{ url('news_view',{'id': post.id}) }}">

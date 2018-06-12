@@ -196,12 +196,12 @@ body {
     }
 
     #left-column.sidebar-present {
-        grid-column: 1 / 6;
+        grid-column: 1 / 5;
         display: block;
     }
 
     #main.sidebar-present {
-        grid-column: 6 / 13;
+        grid-column: 5 / 13;
     }
 }
 
@@ -240,6 +240,16 @@ body {
     .news-image {
         width: 60%;
         float: left;
+    }
+}
+
+@media (min-width:1200px) {
+    #left-column.sidebar-present {
+        grid-column-end: 3;
+    }
+
+    #main.sidebar-present {
+        grid-column-start: 3;
     }
 }
 
