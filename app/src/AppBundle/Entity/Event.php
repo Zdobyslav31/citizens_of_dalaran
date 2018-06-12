@@ -176,8 +176,8 @@ class Event
      */
     public function validate(ExecutionContextInterface $context)
     {
-        if ($this->getDisplayedMain() == true && $this->getImagePath() == null) {
-            $context->buildViolation('If you want the Event to be displayedMain, you have to upload cover image')
+        if ($this->getDisplayedMain() == true && $this->getImagePath() == null && $this->getTempImagePath() == null) {
+            $context->buildViolation('Jeśli chcesz, żeby wydarzenie wyświetlało się w karuzeli na stronie głównej, musisz przesłać jego obrazek.')
                 ->atPath('displayedMain')
                 ->addViolation();
         }
