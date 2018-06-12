@@ -86,8 +86,10 @@ class EventType extends AbstractType
             [
                 'label' => 'label.location_link',
                 'required' => false,
+                'disabled' => true,
                 'attr' => [
                     'default_protocol' => 'https',
+                    'placeholder' => 'label.inactive',
                 ],
             ]
         );
@@ -162,14 +164,16 @@ class EventType extends AbstractType
                 ]
             ]
         );
-//        $builder->add(
-//            'tag',
-//            TagsInputType::class,
-//            [
-//                'label' => 'label.event_tag',
-//                'required' => false,
-//            ]
-//        );
+        $builder->add(
+            'tag',
+            EntityType::class,
+            [
+                'class' => 'AppBundle\Entity\Tag',
+                'choice_label' => 'name',
+                'label' => 'label.event_tag',
+                'required' => false,
+            ]
+        );
 //        $builder->add(
 //            'templateApplication',
 //            EntityType::class,
