@@ -11,7 +11,7 @@ $('a[href^="#"]').on('click', function(event) {
     }
 });
 $( ".scroll-up" ).each(function() {
-    if ($( this ).offset().top < $(window).height()) {
-        $( this ).addClass( "d-none" );
+    if ($( this ).offset().top < $(window).height() + $("#main-container").offset().top) {
+        $( this ).addClass("d-none");
     }
 });
