@@ -10,3 +10,8 @@ $('a[href^="#"]').on('click', function(event) {
         }, 1000);
     }
 });
+$( ".scroll-up" ).each(function() {
+    if ($( this ).offset().top < $(window).height()) {
+        $( this ).addClass( "d-none" );
+    }
+});
