@@ -38,7 +38,7 @@
         </style>
     {% endblock %}
 </head>
-<body id="{% block body_id %}{% endblock %}" class="{% block body_class_layout %}{% endblock %}">
+<body id="{% block body_id %}body{% endblock %}" class="{% block body_class_layout %}{% endblock %}">
 
 {% block body %}
     {% include 'components/_navbar.html.twig' %}
@@ -98,7 +98,7 @@
 {{ include('components/_footer.html.twig') }}
 {% block javascripts %}
     {% javascripts '@jquery' '@bootstrap_js' '@tagsinput_js' '../app/Resources/public/js/*' %}
-        <script type="text/javascript" src="{{ asset_url }}"></script>
+        <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
     {{ tinymce_init({
         selector: '.mceEditor',

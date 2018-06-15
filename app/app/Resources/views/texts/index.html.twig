@@ -31,7 +31,7 @@
         {% if index %}
             <ol>
                 {% for id, text in texts %}
-                    <a href="#{{ id }}"><li>{{ text.title }}</li></a>
+                    <li><a href="#{{ id }}">{{ text.title }}</a></li>
                 {% endfor %}
             </ol>
             <a class="card text-white bg-info mb-3" href="{{ path('static', {'title': 'about_website'}) }}">
@@ -46,7 +46,7 @@
                 {% if text.imagePath %}
                     <img class="card-img-top" src="{{ asset('./uploads/' ~ text_subdirectory_path ~ '/' ~ text.imagePath) }}" alt="{{ text.imgDescription|striptags|replace({'&nbsp;' : ' ', '&oacute;' : 'ó'}) }} - photo">
                     {% if text.imgDescription %}
-                        <em class="mr-3 ml-3 mb-0">{{ text.imgDescription|raw }}</em>
+                        <span class="mr-3 ml-3 mb-0" style="font-style: italic">{{ text.imgDescription|raw }}</span>
                     {% endif %}
                 {% endif %}
                 <div class="card-body">
