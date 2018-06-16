@@ -84,7 +84,6 @@ class TagController extends Controller
      */
     public function viewAction(Tag $tag, NewsController $newsController)
     {
-
         return $this->render(
             'tags/view.html.twig',
             [
@@ -119,11 +118,9 @@ class TagController extends Controller
             try {
                 $this->tagRepository->save($tag);
                 $this->addFlash('success', 'message.created_successfully');
-            }
-            catch (\Doctrine\DBAL\DBALException $e) {
+            } catch (\Doctrine\DBAL\DBALException $e) {
                 $this->addFlash('error', 'message.add_failed');
-            }
-            finally {
+            } finally {
                 return $this->redirectToRoute('tags_index');
             }
         }
@@ -132,7 +129,7 @@ class TagController extends Controller
             'tags/add.html.twig',
             [
                 'tag' => $tag,
-                'scroll_to_content' => True,
+                'scroll_to_content' => true,
                 'form' => $form->createView(),
             ]
         );
@@ -169,8 +166,7 @@ class TagController extends Controller
                 $this->addFlash('success', 'message.edited_successfully');
 
                 return $this->redirectToRoute('tags_index');
-            }
-            catch (\Doctrine\DBAL\DBALException $e) {
+            } catch (\Doctrine\DBAL\DBALException $e) {
                 $this->addFlash('error', 'message.edit_failed');
                 return $this->redirectToRoute('tag_view', ['id' => $tag->getId()]);
             }
@@ -180,7 +176,7 @@ class TagController extends Controller
             'tags/edit.html.twig',
             [
                 'tag' => $tag,
-                'scroll_to_content' => True,
+                'scroll_to_content' => true,
                 'form' => $form->createView(),
             ]
         );
@@ -219,8 +215,7 @@ class TagController extends Controller
                 $this->addFlash('success', 'message.deleted_successfully');
 
                 return $this->redirectToRoute('tags_index');
-            }
-            catch (\Doctrine\DBAL\DBALException $e) {
+            } catch (\Doctrine\DBAL\DBALException $e) {
                 $this->addFlash('error', 'message.delete_failed');
                 return $this->redirectToRoute('tag_view', ['id' => $tag->getId()]);
             }
@@ -230,10 +225,9 @@ class TagController extends Controller
             'tags/delete.html.twig',
             [
                 'tag' => $tag,
-                'scroll_to_content' => True,
+                'scroll_to_content' => true,
                 'form' => $form->createView(),
             ]
         );
     }
-
 }

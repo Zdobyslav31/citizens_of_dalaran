@@ -383,7 +383,8 @@ class News
      * @param UploadedFile $file
      * @return object
      */
-    public function setImageFile(UploadedFile $file = null) {
+    public function setImageFile(UploadedFile $file = null)
+    {
         // set the value of the holder
         $this->imageFile = $file;
         // check if we have an old image path
@@ -401,7 +402,8 @@ class News
     /**
      * Clears image file
      */
-    public function clearImageFile() {
+    public function clearImageFile()
+    {
         $this->imageFile = null;
     }
 
@@ -410,8 +412,8 @@ class News
      *
      * @return UploadedFile
      */
-    public function getImageFile() {
-
+    public function getImageFile()
+    {
         return $this->imageFile;
     }
 

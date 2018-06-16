@@ -234,8 +234,7 @@ class EventController extends Controller
 
                 $this->addFlash('success', 'message.created_successfully');
                 return $this->redirectToRoute('event_view', ['id' => $event->getId()]);
-            }
-            catch (\Doctrine\DBAL\DBALException $e) {
+            } catch (\Doctrine\DBAL\DBALException $e) {
                 $this->addFlash('error', 'message.create_failed');
                 return $this->redirectToRoute('event_index');
             }
@@ -245,7 +244,7 @@ class EventController extends Controller
             'events/add.html.twig',
             [
                 'event' => $event,
-                'scroll_to_content' => True,
+                'scroll_to_content' => true,
                 'form' => $form->createView(),
             ]
         );
@@ -271,7 +270,6 @@ class EventController extends Controller
      */
     public function editAction(Request $request, Event $event, FileUploader $fileUploader)
     {
-
         $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
 
@@ -284,9 +282,7 @@ class EventController extends Controller
                         $event->setTempImagePath(null);
                     }
                     $event->clearImageFile();
-
-                }
-                else {
+                } else {
                     if (null != $event->getTempImagePath()) {
                         $event->setImagePath($event->getTempImagePath());
                     }
@@ -296,8 +292,7 @@ class EventController extends Controller
                 $this->addFlash('success', 'message.edited_successfully');
 
                 return $this->redirectToRoute('event_view', ['id' => $event->getId()]);
-            }
-            catch (\Doctrine\DBAL\DBALException $e) {
+            } catch (\Doctrine\DBAL\DBALException $e) {
                 $this->addFlash('error', 'message.edit_failed');
                 return $this->redirectToRoute('event_view', ['id' => $event->getId()]);
             }
@@ -307,7 +302,7 @@ class EventController extends Controller
             'events/edit.html.twig',
             [
                 'event' => $event,
-                'scroll_to_content' => True,
+                'scroll_to_content' => true,
                 'form' => $form->createView(),
             ]
         );
@@ -345,8 +340,7 @@ class EventController extends Controller
                 $this->addFlash('success', 'message.deleted_successfully');
 
                 return $this->redirectToRoute('event_index');
-            }
-            catch (\Doctrine\DBAL\DBALException $e) {
+            } catch (\Doctrine\DBAL\DBALException $e) {
                 $this->addFlash('error', 'message.delete_failed');
                 return $this->redirectToRoute('event_view', ['id' => $event->getId()]);
             }
@@ -356,7 +350,7 @@ class EventController extends Controller
             'events/delete.html.twig',
             [
                 'event' => $event,
-                'scroll_to_content' => True,
+                'scroll_to_content' => true,
                 'form' => $form->createView(),
             ]
         );

@@ -13,7 +13,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
 
-
 class TextsController extends Controller
 {
     /**
@@ -55,7 +54,7 @@ class TextsController extends Controller
     {
         $texts = $this->textRepository->queryByParent($title);
 
-            return $this->render(
+        return $this->render(
                 'texts/index.html.twig',
                 [
                     'sidebar' => 'larps',
@@ -222,10 +221,9 @@ class TextsController extends Controller
                         $text->setTempImagePath(null);
                     }
                     $text->clearImageFile();
-                }
-                else {
+                } else {
                     if (null != $text->getTempImagePath()) {
-                    $text->setImagePath($text->getTempImagePath());
+                        $text->setImagePath($text->getTempImagePath());
                     }
                 }
                 $this->textRepository->save($text);
@@ -279,8 +277,7 @@ class TextsController extends Controller
                 $this->addFlash('success', 'message.deleted_successfully');
 
                 return $this->redirectToRoute('static', ['title' => $text->getParentTitle()]);
-            }
-            catch (\Doctrine\DBAL\DBALException $e) {
+            } catch (\Doctrine\DBAL\DBALException $e) {
                 $this->addFlash('error', 'message.delete_failed');
                 return $this->redirectToRoute('static', ['title' => $text->getParentTitle()]);
             }
@@ -290,10 +287,9 @@ class TextsController extends Controller
             'texts/delete.html.twig',
             [
                 'text' => $text,
-                'scroll_to_content' => True,
+                'scroll_to_content' => true,
                 'form' => $form->createView(),
             ]
         );
     }
 }
-

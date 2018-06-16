@@ -3,6 +3,7 @@
  * Event type.
  */
 namespace AppBundle\Form;
+
 use AppBundle\Entity\Event;
 use AppBundle\Entity\Tag;
 use AppBundle\Form\Type\TagsInputType;
@@ -18,6 +19,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+
 /**
  * Class EventType.
  */
@@ -135,14 +137,16 @@ class EventType extends AbstractType
                 ],
             ]
         );
-        $builder->add('imageFile',
+        $builder->add(
+            'imageFile',
             null,
             [
                 'label' => 'label.event_image',
                 'data_class' => null,
             ]
         );
-        $builder->add('applicationsAllowed',
+        $builder->add(
+            'applicationsAllowed',
             ChoiceType::class,
             [
                 'label' => 'label.applications_allowed',
@@ -153,7 +157,8 @@ class EventType extends AbstractType
                 ]
             ]
         );
-        $builder->add('displayedMain',
+        $builder->add(
+            'displayedMain',
             ChoiceType::class,
             [
                 'label' => 'label.displayed_main',

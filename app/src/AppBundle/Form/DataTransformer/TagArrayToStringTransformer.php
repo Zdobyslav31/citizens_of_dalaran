@@ -8,9 +8,11 @@
  * file that was distributed with this source code.
  */
 namespace AppBundle\Form\DataTransformer;
+
 use AppBundle\Entity\Tag;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Form\DataTransformerInterface;
+
 /**
  * This data transformer is used to translate the array of tags into a comma separated format
  * that can be displayed and managed by Bootstrap-tagsinput js plugin (and back on submit).

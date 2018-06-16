@@ -103,7 +103,7 @@ class NewsController extends Controller
             [
                 'post' => $news,
                 'active_element' => 'news',
-                'scroll_to_content' => True,
+                'scroll_to_content' => true,
                 'size' => $news->getTags()->getValues(),
                 'news_subdirectory_path' => self::UPLOAD_DIR,
             ]
@@ -143,8 +143,7 @@ class NewsController extends Controller
 
                 $this->addFlash('success', 'message.created_successfully');
                 return $this->redirectToRoute('news_view', ['id' => $news->getId()]);
-            }
-            catch (\Doctrine\DBAL\DBALException $e) {
+            } catch (\Doctrine\DBAL\DBALException $e) {
                 $this->addFlash('error', 'message.create_failed');
                 return $this->redirectToRoute('homepage');
             }
@@ -154,7 +153,7 @@ class NewsController extends Controller
             'news/add.html.twig',
             [
                 'news' => $news,
-                'scroll_to_content' => True,
+                'scroll_to_content' => true,
                 'form' => $form->createView(),
             ]
         );
@@ -194,9 +193,7 @@ class NewsController extends Controller
                         $news->setTempImagePath(null);
                     }
                     $news->clearImageFile();
-
-                }
-                else {
+                } else {
                     if (null != $news->getTempImagePath()) {
                         $news->setImagePath($news->getTempImagePath());
                     }
@@ -206,8 +203,7 @@ class NewsController extends Controller
                 $this->addFlash('success', 'message.edited_successfully');
 
                 return $this->redirectToRoute('news_view', ['id' => $news->getId()]);
-            }
-            catch (\Doctrine\DBAL\DBALException $e) {
+            } catch (\Doctrine\DBAL\DBALException $e) {
                 $this->addFlash('error', 'message.edit_failed');
                 return $this->redirectToRoute('news_view', ['id' => $news->getId()]);
             }
@@ -217,7 +213,7 @@ class NewsController extends Controller
             'news/edit.html.twig',
             [
                 'news' => $news,
-                'scroll_to_content' => True,
+                'scroll_to_content' => true,
                 'form' => $form->createView(),
             ]
         );
@@ -255,8 +251,7 @@ class NewsController extends Controller
                 $this->addFlash('success', 'message.deleted_successfully');
 
                 return $this->redirectToRoute('homepage');
-            }
-            catch (\Doctrine\DBAL\DBALException $e) {
+            } catch (\Doctrine\DBAL\DBALException $e) {
                 $this->addFlash('error', 'message.delete_failed');
                 return $this->redirectToRoute('news_view', ['id' => $news->getId()]);
             }
@@ -266,7 +261,7 @@ class NewsController extends Controller
             'news/delete.html.twig',
             [
                 'news' => $news,
-                'scroll_to_content' => True,
+                'scroll_to_content' => true,
                 'form' => $form->createView(),
             ]
         );

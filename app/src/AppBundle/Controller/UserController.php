@@ -88,7 +88,7 @@ class UserController extends Controller
             [
                 'user' => $user,
                 'active_element' => 'users',
-                'scroll_to_content' => True,
+                'scroll_to_content' => true,
                 'posts' => $newsRepository->findAllByUser($user),
                 'user_subdirectory_path' => $this::UPLOAD_DIR,
                 'news_subdirectory_path' => $newsController::UPLOAD_DIR,

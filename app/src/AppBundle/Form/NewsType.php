@@ -3,6 +3,7 @@
  * News type.
  */
 namespace AppBundle\Form;
+
 use AppBundle\Entity\News;
 use AppBundle\Form\Type\TagsInputType;
 use AppBundle\Repository\TagRepository;
@@ -16,6 +17,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+
 /**
  * Class NewsType.
  */
@@ -58,7 +60,8 @@ class NewsType extends AbstractType
             [
                 'label' => 'label.tags',
                 'required' => false,
-            ]);
+            ]
+        );
         $builder->add(
             'summary',
             TextareaType::class,
@@ -85,7 +88,8 @@ class NewsType extends AbstractType
                 ],
             ]
         );
-        $builder->add('imageFile',
+        $builder->add(
+            'imageFile',
             null,
             [
                 'label' => 'label.image',

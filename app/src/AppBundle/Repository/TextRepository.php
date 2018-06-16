@@ -7,7 +7,6 @@ use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
 use AppBundle\Entity\Text;
 
-
 /**
  * TextRepository
  *

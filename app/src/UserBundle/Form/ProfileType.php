@@ -19,7 +19,8 @@ class ProfileType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('profilePictureFile',
+        $builder->add(
+            'profilePictureFile',
             null,
             [
                 'label' => 'label.image',
@@ -37,71 +38,71 @@ class ProfileType extends AbstractType
                 ],
             ]
         );
-        $builder->add(
-            'name',
-            TextType::class,
-            [
-                'label' => 'label.names',
-                'required' => false,
-                'attr' => [
-                    'max_length' => 254,
-                ],
-            ]
-        );
-        $builder->add(
-            'dateOfBirth',
-            BirthdayType::class,
-            [
-                'label' => 'label.birthday',
-                'required' => false,
-            ]
-        );
-        $builder->add(
-            'phoneNumber',
-            TextType::class,
-            [
-                'label' => 'label.phone_number',
-                'required' => false,
-                'attr' => [
-                    'max_length' => 44,
-                ],
-            ]
-        );
-        $builder->add(
-            'emergencyPhone',
-            TextType::class,
-            [
-                'label' => 'label.emergency_phone',
-                'required' => false,
-                'attr' => [
-                    'max_length' => 44,
-                ],
-            ]
-        );
-        $builder->add(
-            'healthIssues',
-            TextareaType::class,
-            [
-                'label' => 'label.health_issues',
-                'required' => false,
-                'attr' => [
-                    'max_length' => 999,
-                    'rows' => 4,
-                ],
-            ]
-        );
-        $builder->add(
-            'nourishmentIssues',
-            TextareaType::class,
-            [
-                'label' => 'label.nourishment_issues',
-                'required' => false,
-                'attr' => [
-                    'max_length' => 999,
-                    'rows' => 4,
-                ],
-            ]
-        );
+//        $builder->add(
+//            'name',
+//            TextType::class,
+//            [
+//                'label' => 'label.names',
+//                'required' => false,
+//                'attr' => [
+//                    'max_length' => 254,
+//                ],
+//            ]
+//        );
+//        $builder->add(
+//            'dateOfBirth',
+//            BirthdayType::class,
+//            [
+//                'label' => 'label.birthday',
+//                'required' => false,
+//            ]
+//        );
+//        $builder->add(
+//            'phoneNumber',
+//            TextType::class,
+//            [
+//                'label' => 'label.phone_number',
+//                'required' => false,
+//                'attr' => [
+//                    'max_length' => 44,
+//                ],
+//            ]
+//        );
+//        $builder->add(
+//            'emergencyPhone',
+//            TextType::class,
+//            [
+//                'label' => 'label.emergency_phone',
+//                'required' => false,
+//                'attr' => [
+//                    'max_length' => 44,
+//                ],
+//            ]
+//        );
+//        $builder->add(
+//            'healthIssues',
+//            TextareaType::class,
+//            [
+//                'label' => 'label.health_issues',
+//                'required' => false,
+//                'attr' => [
+//                    'max_length' => 999,
+//                    'rows' => 4,
+//                ],
+//            ]
+//        );
+//        $builder->add(
+//            'nourishmentIssues',
+//            TextareaType::class,
+//            [
+//                'label' => 'label.nourishment_issues',
+//                'required' => false,
+//                'attr' => [
+//                    'max_length' => 999,
+//                    'rows' => 4,
+//                ],
+//            ]
+//        );
     }
 
     public function getParent()

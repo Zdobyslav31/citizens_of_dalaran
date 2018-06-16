@@ -8,7 +8,6 @@ use Pagerfanta\Pagerfanta;
 use AppBundle\Entity\Event;
 use UserBundle\Entity\User;
 
-
 /**
  * EventRepository
  *
@@ -55,7 +54,8 @@ class EventRepository extends EntityRepository
      *
      * @return \Doctrine\ORM\QueryBuilder
      */
-    public function findAllFuture() {
+    public function findAllFuture()
+    {
         return $this->createQueryBuilder('event')
             ->orderBy('event.dateStart', 'ASC')
             ->where('event.dateEnd > :now')
@@ -67,7 +67,8 @@ class EventRepository extends EntityRepository
      *
      * @return \Doctrine\ORM\QueryBuilder
      */
-    public function findAllPast() {
+    public function findAllPast()
+    {
         return $this->createQueryBuilder('event')
             ->orderBy('event.dateStart', 'DESC')
             ->where('event.dateEnd < :now')

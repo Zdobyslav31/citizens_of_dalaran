@@ -8,6 +8,7 @@
  * file that was distributed with this source code.
  */
 namespace AppBundle\Form\Type;
+
 use AppBundle\Entity\Tag;
 use AppBundle\Form\DataTransformer\TagArrayToStringTransformer;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -17,6 +18,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
+
 /**
  * Defines the custom form field type used to manipulate tags values across
  * Bootstrap-tagsinput javascript plugin.

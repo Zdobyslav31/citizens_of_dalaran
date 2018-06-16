@@ -144,7 +144,8 @@ class User extends BaseUser
      * @param UploadedFile $file
      * @return object
      */
-    public function setProfilePictureFile(UploadedFile $file = null) {
+    public function setProfilePictureFile(UploadedFile $file = null)
+    {
         // set the value of the holder
         $this->profilePictureFile       =   $file;
         // check if we have an old image path
@@ -164,8 +165,8 @@ class User extends BaseUser
      *
      * @return UploadedFile
      */
-    public function getProfilePictureFile() {
-
+    public function getProfilePictureFile()
+    {
         return $this->profilePictureFile;
     }
 
@@ -195,7 +196,8 @@ class User extends BaseUser
     /**
      * Get the absolute path of the profilePicturePath
      */
-    public function getProfilePictureAbsolutePath() {
+    public function getProfilePictureAbsolutePath()
+    {
         return null === $this->profilePicturePath
             ? null
             : $this->getUploadRootDir().'/'.$this->profilePicturePath;
@@ -206,7 +208,8 @@ class User extends BaseUser
      *
      * @return string
      */
-    protected function getUploadRootDir($type='profilePicture') {
+    protected function getUploadRootDir($type='profilePicture')
+    {
         // the absolute directory path where uploaded
         // documents should be saved
         return __DIR__.'/../../../web/'.$this->getUploadDir($type);
@@ -217,7 +220,8 @@ class User extends BaseUser
      *
      * @return string
      */
-    protected function getUploadDir($type='profilePicture') {
+    protected function getUploadDir($type='profilePicture')
+    {
         // the type param is to change these methods at a later date for more file uploads
         // get rid of the __DIR__ so it doesn't screw up
         // when displaying uploaded doc/image in the view.
@@ -229,8 +233,8 @@ class User extends BaseUser
      *
      * @return string
      */
-    public function getWebProfilePicturePath() {
-
+    public function getWebProfilePicturePath()
+    {
         return '/'.$this->getUploadDir().'/'.$this->getProfilePicturePath();
     }
 
@@ -238,7 +242,8 @@ class User extends BaseUser
      * @ORM\PrePersist()
      * @ORM\PreUpdate()
      */
-    public function preUploadProfilePicture() {
+    public function preUploadProfilePicture()
+    {
         if (null !== $this->getProfilePictureFile()) {
             // a file was uploaded
             // generate a unique filename
@@ -252,14 +257,13 @@ class User extends BaseUser
      *
      * @return string
      */
-    public function generateRandomProfilePictureFilename() {
+    public function generateRandomProfilePictureFilename()
+    {
         $count =0;
         do {
             $randomString = md5(uniqid());
             $count++;
-        }
-
-        while(file_exists($this->getUploadRootDir().'/'.$randomString.'.'.$this->getProfilePictureFile()->guessExtension()) && $count < 50);
+        } while (file_exists($this->getUploadRootDir().'/'.$randomString.'.'.$this->getProfilePictureFile()->guessExtension()) && $count < 50);
 
         return $randomString;
     }
@@ -272,7 +276,8 @@ class User extends BaseUser
      *
      * @return mixed
      */
-    public function uploadProfilePicture() {
+    public function uploadProfilePicture()
+    {
         // check there is a profile pic to upload
         if ($this->getProfilePictureFile() === null) {
             return;

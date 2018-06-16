@@ -17,6 +17,8 @@
 /web/bundles/
 .idea
 ../composer.phar
+../php-cs-fixer
+../.php_cs.cache
 /web/assetic
 /web/css
 /web/js

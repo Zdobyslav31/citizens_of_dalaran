@@ -31,7 +31,8 @@ class FileUploader
      * @param UploadedFile $file
      * @return string
      */
-    public function generateFileName($file) {
+    public function generateFileName($file)
+    {
         var_dump($file);
         return md5(uniqid()).'.'.$file->guessExtension();
     }
@@ -43,5 +44,4 @@ class FileUploader
             unlink($absolute_path);
         }
     }
-
 }

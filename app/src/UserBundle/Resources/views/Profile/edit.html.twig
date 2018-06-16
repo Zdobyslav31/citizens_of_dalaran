@@ -14,17 +14,17 @@
         {{ form_row(form.email) }}
         {{ form_row(form.profilePictureFile) }}
         {{ form_row(form.description) }}
-        <hr>
-        <div class="card text-white bg-info mb-3">
-            <div class="card-header"><h4><i class="fas fa-info-circle"></i> {{ 'message.personal_data_title'|trans }}</h4></div>
-            <div class="card-body">{{ 'message.personal_data_info'|trans }}</div>
-        </div>
-        {{ form_row(form.name) }}
-        {{ form_row(form.dateOfBirth) }}
-        {{ form_row(form.phoneNumber) }}
-        {{ form_row(form.emergencyPhone) }}
-        {{ form_row(form.healthIssues) }}
-        {{ form_row(form.nourishmentIssues) }}
+        {#<hr>#}
+        {#<div class="card text-white bg-info mb-3">#}
+            {#<div class="card-header"><h4><i class="fas fa-info-circle"></i> {{ 'message.personal_data_title'|trans }}</h4></div>#}
+            {#<div class="card-body">{{ 'message.personal_data_info'|trans }}</div>#}
+        {#</div>#}
+        {#{{ form_row(form.name) }}#}
+        {#{{ form_row(form.dateOfBirth) }}#}
+        {#{{ form_row(form.phoneNumber) }}#}
+        {#{{ form_row(form.emergencyPhone) }}#}
+        {#{{ form_row(form.healthIssues) }}#}
+        {#{{ form_row(form.nourishmentIssues) }}#}
         <div>
             <input type="submit" class="btn btn-primary" value="{{ 'profile.edit.submit'|trans({}, 'FOSUserBundle') }}" />
         </div>

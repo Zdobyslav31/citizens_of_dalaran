@@ -8,7 +8,6 @@ use Pagerfanta\Pagerfanta;
 use AppBundle\Entity\News;
 use UserBundle\Entity\User;
 
-
 /**
  * NewsRepository
  *

@@ -382,7 +382,8 @@ class Event
      * @param UploadedFile $file
      * @return object
      */
-    public function setImageFile(UploadedFile $file = null) {
+    public function setImageFile(UploadedFile $file = null)
+    {
         // set the value of the holder
         $this->imageFile = $file;
         // check if we have an old image path
@@ -400,7 +401,8 @@ class Event
     /**
      * Clears image file
      */
-    public function clearImageFile() {
+    public function clearImageFile()
+    {
         $this->imageFile = null;
     }
 
@@ -409,8 +411,8 @@ class Event
      *
      * @return UploadedFile
      */
-    public function getImageFile() {
-
+    public function getImageFile()
+    {
         return $this->imageFile;
     }
 
