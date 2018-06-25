@@ -29,16 +29,18 @@
             <a class="btn btn-success mb-3 float-right" href="{{ path('texts_add') }}"><i class="fas fa-plus"></i> {{ 'message.add_new'|trans }}</a>
         {% endif %}
         {% if index %}
-            <ol>
+            <ol class="mb-2">
                 {% for id, text in texts %}
                     <li><a href="#{{ id }}">{{ text.title }}</a></li>
                 {% endfor %}
             </ol>
-            <a class="card text-white bg-info mb-3" href="{{ path('static', {'title': 'about_website'}) }}">
-                <div class="card-body">
-                    <i class="fas fa-info-circle"></i> {{ 'message.info_source'|trans }}
-                </div>
-            </a>
+            <div class="alert alert-info mb-2">
+                <a class="link-unstyled" href="{{ path('static', {'title': 'about_website'}) }}">
+                    <small>
+                        <i class="fas fa-info-circle"></i> {{ 'message.info_source'|trans }}
+                    </small>
+                </a>
+            </div>
         {% endif %}
         <div class="clearfix"></div>
         {% for id, text in texts %}

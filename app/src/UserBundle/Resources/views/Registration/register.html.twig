@@ -9,14 +9,11 @@
 {% block fos_user_content %}{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
     {{ form_row(form.username) }}
     {{ form_row(form.plainPassword) }}
-    {{ form_label(form.email) }}
-    <div class="card text-white bg-info mb-1">
-        <div class="card-body"><i class="fas fa-info-circle"></i> {{ 'message.email_data_info'|trans|raw }}</div>
-    </div>
-    {{ form_errors(form.email) }}
-    {{ form_widget(form.email) }}
+    {{ form_row(form.email) }}
     {{ form_row(form.profilePictureFile) }}
     {{ form_row(form.description) }}
+    {{ form_row(form.personal_data_agreement) }}
+    {{ form_row(form.personal_data_info_clause) }}
     {#<hr>#}
     {#<div class="card text-white bg-info mb-3">#}
         {#<div class="card-header"><h4><i class="fas fa-info-circle"></i> {{ 'message.personal_data_title'|trans }}</h4></div>#}

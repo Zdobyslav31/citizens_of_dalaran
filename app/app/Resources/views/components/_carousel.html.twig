@@ -20,9 +20,10 @@
                         </div>
                         </a>
                     </div>
+                {% set counter = counter + 1 %}
             {% endfor %}
         {% endif %}
-        <div class="carousel-item{% if events|length == 0 %} active{% endif %}">
+        <div class="carousel-item{% if counter is not defined %} active{% endif %}">
             <a href="{{ path('larps', {'title': 'what_is_larp'}) }}" class="link-unstyled">
                 {% image '../app/Resources/public/images/slide1.jpg' %}
                     <img class="d-block w-100" src="{{ asset_url }}" alt="{{ 'carousel.slide1.alt'|trans }}">

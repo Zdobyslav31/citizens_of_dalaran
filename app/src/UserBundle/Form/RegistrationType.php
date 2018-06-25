@@ -9,6 +9,7 @@
 namespace UserBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -36,6 +37,24 @@ class RegistrationType extends AbstractType
                     'max_length' => 254,
                     'rows' => 2,
                 ],
+            ]
+        );
+        $builder->add(
+            'personal_data_agreement',
+            CheckboxType::class,
+            [
+                'label' => 'label.personal_data_agreement',
+                'required' => true,
+                'mapped' => false,
+            ]
+        );
+        $builder->add(
+            'personal_data_info_clause',
+            CheckboxType::class,
+            [
+                'label' => 'label.personal_data_info_clause',
+                'required' => true,
+                'mapped' => false,
             ]
         );
 //        $builder->add(
