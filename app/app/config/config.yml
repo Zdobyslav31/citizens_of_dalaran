@@ -178,7 +178,7 @@ easy_admin:
                     - title
                     - createdDate
                     - modifiedDate
-                    - { property: 'summary', type: 'ckeditor' }
+                    - summary
                     - { property: 'content', type: 'ckeditor' }
         User:
             class: UserBundle\Entity\User
