@@ -13,6 +13,18 @@
     {{ form_row(form.profilePictureFile) }}
     {{ form_row(form.description) }}
     {{ form_row(form.personal_data_agreement) }}
+
+    <p>
+        <a class="text-info" data-toggle="collapse" href="#informationClause" role="button" aria-expanded="false" aria-controls="informationClause">
+            <i class="fas fa-info-circle"></i> {{ 'message.read_information_clause'|trans }}
+        </a>
+    </p>
+    <div class="collapse" id="informationClause">
+        <div class="card border-info  text-info card-body">
+            {{ 'information_clause'|trans }}
+        </div>
+    </div>
+
     {{ form_row(form.personal_data_info_clause) }}
     {#<hr>#}
     {#<div class="card text-white bg-info mb-3">#}
@@ -26,7 +38,7 @@
     {#{{ form_row(form.healthIssues) }}#}
     {#{{ form_row(form.nourishmentIssues) }}#}
     <div>
-        <input type="submit" value="{{ 'registration.submit'|trans({}, 'FOSUserBundle') }}" />
+        <input class="btn btn-primary" type="submit" value="{{ 'registration.submit'|trans({}, 'FOSUserBundle') }}" />
     </div>
     {{ form_end(form) }}
 {% endblock fos_user_content %}

@@ -86,7 +86,7 @@ label.health_issues: 'Problemy zdrowotne, o których powinniśmy wiedzieć'
 label.nourishment_issues: 'Czy są jakieś rzeczy których nie jesz, lub nie pijesz?'
 message.personal_data_title: 'Informacje o osobie'
 message.personal_data_info: 'Tych danych nie musisz podawać w trakcie rejestracji. Będą potrzebne, kiedy będziesz chciał wziąć udział w jednym z naszych wydarzeń.'
-message.info_source: 'Informacje i cytaty zawarte w tej części strony pochodzą ze źródeł wymienionych w zakładce "O serwisie".'
+message.info_source: 'Informacje i cytaty zawarte w tej części strony pochodzą ze źródeł wymienionych w zakładce „O serwisie”.'
 title.texts_not_found: 'Brak tekstów'
 message.texts_not_found: 'Przepraszamy, nie znaleźliśmy na naszej stronie żadnych tekstów na ten temat.'
 message.error.404: 'Szukaliśmy i szukali, ale nie znaleźliśmy tej strony. Przykro nam z tego powodu. Sprawdź, czy poprawnie wpisałeś adres.'
@@ -151,6 +151,7 @@ carousel.slide3.alt: Magowie z World of Warcraft
 carousel.slide3.header: Dołącz do nas!
 carousel.slide3.caption: Stań się częścią naszej grupy, poznaj przyjaciół i baw się z nami.
 label.inactive: Pole nieaktywne
-label.personal_data_agreement: 'Wyrażam zgodę na przetwarzanie danych osobowych'
-label.personal_data_info_clause: 'Przyjmuję do wiadomości że RODO'
-message.email_data_info: 'Administratorem Twoich danych jest autor strony. Podanie emaila jest dobrowolne, ale konieczne do założenia konta. Serwis nie wysyła żadnych niechcianych informacji. Zgodnie z RODO w każdym momencie możesz zmienić swoje dane lub usunąć poprzez usunięcie swojego konta.'
+label.personal_data_agreement: 'Wyrażam zgodę na przetwarzanie moich danych osobowych w zakresie: adres e-mail w celu obsługi konta użytkownika zgodnie z Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 oraz zgodnie z klauzulą informacyjną dołączoną do mojej zgody.'
+message.read_information_clause: 'Przeczytaj klauzulę informacyjną'
+information_clause: 'Zgodnie z art. 13 Rozporządzenia Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. w sprawie ochrony osób fizycznych w związku z przetwarzaniem danych osobowych (…) („Rozporządzenie Ogólne”) Uniwersytet Jagielloński informuje, że: Administratorem Pani/Pana danych osobowych jest Uniwersytet Jagielloński, ul. Gołębia 24, 31-007 Kraków. W Uniwersytecie wyznaczony został Inspektor Ochrony Danych. Kontakt z Inspektorem zapewniony jest przez formularz: http://www.iod.uj.edu.pl/kontakt lub pod numerem telefonu 12 663 12 25. Podanie przez Panią/Pana danych jest dobrowolne. Pani/Pana dane przechowywane będą przez okres 5 lat. Posiada Pani/Pan prawo do: dostępu do treści swoich danych oraz ich sprostowania, usunięcia, ograniczenia przetwarzania, przenoszenia danych, wniesienia sprzeciwu wobec przetwarzania, prawo do cofnięcia zgody w dowolnym momencie w przypadkach i na warunkach określonych w Rozporządzeniu Ogólnym. Konsekwencją wycofania zgody na przetwarzanie danych osobowych jest usunięcie konta w serwisie. Ma Pan/Pani prawo wniesienia skargi do Prezesa Urzędu Ochrony Danych Osobowych gdy uzna Pani/Pan, że przetwarzanie Pani/Pana danych osobowych odbywa się z naruszeniem przepisów Rozporządzenia Ogólnego.'
+label.personal_data_info_clause: 'Potwierdzam, że zapoznałem(am) się i przyjmuję do wiadomości powyższe informacje'
